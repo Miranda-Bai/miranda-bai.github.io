@@ -756,6 +756,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chapter 12 Secure Communications and Network Attacks
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -765,6 +776,34 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#written-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Written Lab
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -828,6 +867,48 @@
   
   <span class="md-ellipsis">
     Domain 5 Identity and Access Management (IAM) 13%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5-Identity%20and%20Access%20Managment/Chapter%2013/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 13 Managing Identity and Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5-Identity%20and%20Access%20Managment/Chapter%2014/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 14 Controlling and Monitoring Access
   </span>
   
 
@@ -1358,6 +1439,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../HTB/Machines/WifineticTwo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WifineticTwo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1500,6 +1602,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#written-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Written Lab
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1514,6 +1633,49 @@
 
 
 <h1 id="chapter-12-secure-communications-and-network-attacks">Chapter 12 Secure Communications and Network Attacks</h1>
+<h2 id="written-lab">Written Lab</h2>
+<ol>
+<li>
+<p>Describe the differences between transport mode and tunnel mode of VPNs.</p>
+<p>p.605</p>
+</li>
+<li>
+<p>Dicuss the benefits of NAT.</p>
+<p>p.614</p>
+</li>
+<li>
+<p>What are the main differences between circuit switching and packet switching?</p>
+<p>p.620</p>
+<p>Circuit switching is usually associated with physical connections. The link itself is physically established and then dismantled for the communication. Packet switching is usually associated with logical connections because the link is just a logically defined path among possible paths.</p>
+</li>
+<li>
+<p>What are some security issues with email and options for safeguarding against them?</p>
+<p>Email is inherently insecure because it is primarily a plaintext communication medium and employs nonencrypted transmission protocols. This allows email to be easily spoofed, spammed, flooded, eavesdropped on, interfered with, and hijacked. Defemses against these issues primarily include having stronger authentication requirements and using encryption to protect the content while in transit.</p>
+</li>
+<li>
+<p>What are the private IP addresses, APIPA addresses, and loopback addresses?</p>
+<ul>
+<li>
+<p>private IP addresses:</p>
+<ul>
+<li>10.0.0.0 - 10.255.255.255 (a full Class A ranges)</li>
+<li>172.16.0.0 - 172.31.255.255 (16 Class B ranges)</li>
+<li>192.168.0.0 - 192.168.255.255 (256 Class C ranges)</li>
+</ul>
+</li>
+<li>
+<p>Automatic Private IP Addressing (APIPA)</p>
+<p>APIPA assigns each failed DHCP client with an IP address from the range of 169.254.0.1 to 169.254.255.254 along with the default Class B subnet mask of 255.255.0.0. 
+    * loopback addresses</p>
+<p>Technically, the entire 127.0.0.0/8 network is reserved for loopback use in IPv4. However, only the 127.0.0.1 address is widely used.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Name at least six facts about VLANs.</p>
+<p>p.610</p>
+</li>
+</ol>
 
 
 

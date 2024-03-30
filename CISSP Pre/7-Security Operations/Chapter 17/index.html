@@ -12,7 +12,7 @@
         <link rel="prev" href="../Chapter%2016/">
       
       
-        <link rel="next" href="../../8-Software%20Development%20Security/0-Overview/">
+        <link rel="next" href="../Chapter%2018/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -1059,6 +1059,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chapter 17 Preventing and Responding to Incidents
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1069,6 +1080,76 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#written-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Written Lab
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%2018/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 18
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%2019/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 19 Investigations and Ethics
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1131,6 +1212,48 @@
   
   <span class="md-ellipsis">
     Domain 8 Software Development Security 10%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../8-Software%20Development%20Security/Chapter%2020/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 20 Software Development Security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../8-Software%20Development%20Security/Chapter%2021/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 21 Malicious Code and Application Attacks
   </span>
   
 
@@ -1647,6 +1770,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#written-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Written Lab
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1662,6 +1802,42 @@
 
 <h1 id="chapter-17-preventing-and-responding-to-incidents">Chapter 17 Preventing and Responding to Incidents</h1>
 <p><strong>Domain 7 &amp; 8</strong></p>
+<h2 id="written-lab">Written Lab</h2>
+<ol>
+<li>
+<p>Define an incident.</p>
+<p>An incident is any event that has a negative effect on the confidentiality, integrity, or availability of an organization's assets.</p>
+</li>
+<li>
+<p>List the different phases of incident management identified in the CISSP Security Operations domain.</p>
+<p>Detection, response, mitigation, reporting, recovery, remediation, and lessons learned.</p>
+</li>
+<li>
+<p>Describe the primary types of intrusion detection systems.</p>
+<ul>
+<li>
+<p>Host-based intrusion detection systems (HIDSs)</p>
+</li>
+<li>
+<p>Network-based intrusion detection systems (NIDSs)</p>
+</li>
+<li>
+<p>Knowledge-based intrusion detection systems (KIDSs) use a database of known attacks to detect intrusions.</p>
+</li>
+<li>
+<p>Behavior-based intrusion detection systems (BIDSs) start with a baseline of normal activity and measures network activity against the baseline to identify abnormal activity. An anomaly-based IDS is a variant of BIDS.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Discuss the benefits of a SIEM system.</p>
+<p>A SIEM system collects log entries from multiple sources in a centrailzed application. It can accept data from dissimilar devices and correlate and aggregate all of the data into useful information. It can also be configured to send alerts in real time to specific items of interest.</p>
+</li>
+<li>
+<p>Describe the purpose of SOAR technologies.</p>
+<p>SOAR stands for security orchestration, automation, and response. It refers to a group of technologies that automatically respond to some incidents. This reduces the workload on administrators.</p>
+</li>
+</ol>
 
 
 
@@ -1682,7 +1858,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 24, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 28, 2024</span>
   </span>
 
     

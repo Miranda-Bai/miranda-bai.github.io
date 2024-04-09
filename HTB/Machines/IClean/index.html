@@ -1,0 +1,2079 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Headless/">
+      
+      
+        <link rel="next" href="../Jab/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
+    
+    
+      
+        <title>[Protected] IClean - Released on 06 Apr 2024 - Notes & Writeups</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#iclean-released-on-06-apr-2024" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Notes &amp; Writeups" class="md-header__button md-logo" aria-label="Notes & Writeups" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes & Writeups
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              [Protected] IClean - Released on 06 Apr 2024
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Notes &amp; Writeups" class="md-nav__button md-logo" aria-label="Notes & Writeups" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Notes & Writeups
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CISSP Pre
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            CISSP Pre
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/Glossaries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossaries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/Question%20review/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Question Review
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    1 Security and Risk Management
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            1 Security and Risk Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 1 Security and Risk Managment 16%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%201/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1 Security Governance Through Principles and Policies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%202/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2 Personnel Security and Risk Management Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%203/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3 Business Continuity Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%204/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4 Laws, Regulations, and Compliance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2 Asset Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            2 Asset Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/2-Asset%20Security/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 2 Asset Security 10%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/2-Asset%20Security/Chapter%205/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5 Protecting Security of Assets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3 Security Architecture and Engineering
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            3 Security Architecture and Engineering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 3 Security Architecture and Engineering 13%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%2010/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 10 Physical Security Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%206/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6 Cryptography and Symmetric Key Algorithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%207/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 7 PKI and Cryptographic Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%208/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 8 Principles of Security Models, Design, and Capabilities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%209/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 9 Security Vulnerabilities, Threats, and Countermeasures
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    4 Communication and Network Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            4 Communication and Network Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/4-Communication%20and%20Network%20Security/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 4 Communication and Network Security 13%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/4-Communication%20and%20Network%20Security/Chapter%2011/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 11 Secure Network Architecture and Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/4-Communication%20and%20Network%20Security/Chapter%2012/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 12 Secure Communications and Network Attacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    5 Identity and Access Managment
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            5 Identity and Access Managment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/5-Identity%20and%20Access%20Managment/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 5 Identity and Access Management (IAM) 13%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/5-Identity%20and%20Access%20Managment/Chapter%2013/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 13 Managing Identity and Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/5-Identity%20and%20Access%20Managment/Chapter%2014/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 14 Controlling and Monitoring Access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    6 Security Assessment and Testing
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            6 Security Assessment and Testing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/6-Security%20Assessment%20and%20Testing/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 6 Security Assessment and Testing 12%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/6-Security%20Assessment%20and%20Testing/Chapter%2015/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 15 Security Assessment and Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    7 Security Operations
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            7 Security Operations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 7 Security Operations 13%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/Chapter%2016/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 16 Managing Security Operations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/Chapter%2017/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 17 Preventing and Responding to Incidents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/Chapter%2018/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 18 Disaster Recovery Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/Chapter%2019/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 19 Investigations and Ethics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    8 Software Development Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            8 Software Development Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/8-Software%20Development%20Security/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 8 Software Development Security 10%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/8-Software%20Development%20Security/Chapter%2020/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 20 Software Development Security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/8-Software%20Development%20Security/Chapter%2021/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 21 Malicious Code and Application Attacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HTB
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            HTB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Challenges
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Challenges
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/Distract%20and%20Destroy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Distract and Destroy (Blockchain)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/Photon%20Lockdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Photon Lockdown (Hardware)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Machines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Machines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bucket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bucket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FormulaX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] FormulaX - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Headless/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Headless - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    [Protected] IClean - Released on 06 Apr 2024
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] IClean - Released on 06 Apr 2024
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#port-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Port Scan
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssti-server-side-template-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSTI (Server Side Template Injection)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#www-data-consuela" class="md-nav__link">
+    <span class="md-ellipsis">
+      www-data -&gt; consuela
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consuela-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      consuela --&gt; root
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root" class="md-nav__link">
+    <span class="md-ellipsis">
+      Root
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etcshadow" class="md-nav__link">
+    <span class="md-ellipsis">
+      /etc/shadow
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Jab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jab - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mist - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Monitored/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Monitored - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Office/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Office - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Perfection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Perfection - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SteamCloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SteamCloud
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WifineticTwo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WifineticTwo - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Others
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Others/Job/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Job
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Others/NZISM%26PSR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NZISM & PSR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Others/Use%20WSL%20to%20Install%20Ubuntu%20on%20Windows%2011/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use WSL to Install Ubuntu on Windows 11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#port-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Port Scan
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssti-server-side-template-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSTI (Server Side Template Injection)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#www-data-consuela" class="md-nav__link">
+    <span class="md-ellipsis">
+      www-data -&gt; consuela
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consuela-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      consuela --&gt; root
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root" class="md-nav__link">
+    <span class="md-ellipsis">
+      Root
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etcshadow" class="md-nav__link">
+    <span class="md-ellipsis">
+      /etc/shadow
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<div id="mkdocs-encrypted-content" style="display:none">AVjTKqDIC0NqMedbLzlyYw==;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</div>
+<div id="mkdocs-decrypted-content">
+    <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
+        <h1>This content is protected with AES encryption. </h1>
+        <p>Contact your administrator for access to this page.</p>
+        <input class="md-input" type="password" id="mkdocs-content-password" placeholder="Password" />
+        
+        <p id="mkdocs-decrypt-msg"></p>
+    </form>
+</div>
+
+<script type="text/javascript">
+var encryptcontent_id = "encryptcontent_3";
+var encryptcontent_path = "HTB/Machines/IClean/";
+var decryption_failure_message = "Invalid password.";
+var encryptcontent_keystore = ["lmD4TKCw5W2JSpzuE5tMkg==;WNgWxdrZCKCzq5BqIPAkBufzA2meWv2noGtXfVCIh/tdpdswcFZm1QhxmcyhQYhz3nvKUYna2I05Rozy+obo4tTc0d/fgc69SpM33ZKk5IuQ+pLYQP1Wrd0FguAmVZkP;BFux63AMfsMNZjtcrgvNPw=="];
+var encryptcontent_obfuscate = 0;
+
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/enc-base64.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/cipher-core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/sha256.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/hmac.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/pbkdf2.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/aes.js"></script>
+<script type="text/javascript" src="../../../assets/javascripts/decrypt-contents.js" defer></script>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 8, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.7389ff0e.min.js"></script>
+      
+    
+  </body>
+</html>

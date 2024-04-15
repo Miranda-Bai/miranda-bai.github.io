@@ -1772,6 +1772,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../HTB/Machines/Usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Usage - Released on 13 Apr 2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../HTB/Machines/WifineticTwo/" class="md-nav__link">
         
   
@@ -2235,7 +2256,7 @@
 <p>C. SAE</p>
 <p>D. 802.11i</p>
 <p>E. WPS</p>
-<p>WPA3, 802.11i, SAE, and WPS are all technologies that are specifically defined as part of wireless networking. 802.1X is an IEEE standard for port authentication, which is not strictly related to wireless use. It is, however, the basis of the ENT (enterprise) authentication option on wireless networks, but it is widely used to manage authentication throughout a wired network as well.</p>
+<p>WPA3, 802.11i, SAE (Simultaneous Authentication of Equals), and WPS are all technologies that are specifically defined as part of wireless networking. 802.1X is an IEEE standard for port authentication, which is not strictly related to wireless use. It is, however, the basis of the ENT (enterprise) authentication option on wireless networks, but it is widely used to manage authentication throughout a wired network as well.</p>
 </li>
 <li>
 <p>A worker reports that they are unable to access an internal web application from their workstation. After you confirm that the worker has been assigned correct authorization, you review the logs from the workstation for clues. You discover the following entries:</p>
@@ -2291,6 +2312,187 @@
 <p>Open-source library use within the organization should be tracked.</p>
 <p>Open-source libraries are commonly used by software developers and do not necessarily pose a higher risk than commercially available libraries. The use of these libraries should be tracked and subject to regular security testing, as should any other closed-source library use.</p>
 </li>
+<li>
+<p>What test coverage analysis technique verifies that every if statement in the code has been executed under all if and else conditions?</p>
+<p>Branch coverage</p>
+<p>Branch coverage evaluates whether every if statement has been executed under all if and else conditions. Condition coverage tests whether every logical test in the code has been executed under all sets of input. Function coverage verifies that every function in the code has been called and returned results. Loop coverage verifies that every loop in the code has been executed under conditions that cause code execution multiple times, only once, and not at all.</p>
+</li>
+<li>
+<p>What is a hardware-imposed network segmentation that requires a routing function to support intersegment communications otherwise known as?</p>
+<p>VLAN</p>
+<p>A VLAN (virtual LAN) is a hardware-imposed network segmentation created by switches that requires a routing function to support communication between different segments. A subnet is defined by IP address and subnet mask assignment. Subnets are not defined by routers, but subnets do require a routing function to support intersegment communications. An internal segmentation firewall (ISFW) is not the name of a network segment, but it can be used to create network segments by dividing subnets. An extranet is a type of screened subnet typically separated from the intranet and internet by firewalls.</p>
+</li>
+<li>
+<p>Which of the following statements are true in regard to NAC (Network access control)?</p>
+<p>Agent-based NACs can quarantine noncompliant devices and implement updates automatically.</p>
+<p>Preadmission-based NAC requires a system to meet all current security requirements (such as patch application and malware scanner updates) before it is allowed to communicate with the network.</p>
+<p>A dissolvable NAC agent can be set to run once and then terminate. </p>
+<p>An agentless NAC performs port scans, service queries, and vulnerability scans against networked systems to determine whether devices are authorized and baseline compliant. </p>
+<p><strong>Revise other incorrect answers:</strong></p>
+<p>An agentless NAC is unable to automatically quarantine and resolve security issues on hosts. An agentless system requires an administrator to manually resolve any discovered issues.</p>
+<p>IEEE 802.1X can be used by a NAC solution as a means to grant or deny network access based on authentication, but NAC does not require the use of IEEE 802.1X.</p>
+</li>
+<li>
+<p>Your CISO is implementing a new technology to enable the various satellite offices to be connected to the central headquarters. This will increase business operations efficiency as well as allow for a more consistent application of company security policy. The technology is based on an encapsulation protocol that enables switch-created network segments to be stretched across subnets and geographic distances. What technology is being implemented in this scenario?</p>
+<p>VXLAN</p>
+<p>Virtual eXtensible LAN (VXLAN) is an encapsulation protocol that enables switch-created network segments (i.e., VLANs) to be stretched across subnets and geographic distances. Software-defined wide-area networks (SDWANs or SD-WANs) is an evolution of SDN that can be used to manage the connectivity and control services between distant data centers, remote locations, and cloud services over WAN links. SDN (Software Defined Network) offers a new network design that is directly programmable from a central location, flexible, vendor neutral, and open standards based. A VPN is a secured encapsulation tunnel used to connect networks (or network segments) together.</p>
+</li>
+<li>
+<p>A mission-critical server has experienced a compromise that caused it to go offline for seven hours. This nearly caused the organization to go out of business. After the attack, investigations revealed malicious code that would have corrupted the core database, but it was coded poorly and did not execute. This incident has caused the organization to rethink their security precautions against compromise, downtime, and disaster events. In order to prevent future downtime or at least reduce it significantly, which of the following technologies should be deployed? (Choose all that apply.)</p>
+<p>B. RAID</p>
+<p>C. UPS</p>
+<p>D. Dual power supplies</p>
+<p>E. Offsite backups of system images and snapshots</p>
+<p>H. Replication</p>
+<p>I. Clustering</p>
+<p>For this scenario, many different redundancy, resiliency, or uptime management options should be considered. This includes option B: Redundant array of inexpensive disks (RAID) to maintain data availability; option C: Uninterruptible power supply (UPS) to protect against power issues; option D: Dual power supplies to provide redundancy against power supply failures; option E: Offsite backups to provide a recovery path in the event of a major disaster’ option H: Replication to ensure multiple similar servers are hosting cloned material so that no matter which server is accessed the most current version of data is available; and option I: Clustering that is used to operate numerous servers as a collective to support a single or primary resource and provide high availability. The following options are incorrect for this scenario: option A: Full-disk encryption (FDE), though a good security practice, is not related to redundancy, resiliency, or uptime management; option F: Multifactor authentication (MFA), though a good security practice, is not related to redundancy, resiliency, or uptime management; and option G: Security information and event management (SIEM) is a centralized application to automate the monitoring of network systems, which a good security practice, but is not related to redundancy, resiliency, or uptime management.</p>
+</li>
+<li>
+<p>An organization’s security policy allows users to connect their mobile devices to the internal network. However, it requires that their devices are up-to-date with a current operating system. Which of the following access control models can enforce this requirement?</p>
+<p>Attribute-Based Access Control (ABAC)</p>
+<p>An ABAC model can require user devices to meet specific requirements, such as being up-to-date with a current operating system. A rule-based access control model defines access using a set of rules, such as the rules in a firewall’s access control list. A MAC model uses matching labels to grant access. An RBAC model uses job roles, or groups, for access control.</p>
+</li>
+<li>
+<p>Tina is selecting a cryptographic algorithm that will be used in a parallelized environment to distribute the workload of encryption and decryption among multiple processors. What cryptographic mode would best support this computing model?</p>
+<p>Counter</p>
+<p>Counter mode allows you to break an encryption or decryption operation into multiple independent steps. This makes Counter mode well suited for use in parallel computing.</p>
+</li>
+<li>
+<p>Which of the following statements are <em>not</em> true in regard to static electricity?</p>
+<p>A. Electrostatic discharge can damage most computing components. (True)</p>
+<p>B. Static charge accumulation is more prevalent when there is ~~high~~ (low) humidity. (False. Low humidity)</p>
+<p>C. Static discharge from a person to a metal object can be over 1,000 volts. (True)</p>
+<p>D. Static electricity is not managed by the deployment of a UPS. (True)</p>
+</li>
+<li>
+<p>An organization has recently implemented an <strong>asset management program</strong>. Which of the following BEST represents the primary goal of this program?</p>
+<p>Prevent losses</p>
+</li>
+<li>
+<p>Which of the following is an advantage of a single sign-on (SSO) solution within an internal network?</p>
+<p>It improves the administrator’s ability to manage user accounts.</p>
+<p>SSO solutions and centralized administration and make it easier for administrators to manage user accounts. SSO solutions can be a single point of failure, but this is a vulnerability. Another vulnerability is that compromise of a single account can give an attacker access to multiple resources. Although SSO solutions typically can support more than one operating system, it isn’t always easy to support all operating systems in internal networks.</p>
+</li>
+<li>
+<p>Which of the following is <em>not</em> an element defined under the Clark–Wilson model? </p>
+<p>Redundant commit statement (not an element of the Clark–Wilson model, it is instead an element in database replication.)</p>
+<p>The Clark–Wilson model does define the constrained data item, transformation procedures, and integrity verification procedure.</p>
+</li>
+<li>
+<p>An organization has merged with another organization. The two organizations are using different network operating systems. Management wants to implement a solution that will give them the most control while allowing both organizations to access resources in both networks. Which of the following choices is the best to meet these needs?</p>
+<p>On-premises identity management</p>
+<p>An on-premises identity management system will provide the organization with the most control and is the best choice. A cloud-based solution is controlled by a third party. There’s no need to have both an on-premises and a cloud-based solution in this situation, which would be a hybrid solution. Identity management solutions provide single sign-on (SSO), but SSO is a benefit of identity management, not a type of identity management.</p>
+</li>
+<li>
+<p>When you install a new wireless access point to extend your company’s network into a newly opened portion of the building, someone raises the concern of interference between the existing Wi-Fi network and the new extension. What media access technology is used by 802.11 networks to manage collisions?</p>
+<p>CSMA/CA</p>
+<p>IEEE 802.11 wireless networks use Carrier-Sense Multiple Access with Collision Avoidance (CSMA/CA) to manage (technically avoid) collisions. Ethernet (IEEE 802.3) uses Carrier-Sense Multiple Access with Collision Detection (CSMA/CD). Token Ring networks used token passing. Polling is used by some mainframe systems.</p>
+</li>
+<li>
+<p>Which one of the following disaster types is not usually covered by standard business insurance?</p>
+<p>Flood</p>
+<p>Most general business insurance and homeowner’s insurance policies do not provide any protection against the risk of flooding or flash floods. If floods pose a risk to your organization, you should consider purchasing supplemental flood insurance under FEMA’s National Flood Insurance Program.</p>
+</li>
+<li>
+<p>Security administrators recently detected an attack that allowed attackers to exfiltrate data from several servers. They implemented the incident response plan on response. Which of the following would security personnel do during the remediation stage of incident management?</p>
+<p>Root cause analysis</p>
+<p>Security personnel perform a root cause analysis during the remediation stage. A root cause analysis attempts to discover the source of the problem. After discovering the cause, the review will often identify a solution to help prevent a similar occurrence in the future. Containing the incident and collecting evidence is done early in the incident management process. Rebuilding a system may be needed during the recovery stage.</p>
+</li>
+<li>
+<p>Temporary internet files or the internet files cache is the temporary storage of files downloaded from internet sites that are being held by the client’s utility (typically a browser) for current and possibly future use. What type of attack is possible if an adversary is able to gain access to this cache? (Choose all that apply.)</p>
+<p>Split-response attack</p>
+<p>Cache poisoning</p>
+<p>DOM XSS</p>
+<p>The temporary internet files cache if accessed by an adversary could result in a split-response attack, cache poisoning, and/or DOM XSS. Split-response attacks can cause the client to download content and store it in the cache that was not an intended element of a requested web page. Once files have been poisoned in the cache, then even when a legitimate web document calls on a cached item, the malicious item will be activated. DOM XSS may be able to access and use locally cached files to execute malicious code or exfiltrate data. Internet files cache access will not likely result in identity theft. Identity theft is the act of stealing someone’s identity. Cache access might allow for some forms of spoofing, masquerading, or impersonation of websites, but it is unlikely to contain enough information about the person using the system to be able to perform actual identity theft.</p>
+</li>
+<li>
+<p>A web developer implemented an authentication solution on a website allowing users to authenticate with a third party. The website doesn’t see or store the user’s credentials. The solution uses technologies described in RFC 6749 but is not maintained by IETF. What does this describe?</p>
+<p>OpenID Connect (OIDC) uses the OAuth framework (described in RFC 6749) and is maintained by the OpenID Foundation. RFC 6749 describes OAuth and is maintained by the Internet Engineering Task Force (IETF). </p>
+</li>
+<li>
+<p>Which backup facility is large enough to support current operational capacity and load but lacks the supportive infrastructure?</p>
+<p>Cold site</p>
+</li>
+<li>
+<p>Proximity devices can be used to control physical access. The proximity device is worn or held by the authorized bearer. When it passes near a proximity reader, the reader device is able to determine who the bearer is and whether they have authorized access. Which of the following is a proximity technology that is the equivalent of RFID?</p>
+<p>Field-powered proximity device</p>
+<p>RFID (radio-frequency identification) is effectively a field-powered proximity device. A passive proximity device is often a magnet; an RFID does not use a magnet, but an antenna to generate current from a magnet field provided by an external source. A self-powered proximity device has its own battery, which RFID does not, but NFC may. A TOTP token is a device with an LCD screen that displays a one-time use password that is based on time and that changes at fixed time intervals. There is no such thing as a TOTP proximity token.</p>
+</li>
+<li>
+<p>You need to run networking cables between two office buildings. Between the buildings are several electrical boxes that manage the primary power for the entire business park. Which of the following cable is the worst option to use?</p>
+<p>UTP</p>
+<p>UTP is the least resistant to EMI because it is unshielded. STP is a shielded form of twisted pair that resists EMI. Fiber is not affected by terrestrial EMI. Wireless is not a cable, but it could be affected by EMI if the interference occurred in the wireless transmission frequencies.</p>
+</li>
+<li>
+<p>Developers of a web application want to ensure that users are logged off automatically after 20 minutes of inactivity. Which of the following choices indicates the easiest way to do this?</p>
+<p>A web development framework</p>
+<p>The easiest way (and the best way) to implement session management is with a web development framework, such as one recommended by the Open Web Application Security Project (OWASP). Writing the code from scratch in Python or JavaScript would not be the easiest way and may introduce vulnerabilities, whereas established frameworks are reliable and well tested. TLS should be used in session management, but TLS doesn’t close sessions.</p>
+</li>
+<li>
+<p>You have three applications running on a <strong>dual-core single-processor</strong> system that supports multitasking. One of those applications is a word processing program that is managing two threads simultaneously. The other two applications are using only one thread of execution. How many application threads are running on the processor at any given time?</p>
+<p>Two</p>
+<p>A dual-core single-processor system can operate on two threads at a time (one by each core). There would be a total of four application threads in this scenario (ignoring any threads created by the OS), but the OS would be responsible for deciding which single thread is running on the processor at any given time. A single-core single processor system would be limited to one thread executing at a time. Other multicore and/or multiprocessor configurations would be needed to execute three or four (or more) threads simultaneously.</p>
+</li>
+<li>
+<p>Under what method are database backups bulk transferred to off-site recovery locations?</p>
+<p>Electronic vaulting</p>
+<p>Electronic vaulting automatically backs up data to a secure site where storage professionals at the vaulting company’s site handle the details.</p>
+</li>
+<li>
+<p>Security administrators are considering different configuration management methods. Which of the following is the MOST effective method of configuration management provisioning?</p>
+<p>Using images</p>
+<p>Images are an effective provisioning method that ensures systems receive an initial, known baseline configuration. Change management processes help prevent outages from unauthorized changes. Vulnerability management processes help to identify vulnerabilities, and patch management processes help to ensure that systems are kept up-to-date.</p>
+</li>
+<li>
+<p>A company has not been implementing patches consistently, and you are tasked with writing a policy related to patch management. Which of the following should you include in the policy? (Choose three.)</p>
+<p>A. Evaluate patches.</p>
+<p>B. Test patches.</p>
+<p>D. Audit patches.</p>
+<p>A patch management process includes evaluating patches, testing patches, and auditing patches. Evaluating patches determines what patches should be deployed. Testing helps discover unintended problems before they are deployed. Auditing ensures required patches have been deployed. All patches should not be deployed. Instead, only patches that apply to a system and have been approved should be applied.</p>
+</li>
+<li>
+<p>The <strong><em>_</em></strong>_____ data model has data stored in more than one database, but the data is still logically connected. The user perceives the database as a single entity, even though it comprises numerous parts interconnected over a network.</p>
+<p>Distributed</p>
+<p>The distributed data model has data stored in more than one database, but the data is still logically connected. The user perceives the database as a single entity, even though it comprises numerous parts interconnected over a network.</p>
+</li>
+<li>
+<p>Internet Protocol Security (IPsec) is a standard of IP security extensions used as an add-on for IPv4 and integrated into IPv6. IPsec isn’t a single protocol but rather a collection of protocols. Which component of IPsec enables multiple simultaneous VPNs?</p>
+<p>ISAKMP</p>
+<p>Internet Security Association and Key Management Protocol (ISAKMP), an element of Internet Key Exchange (IKE), is used to organize and manage the encryption keys that have been generated and exchanged by OAKLEY and SKEME. A security association is the agreed-on method of authentication and encryption used by two entities (a bit like a digital keyring). ISAKMPs’ use of security associations is what enables IPsec to support multiple simultaneous VPNs from each host. Encapsulating Security Payload (ESP) provides confidentiality and integrity of packet contents. ESP provides encryption and limited authentication, and prevents replay attacks. Secure Key Exchange Mechanism (SKEME), an element of Internet Key Exchange (IKE), is a means of exchanging keys securely. Authentication Header (AH) provides assurances of message integrity and nonrepudiation. AH also provides authentication and access control, and prevents replay attacks.</p>
+</li>
+<li>
+<p>You’re working for a financial institution that has job rotation and separation of duties policies. What is a primary benefit of these policies?</p>
+<p>Preventing fraud</p>
+<p>Job rotation and separation of duties policies help prevent fraud. Collusion is an agreement among multiple persons to perform some unauthorized or illegal actions, and implementing these policies doesn't prevent collusion, nor does it encourage employees to collude against an organization. They help deter and prevent incidents, but they do not correct them.</p>
+</li>
+<li>
+<p>A recent update to networking equipment has provided the IT management and security teams with many new capabilities. These include the ability to implement customized network segments and use NATing between them. Which of the following is an appropriate container where static NAT can be used to grant external entities access to resources that are otherwise using private IP addresses? (Choose all that apply.)</p>
+<p>Screened subnet</p>
+<p>Extranet</p>
+<p>Static NAT can be appropriately and securely used to grant external entities access to resources positioned in a screened subnet or an extranet, especially when those resource hosts are using private IP addresses. VLANs are typically not relevant to NAT because NAT operates at layers 3 and 4 and a VLAN exists at layer 2. It is not appropriate or secure to use static NAT to grant external entities access into the LAN.</p>
+</li>
+<li>
+<p>A cloud application has been deployed and shared among several organisations with similar concerns. What type of cloud-based deployment model does this describe?</p>
+<p>Community</p>
+<p>A community cloud deployment model provides cloud-based assets to two or more organizations. A public cloud model includes assets available for any consumers to rent or lease. A private cloud deployment model includes cloud-based assets that are exclusive to a single organization. A hybrid model includes a combination of two or more deployment models. It doesn't matter if it is a Software as a Service (SaaS) model or any other service model.</p>
+</li>
+<li>
+<p>A user is attempting to access a website, but when they type the FQDN into the address bar of their browser, a different site appears. The user opens a command prompt and performs an nslookup query to obtain the IP address their system is receiving when resolving the FQDN of the website. The user then checks with a colleague who is working from home and they get a different IP address and they have no issue accessing the website. The user checks their IP configuration and sees that the correct DNS server is listed as their query target. The user runs ipconfig /flushdns and then the ipconfig /displaydns commands but does not see the correct website’s identity listed in the final result. Which of the following is the most likely cause for this situation?</p>
+<p>Local DNS caching server poisoning</p>
+<p>The most likely cause of this situation is the poisoning of the local DNS caching server. This is the DNS server that the user’s computer is using to send DNS queries to. When the user types in the fully qualified domain name (FQDN), the resolution returns the wrong IP address. The investigations performed by the user demonstrated that this is the only remaining option. After a DNS flush, the display command would have shown the FQDN and the wrong IP address if the hosts file had been modified since those entries would not be removed from the DNS cache as they are boot persistent. When their local IP configuration is correct, it shows that DHCP was not altered to hand out an invalid DNS server IP address. Since their colleague had no issue getting to the correct website, the authoritative DNS server’s zone file was not modified.</p>
+</li>
+<li>
+<p>A DCE typically includes an interface definition language (IDL). An IDL is a language used to define the interface between client and server processes or objects in a distributed system. Which of the following are considered examples of DCE IDL? (Choose all that apply.)</p>
+<p>RPC</p>
+<p>CORBA (Common Object Request Broker Architecture)</p>
+<p>DCOM (Distributed Component Object Model)</p>
+<p>There are numerous examples DCE IDL or frameworks, such as remote procedure calls (RPC), the Common Object Request Broker Architecture (CORBA), and the Distributed Component Object Model (DCOM). The other options are incorrect. Security Assertion Markup Language (SAML) is used for authentication federation. Online Certificate Status Protocol (OCSP) is used to check on the revocation status of a certificate. Structured Query Language (SQL) is a means to interact with a database management system and its hosted databases.</p>
+</li>
+<li>
+<p>Applications developed on <strong><em>_</em></strong>___ are similar to microservices, and each function is crafted to operate independently and autonomously. This allows each function to be independently scaled by the CSP. With this technology, the functions run only when called and then terminate when their operations are completed.</p>
+<p>Serverless architecture</p>
+<p>Applications developed on serverless architecture are similar to microservices, and each function is crafted to operate independently and autonomously. This allows each function to be independently scaled by the CSP. With this technology, the functions run only when called and then terminate when their operations are completed. The other options are incorrect. JavaScript is the most widely used scripting language in the world and is embedded into HTML documents using ˂script˃˂/script˃ enclosure tags. In asymmetric multiprocessing (AMP), the processors are often operating independently of one another. Usually, each processor has its own OS and/or task instruction set. Smart devices are a range of devices that offer the user a plethora of customization options, typically through installing apps, and may take advantage of on-device or in-the-cloud machine learning (ML) processing.</p>
+</li>
 </ol>
 
 
@@ -2312,7 +2514,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 11, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 15, 2024</span>
   </span>
 
     

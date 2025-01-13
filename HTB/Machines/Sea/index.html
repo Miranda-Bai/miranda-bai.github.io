@@ -1,0 +1,3956 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://miranda-bai.github.io/HTB/Machines/Sea/">
+      
+      
+        <link rel="prev" href="../Scrambled/">
+      
+      
+        <link rel="next" href="../SolarLab/">
+      
+      
+      <link rel="icon" href="../../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
+    
+    
+      
+        <title>[Protected] Sea - Notes & Writeups</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sea" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Notes &amp; Writeups" class="md-header__button md-logo" aria-label="Notes & Writeups" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes & Writeups
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              [Protected] Sea
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Bug%20Bounty/Overlong%20UTF-8%20encoding%20attack/" class="md-tabs__link">
+          
+  
+  Bug Bounty
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CISSP%20Pre/Glossaries/" class="md-tabs__link">
+          
+  
+  CISSP Pre
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../Academy/API%20attack/" class="md-tabs__link">
+          
+  
+  HTB
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Notes/Change%20Mysql%20pw%20in%20Linux/" class="md-tabs__link">
+          
+  
+  Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../OffSec%20playground/CVE-2024-25180/" class="md-tabs__link">
+          
+  
+  OffSec playground
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Others/Bastion/" class="md-tabs__link">
+          
+  
+  Others
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PortSwigger%20Labs/Access%20control%20vulnerabilities/" class="md-tabs__link">
+          
+  
+  PortSwigger Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Notes &amp; Writeups" class="md-nav__button md-logo" aria-label="Notes & Writeups" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Notes & Writeups
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Bug Bounty
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Bug Bounty
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Bug%20Bounty/Overlong%20UTF-8%20encoding%20attack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overlong UTF-8 Encoding Attack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    CISSP Pre
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            CISSP Pre
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/Glossaries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossaries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/Question%20review/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Question Review
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    1 Security and Risk Management
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            1 Security and Risk Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 1 Security and Risk Managment 16%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%201/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1 Security Governance Through Principles and Policies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%202/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2 Personnel Security and Risk Management Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%203/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3 Business Continuity Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/1-Security%20and%20Risk%20Management/Chapter%204/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4 Laws, Regulations, and Compliance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2 Asset Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            2 Asset Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/2-Asset%20Security/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 2 Asset Security 10%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/2-Asset%20Security/Chapter%205/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5 Protecting Security of Assets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3 Security Architecture and Engineering
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            3 Security Architecture and Engineering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 3 Security Architecture and Engineering 13%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%2010/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 10 Physical Security Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%206/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6 Cryptography and Symmetric Key Algorithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%207/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 7 PKI and Cryptographic Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%208/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 8 Principles of Security Models, Design, and Capabilities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/3-Security%20Architecture%20and%20Engineering/Chapter%209/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 9 Security Vulnerabilities, Threats, and Countermeasures
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    4 Communication and Network Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            4 Communication and Network Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/4-Communication%20and%20Network%20Security/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 4 Communication and Network Security 13%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/4-Communication%20and%20Network%20Security/Chapter%2011/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 11 Secure Network Architecture and Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/4-Communication%20and%20Network%20Security/Chapter%2012/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 12 Secure Communications and Network Attacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    5 Identity and Access Managment
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            5 Identity and Access Managment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/5-Identity%20and%20Access%20Managment/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 5 Identity and Access Management (IAM) 13%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/5-Identity%20and%20Access%20Managment/Chapter%2013/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 13 Managing Identity and Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/5-Identity%20and%20Access%20Managment/Chapter%2014/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 14 Controlling and Monitoring Access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    6 Security Assessment and Testing
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            6 Security Assessment and Testing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/6-Security%20Assessment%20and%20Testing/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 6 Security Assessment and Testing 12%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/6-Security%20Assessment%20and%20Testing/Chapter%2015/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 15 Security Assessment and Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    7 Security Operations
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            7 Security Operations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 7 Security Operations 13%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/Chapter%2016/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 16 Managing Security Operations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/Chapter%2017/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 17 Preventing and Responding to Incidents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/Chapter%2018/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 18 Disaster Recovery Planning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/7-Security%20Operations/Chapter%2019/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 19 Investigations and Ethics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    8 Software Development Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            8 Software Development Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/8-Software%20Development%20Security/0-Overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Domain 8 Software Development Security 10%
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/8-Software%20Development%20Security/Chapter%2020/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 20 Software Development Security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CISSP%20Pre/8-Software%20Development%20Security/Chapter%2021/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 21 Malicious Code and Application Attacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    HTB
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            HTB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Academy
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Academy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Academy/API%20attack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API attack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Academy/Introduction%20to%20Web%20App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to Web APPs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Academy/SOC%20Analyst/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Useful Windows Event Logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Academy/Web%20requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Challenges
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Challenges
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/ApacheBlaze/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ApacheBlaze
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/C.O.P/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C.O.P
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/Distract%20and%20Destroy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Distract and Destroy (Blockchain)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/DoxPit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DoxPit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/Neonify/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Neonify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/Oxidized%20ROP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Oxidized ROP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/PDFy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PDFy.md
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/Photon%20Lockdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Photon Lockdown (Hardware)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/ProxyAsAService/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ProxyAsAService
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/RenderQuest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RenderQuest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/Watersnake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Watersnake
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/baby%20website%20rick/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    baby website rick
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenges/jscalc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jscalc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Machines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Machines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Aero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aero
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Arkham/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arkham
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Axlle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Axlle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Blazorized/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Blazorized
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Blurry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Blurry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BoardLight/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] BoardLight
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bucket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bucket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Celestial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Celestial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Compiled/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Compiled
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Editorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Editorial - Season 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Escape/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Escape
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FormulaX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] FormulaX - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GreenHorn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] GreenHorn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Headless/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Headless - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IClean/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] IClean - Released on 06 Apr 2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Intuition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Intuition - Season 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Jab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Jab - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mailing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Mailing - Season 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Mist - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Monitored/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Monitored - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Office/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Office - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Outdated/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outdated
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Perfection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Perfection - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PermX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] PermX
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Runner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Runner - Season 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Scrambled/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scrambled
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    [Protected] Sea
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    [Protected] Sea
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#port-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Port Scan
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-app-port-80" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web APP (port 80)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#www-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      www-data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-amay" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Amay
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root" class="md-nav__link">
+    <span class="md-ellipsis">
+      Root
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etcshadow" class="md-nav__link">
+    <span class="md-ellipsis">
+      /etc/shadow
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SolarLab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SolarLab
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SteamCloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SteamCloud
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Usage - Released on 13 Apr 2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WifineticTwo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WifineticTwo - Season 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Notes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Notes/Change%20Mysql%20pw%20in%20Linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Change root user's password in Mysql Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Notes/Create%20multi%20shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create multiple shells from one shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Notes/File%20upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    File upload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Notes/Transfer%20file%20to%20local/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transfer file from remote to local
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Notes/VPN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VPN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Notes/payloads%20for%20SSRF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    payloads for SSRF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    OffSec playground
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            OffSec playground
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../OffSec%20playground/CVE-2024-25180/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CVE-2024-25180
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../OffSec%20playground/Hepet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hepet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../OffSec%20playground/OSCPExamTips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OSCPExamTips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Others
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Others/Bastion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ministry of Magic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Others/Job/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Job
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Others/NZISM%26PSR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NZISM & PSR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Others/Use%20WSL%20to%20Install%20Ubuntu%20on%20Windows%2011/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use WSL to Install Ubuntu on Windows 11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    PortSwigger Labs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            PortSwigger Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Access%20control%20vulnerabilities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Access control vulnerabilities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Authentication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/CORS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cross-origin resource sharing (CORS)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/CSRF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cross-site request forgery (CSRF)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Clickjacking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Click jacking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/File%20upload%20vulnerabilities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    File upload vulnerabilities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/GraphQL%20API%20vulnerabilities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GraphQL API vulnerabilities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/HTTP%20Host%20header%20attacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTP Host header attacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Information%20disclosure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Information disclosure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Insecure%20deserialization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Insecure deserialization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/JWT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JWT (Json Web Tokens)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/NoSQL%20injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NoSQL injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/OAuth%20authentication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OAuth authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/OS%20command%20injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OS command injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Path%20traversal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Path traversal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Race%20conditions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Race conditions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/SQL%20injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/SSRF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server-side request forgery (SSRF)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Web%20LLM%20attacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web LLM (Large Language Model) attacks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/Web%20cache%20poisoning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web cache poisoning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/WebSockets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WebSockets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/XSS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cross-site script (XSS)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/XXE%20injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XML external entity (XXE) injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PortSwigger%20Labs/server-side%20template%20injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sever-side template injection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#port-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Port Scan
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-app-port-80" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web APP (port 80)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#www-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      www-data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-amay" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Amay
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root" class="md-nav__link">
+    <span class="md-ellipsis">
+      Root
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etcshadow" class="md-nav__link">
+    <span class="md-ellipsis">
+      /etc/shadow
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<div id="mkdocs-encrypted-content" style="display:none">/yCTcHT3mK+L79r7B9m4hA==;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</div>
+<div id="mkdocs-decrypted-content">
+    <form id="mkdocs-decrypt-form" class="md-content__inner md-typeset">
+        <h1>This content is protected with AES encryption. </h1>
+        <p>Contact your administrator for access to this page.</p>
+        <input class="md-input" type="password" id="mkdocs-content-password" placeholder="Password" />
+        
+        <p id="mkdocs-decrypt-msg"></p>
+    </form>
+</div>
+
+<script type="text/javascript">
+var encryptcontent_id = "encryptcontent_18";
+var encryptcontent_path = "HTB/Machines/Sea/";
+var decryption_failure_message = "Invalid password.";
+var encryptcontent_keystore = ["NgUZag+TV+Bg+5KmG1hw3A==;yW4wemXTIEad9iUMw0fP6y7dlsWxsGlfhTSRfWJVj4+eiRvTNi5Q3vEfDkZ0a19TBySBF7kA7ymqW/MgcJer8J3tCL8L3d4vTfx5Y/4Fc1vLou3JUxNAIhW6KgVGR/Eo;GMAaVLRy1u0OW0QXwPKkcg=="];
+var encryptcontent_obfuscate = 0;
+
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/enc-base64.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/cipher-core.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/sha256.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/hmac.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/pbkdf2.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/aes.js"></script>
+<script type="text/javascript" src="../../../assets/javascripts/decrypt-contents.js" defer></script>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 15, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.path", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.7389ff0e.min.js"></script>
+      
+    
+  </body>
+</html>

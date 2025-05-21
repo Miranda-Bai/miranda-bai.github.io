@@ -14,7 +14,7 @@
         <link rel="prev" href="../../Course/Python/">
       
       
-        <link rel="next" href="../Deserialization%20vul/">
+        <link rel="next" href="../Cryptobank/">
       
       
       <link rel="icon" href="../../../assets/logo.png">
@@ -2470,6 +2470,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../HTB/Machines/Heal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Heal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../HTB/Machines/IClean/" class="md-nav__link">
         
   
@@ -3220,11 +3241,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Challenge%20Labs/ATutor/" class="md-nav__link">
+      <a href="../../Challenge%20Labs/14-ATutor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     ATutor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Challenge%20Labs/15-ATutor_LMS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. ATutor LMS Type Juggling Vulnerability
   </span>
   
 
@@ -3886,6 +3928,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#compute-md5-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compute MD5 hash
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sql" class="md-nav__link">
     <span class="md-ellipsis">
       SQL
@@ -3898,6 +3949,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cryptobank/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Crypto Bank
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -3957,6 +4029,27 @@
   
   <span class="md-ellipsis">
     Trouble1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devrandom-pipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    devrandom-pipe
   </span>
   
 
@@ -4160,6 +4253,27 @@
             Tips
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tips/ExamTips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exam Tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -5295,6 +5409,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#compute-md5-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compute MD5 hash
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sql" class="md-nav__link">
     <span class="md-ellipsis">
       SQL
@@ -5351,6 +5474,13 @@ iisreset /noforce
 </ol>
 <p>Purpose: Stores password hashes (like /etc/shadow in Linux).</p>
 <p>Accessibility: Locked by SYSTEM (not readable without admin privileges).</p>
+<h2 id="compute-md5-hash">Compute MD5 hash</h2>
+<pre><code class="language-bash">certutil -hashfile &quot;C:\path\to\your\file&quot; MD5
+
+Get-FileHash -Algorithm MD5 &quot;C:\path\to\your\file&quot; | Format-List
+
+(Get-FileHash -Algorithm MD5 &quot;C:\path\to\your\file&quot;).Hash
+</code></pre>
 <h2 id="sql">SQL</h2>
 <pre><code class="language-sql">select distinct(RESOURCEID) from AM_USERRESOURCESTABLE where userid=1 union select 1;
 
@@ -5376,7 +5506,7 @@ select distinct(RESOURCEID) from AM_USERRESOURCESTABLE where userid=1 union sele
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 30, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 19, 2025</span>
   </span>
 
     
